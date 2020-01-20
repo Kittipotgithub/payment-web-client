@@ -38,16 +38,6 @@
       <div class="col-md-12">
       <mat-card class="hometab">
         <mat-card-content>
-          <!--mat-tab-group dynamicHeight="true">
-            <mat-tab label="สถานะ">
-            </mat-tab>
-            <mat-tab label="พาราฯ">
-            </mat-tab>
-            <mat-tab label="การเลือกอิสระ">
-            </mat-tab>
-            <mat-tab label="log เพิ่มเติม">
-            </mat-tab>
-          </!--mat-tab-group-->
           <nav mat-tab-nav-bar>
             <a mat-tab-link
                *ngFor="let link of navLinks"
@@ -57,7 +47,6 @@
               {{link.label}}
             </a>
           </nav>
-          
           <router-outlet></router-outlet>
         </mat-card-content>
       </mat-card>
