@@ -1,7 +1,47 @@
-<div class="row">
-  <div class="col-12 col-md-2"><label class="text-black"> เลขที่ใบบันทึกรายการบัญชี </label></div>
-  <div class="col-12 col-md-4">
-    <p> {{ accountDocNo }} <span class="ml-3"> {{ accountDocNoFiscYear }} </span> </p>
+<form>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-toolbar color="primary">
+        <!--button mat-button class="app-menu-button">
+          <i class="material-icons">menu</i>
+        </!--button-->
+        <span class="title">รายการการชำระเงิน</span>
+      </mat-toolbar>
+    </div>
   </div>
-  <div class="col-12 col-md-2"><label class="text-black"> เลขที่เอกสารกลับรายการ </label></div>
-</div>
+  <div class="row">
+    <div class="col-md-2">
+      <label class="text-black"> รหัสหน่วยงาน </label>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+    </div>
+    <div class="col-md-2">
+      <label class="text-black"> รหัสหน่วยงาน </label>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+    </div>
+  </div>
+  <div class="row">
+      <!-- Material Tab -->
+      <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="สถานะ">
+            </mat-tab>
+            <mat-tab label="พาราฯ">
+            </mat-tab>
+            <mat-tab label="การเลือกอิสระ">
+            </mat-tab>
+            <mat-tab label="log เพิ่มเติม">
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+      <!-- /Material Tab -->
+      </div>
+  </div>
+  </form>
+  
