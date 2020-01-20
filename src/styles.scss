@@ -27,7 +27,33 @@ body {
     color: #333;
     background-color: #fff;
     border-color: #ccc;
-}s
+}
+.margin-tb-size {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+// Checkbox
+.checkbox-lg .custom-control-label::before, 
+.checkbox-lg .custom-control-label::after {
+  top: .8rem;
+  width: 1.55rem;
+  height: 1.55rem;
+}
+.checkbox-lg .custom-control-label {
+  padding-top: 13px;
+  padding-left: 6px;
+}
+.checkbox-xl .custom-control-label::before, 
+.checkbox-xl .custom-control-label::after {
+  top: 1.2rem;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+.checkbox-xl .custom-control-label {
+    padding-top: 12px;
+    padding-left: 12px;
+}
+
 // Customize
 .mat-toolbar.mat-primary {
     background: #0088cc;
@@ -35,6 +61,12 @@ body {
 }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: #0088cc;
+}
+.custom-control-label::before, 
+.custom-control-label::after {
+top: .8rem;
+width: 1.25rem;
+height: 1.25rem;
 }
 
 .content-border {
