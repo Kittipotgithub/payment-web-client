@@ -8,6 +8,12 @@ import { OmComponent } from './om/om.component';
 import { MatDialogModule, MatNativeDateModule, MatTabsModule, MatExpansionModule, MatDatepickerModule, MatAutocompleteModule } from '@angular/material';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 
 
@@ -24,7 +30,12 @@ import { AppRoutingModule } from '../app-routing.module';
     MatDatepickerModule,
     MatExpansionModule,
     // NgxPaginationModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
   ]
 })
 export class PagesModule { }
