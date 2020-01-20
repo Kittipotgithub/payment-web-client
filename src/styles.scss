@@ -6,3 +6,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
     padding-top: 20px;
     max-width: 1200px;
 }
+
+.content-border {
+    border: 1px solid #85929E;
+    position: relative;
+    padding: 20px 10px;
+    width: 100%;
+    margin-top: 10px;
+    span.topic-header {
+      font-family: 'SarabunExtraBold';
+      position: absolute;
+      top: -11px;
+      background: white;
+      label {
+        font-size: 13px;
+      }
+    }
+  }

@@ -16,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { StatusComponent } from './status/status.component';
 import { RouterModule, Routes } from '@angular/router';
+import { OptionIndependentComponent } from './option-independent/option-independent.component';
+import { OptionAdditionalLogComponent } from './option-additional-log/option-additional-log.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: StatusComponent  },
@@ -24,7 +26,7 @@ const appRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [HomeComponent, OmComponent, StatusComponent],
+  declarations: [HomeComponent, OmComponent, StatusComponent, OptionIndependentComponent, OptionAdditionalLogComponent],
   imports: [
     CommonModule,
     SharedModule,
