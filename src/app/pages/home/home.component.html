@@ -40,17 +40,10 @@
           <mat-card-content>
             <mat-tab-group dynamicHeight="true">
               <mat-tab label="สถานะ">
-                <div class="col-md-2">
-                  <label class="text-black"> รหัสหน่วยงาน </label>
-                  
-                </div>
+                <app-status></app-status>
               </mat-tab>
               <mat-tab label="พาราฯ">
-                <div class="col-md-2">
-                  <label class="text-black">username </label>
-                </div>
-                <input type="text">
-              
+                <app-parameter></app-parameter>
               </mat-tab>
               <mat-tab label="การเลือกอิสระ">
                
@@ -58,19 +51,12 @@
               </mat-tab>
               <mat-tab label="log เพิ่มเติม">
                 <app-option-additional-log></app-option-additional-log>
+                <app-freedom></app-freedom>
+              </mat-tab>
+              <mat-tab label="log เพิ่มเติม">
+                <app-report></app-report>
               </mat-tab>
             </mat-tab-group>
-            <!-- <nav mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive
-                #rla="routerLinkActive" [active]="rla.isActive">
-                {{link.label}}
-              </a>
-            </nav> -->
-
-            <!-- <router-outlet>
-
-           
-            </router-outlet> -->
           </mat-card-content>
         </mat-card>
       </div>
