@@ -20,6 +20,7 @@ import { ParameterComponent } from './parameter/parameter.component';
 import { ReportComponent } from './report/report.component';
 import { OptionIndependentComponent } from './option-independent/option-independent.component';
 import { OptionAdditionalLogComponent } from './option-additional-log/option-additional-log.component';
+import {MatTableModule} from '@angular/material/table';
 
 /*const appRoutes: Routes = [
   { path: 'status', component: StatusComponent },
@@ -56,6 +57,7 @@ import { OptionAdditionalLogComponent } from './option-additional-log/option-add
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
+    MatTableModule
   ]
 })
 export class PagesModule { }
