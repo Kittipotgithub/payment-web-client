@@ -14,17 +14,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { StatusComponent } from './status/status.component';
+import { RouterModule, Routes } from '@angular/router';
 
+const appRoutes: Routes = [
+  { path: 'home', component: StatusComponent  },
+  
+];
 
 
 @NgModule({
-  declarations: [HomeComponent, OmComponent],
+  declarations: [HomeComponent, OmComponent, StatusComponent],
   imports: [
     CommonModule,
     SharedModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
     MatTabsModule,
     MatNativeDateModule,
     MatDatepickerModule,

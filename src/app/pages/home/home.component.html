@@ -11,7 +11,7 @@
   <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <label class="text-black"> รหัสหน่วยงาน </label>
+      <label class="text-black">วันที่ประมวลผล</label>
     </div>
     <div class="col-md-4">
       <div class="input-group">
@@ -22,7 +22,7 @@
       </div> 
     </div>
     <div class="col-md-2">
-      <label class="text-black"> รหัสหน่วยงาน </label>
+      <label class="text-black">การกำหนด</label>
     </div>
     <div class="col-md-4">
       <div class="input-group">
@@ -38,7 +38,7 @@
       <div class="col-md-12">
       <mat-card class="hometab">
         <mat-card-content>
-          <mat-tab-group>
+          <!--mat-tab-group dynamicHeight="true">
             <mat-tab label="สถานะ">
             </mat-tab>
             <mat-tab label="พาราฯ">
@@ -47,7 +47,18 @@
             </mat-tab>
             <mat-tab label="log เพิ่มเติม">
             </mat-tab>
-          </mat-tab-group>
+          </!--mat-tab-group-->
+          <nav mat-tab-nav-bar>
+            <a mat-tab-link
+               *ngFor="let link of navLinks"
+               [routerLink]="link.path"
+               routerLinkActive #rla="routerLinkActive"
+               [active]="rla.isActive">
+              {{link.label}}
+            </a>
+          </nav>
+          
+          <router-outlet></router-outlet>
         </mat-card-content>
       </mat-card>
       </div>
