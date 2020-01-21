@@ -46,7 +46,8 @@ import { AccountComponent } from './account/account.component';
   entryComponents: [
     CopyComponent,
     StatusComponent,
-    CopydateComponent
+    CopydateComponent,
+    AccountComponent
   ],
   imports: [
     CommonModule,
