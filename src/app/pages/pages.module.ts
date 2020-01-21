@@ -1,4 +1,3 @@
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -21,6 +20,7 @@ import { ReportComponent } from './report/report.component';
 import { OptionIndependentComponent } from './option-independent/option-independent.component';
 import { OptionAdditionalLogComponent } from './option-additional-log/option-additional-log.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
 
 /*const appRoutes: Routes = [
   { path: 'status', component: StatusComponent },
@@ -57,7 +57,8 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ]
 })
 export class PagesModule { }
