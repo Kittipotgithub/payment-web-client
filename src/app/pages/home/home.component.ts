@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { CopyComponent } from '../copy/copy.component';
-
-=======
 import { Component, OnInit, Input } from '@angular/core';
 import { MatTabChangeEvent, MatDialog } from '@angular/material';
 import { DialogSaveParameterComponent } from 'src/app/shared/component/tab-status/dialog-save-parameter/dialog-save-parameter.component';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
->>>>>>> b0c8077c236df75a7c4d5fd0b5d8a2443ebb8b47
+import { CopyComponent } from '../copy/copy.component';
+
 
 @Component({
   selector: 'app-home',
@@ -20,21 +13,6 @@ import { filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-<<<<<<< HEAD
-  constructor(public dialog: MatDialog) {}
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(CopyComponent, {
-      
-      
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
-    });
-  }
-=======
   listObjectParameterTab = []
   listObjectIndependentTab = []
 
@@ -46,7 +24,15 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
   ) { }
->>>>>>> b0c8077c236df75a7c4d5fd0b5d8a2443ebb8b47
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CopyComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
   ngOnInit() {
 
