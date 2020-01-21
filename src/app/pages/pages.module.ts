@@ -23,6 +23,8 @@ import {MatTableModule} from '@angular/material/table';
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CopyComponent } from './copy/copy.component';
+import { CopydateComponent } from './copydate/copydate.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -35,11 +37,14 @@ import { CopyComponent } from './copy/copy.component';
     ReportComponent,
     OptionIndependentComponent,
     OptionAdditionalLogComponent,
-    CopyComponent
+    CopyComponent,
+    CopydateComponent
   
   ],
   entryComponents: [
     CopyComponent,
+    StatusComponent,
+    CopydateComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +64,8 @@ import { CopyComponent } from './copy/copy.component';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ]
 })
 export class PagesModule { 
