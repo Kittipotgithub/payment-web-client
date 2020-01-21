@@ -8,6 +8,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class CopyComponent implements OnInit {
 
+  constructor(
+    private dialogRef: MatDialogRef<CopyComponent>
+  ) { }
+  
+  closeDialog(): void {
+    const dialogRef = this.dialogRef.close();
+
+  }
 
   ngOnInit() {
   }
