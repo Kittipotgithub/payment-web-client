@@ -84,27 +84,6 @@
                   </div>
                   <div class="col-md-3">
                     <div class="input-group input-group-lg">
-                      <input type="text" class="form-control">
-                    </div>
-                  </div>
-                  <div class="col-md-2 text-right">
-                    <label class="text-black">ถึง</label>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-lg">
-                      <input type="text" class="form-control" id="InputDate">
-                      <button class="btn btn-default" type="button" (click)="openDialogSearchVendor()">
-                        <img src="assets/images/icon/menu.svg" width="12px" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-2 text-right">
-                    <label class="text-black">ผู้ซื้อ</label>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-lg">
                       <input type="text" class="form-control" formControlName="verdorTaxIdForm">
                     </div>
                   </div>
@@ -114,7 +93,7 @@
                   <div class="col-md-3">
                     <div class="input-group input-group-lg">
                       <input type="text" class="form-control" formControlName="verdorTaxIdTo">
-                      <button class="btn btn-default" type="button">
+                      <button class="btn btn-default" type="button" (click)="OpenAcc()">
                         <img src="assets/images/icon/menu.svg" width="12px" />
                       </button>
                     </div>

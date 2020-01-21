@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { StatusComponent } from '../status/status.component';
 
 export interface PeriodicElement {
   pay: string;
@@ -52,6 +53,15 @@ export class ParameterComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) { }
+
+  OpenAcc(): void {
+    const dialog = this.dialog.open(StatusComponent, {
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
   ngOnInit() {
     console.log(this.parameter)
