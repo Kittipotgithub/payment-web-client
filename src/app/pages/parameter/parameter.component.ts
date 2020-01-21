@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { StatusComponent } from '../status/status.component';
+import { AccountComponent } from '../account/account.component';
 
 export interface PeriodicElement {
   pay: string;
@@ -55,7 +55,7 @@ export class ParameterComponent implements OnInit {
   ) { }
 
   OpenAcc(): void {
-    const dialog = this.dialog.open(StatusComponent, {
+    const dialog = this.dialog.open(AccountComponent, {
     });
 
     dialog.afterClosed().subscribe(result => {

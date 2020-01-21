@@ -25,6 +25,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { CopyComponent } from './copy/copy.component';
 import { CopydateComponent } from './copydate/copydate.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AccountComponent } from './account/account.component';
 
 
 
@@ -38,7 +39,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     OptionIndependentComponent,
     OptionAdditionalLogComponent,
     CopyComponent,
-    CopydateComponent
+    CopydateComponent,
+    AccountComponent
   
   ],
   entryComponents: [
