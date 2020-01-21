@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +14,12 @@ export class HomeComponent implements OnInit {
     {path: 'report', label: 'รายงาน/สื่อกลางข้อมูล'},
   ];*/
 
+  test ='3435'
+
   constructor() { }
 
   ngOnInit() {
+   
   }
 
 }

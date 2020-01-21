@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 
 export interface PeriodicElement {
   pay: string;
@@ -22,10 +24,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ParameterComponent implements OnInit {
   displayedColumns: string[] = ['code', 'pay', 'nextpay'];
   dataSource = ELEMENT_DATA;
+
+  @Input()
+  testObject: any;
   
-  constructor() { }
+  constructor(
+    private dialog: MatDialog, 
+  ) { }
 
   ngOnInit() {
+    console.log(this.testObject)
+  }
+
+  openDialogSearchVendor(): void {
+    console.log('openDialogSearchVendor')
+    const dialogRef = this.dialog.open(DialogSearchVendorComponent, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    
+    });
   }
 
 }
