@@ -1,33 +1,34 @@
-<div class="body">
-    <div class ="container-fluid">
+<form [formGroup]="parameterForm">
+  <div class="body">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-2 text-right">
           <label class="text-black">วันที่ผ่านรายการ</label>
         </div>
         <div class="col-md-3">
           <div class="input-group input-group-lg">
-          <input type="text" class="form-control" id="InputDate">
-          <button class="btn btn-default" type="button">
-            <img src="assets/images/icon/calendar.svg" width="12px" />
-          </button>
-          </div> 
+            <input type="text" class="form-control" id="InputDate">
+            <button class="btn btn-default" type="button">
+              <img src="assets/images/icon/calendar.svg" width="12px" />
+            </button>
+          </div>
         </div>
         <div class="col-md-2 text-right">
           <label class="text-black">บันทึกเอกสาร</label>
         </div>
         <div class="col-md-3">
           <div class="input-group input-group-lg">
-          <input type="text" class="form-control" id="InputConfig">
-          <button class="btn btn-default" type="button">
-            <img src="assets/images/icon/calendar.svg" width="12px" />
-          </button>
+            <input type="text" class="form-control" id="InputConfig">
+            <button class="btn btn-default" type="button">
+              <img src="assets/images/icon/calendar.svg" width="12px" />
+            </button>
           </div>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-md-2 text-right">
-          
+
         </div>
         <div class="col-md-3">
 
@@ -37,10 +38,10 @@
         </div>
         <div class="col-md-3">
           <div class="input-group input-group-lg">
-          <input type="text" class="form-control" id="InputConfig">
-          <button class="btn btn-default" type="button">
-            <img src="assets/images/icon/calendar.svg" width="12px" />
-          </button>
+            <input type="text" class="form-control" id="InputConfig">
+            <button class="btn btn-default" type="button">
+              <img src="assets/images/icon/calendar.svg" width="12px" />
+            </button>
           </div>
         </div>
       </div>
@@ -50,78 +51,80 @@
           <div class="panel-body">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-                <ng-container matColumnDef="code">
-                  <th mat-header-cell *matHeaderCellDef> รหัสบริษัท </th>
-                  <td mat-cell *matCellDef="let element"> {{element.code}} </td>
-                </ng-container>
-              
-                <ng-container matColumnDef="pay">
-                  <th mat-header-cell *matHeaderCellDef> วิธีชำระ </th>
-                  <td mat-cell *matCellDef="let element"> {{element.pay}} </td>
-                </ng-container>
-              
-                <ng-container matColumnDef="nextpay">
-                  <th mat-header-cell *matHeaderCellDef> วันชำระถัดไป </th>
-                  <td mat-cell *matCellDef="let element"> {{element.nextpay}} </td>
-                </ng-container>
-              
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
+              <ng-container matColumnDef="code">
+                <th mat-header-cell *matHeaderCellDef> รหัสบริษัท </th>
+                <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="pay">
+                <th mat-header-cell *matHeaderCellDef> วิธีชำระ </th>
+                <td mat-cell *matCellDef="let element"> {{element.pay}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="nextpay">
+                <th mat-header-cell *matHeaderCellDef> วันชำระถัดไป </th>
+                <td mat-cell *matCellDef="let element"> {{element.nextpay}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
           </div>
         </div>
       </div>
-    <div class="row">
-    <div class="col-md-8">
-        <div class="tabbody">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="tabbody">
             <div class="panel panel-primary">
               <div class="panel-heading">บัญชี</div>
               <div class="panel-body">
                 <div class="row">
-                <div class="col-md-2 text-right">
+                  <div class="col-md-2 text-right">
                     <label class="text-black">ผู้ขาย</label>
                   </div>
                   <div class="col-md-3">
                     <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" id="InputDate">
-                    </div> 
+                      <input type="text" class="form-control">
+                    </div>
                   </div>
                   <div class="col-md-2 text-right">
                     <label class="text-black">ถึง</label>
                   </div>
                   <div class="col-md-3">
                     <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" id="InputDate">
-                    <button class="btn btn-default" type="button">
-                      <img src="assets/images/icon/menu.svg" width="12px" />
-                    </button>
-                    </div> 
+                      <input type="text" class="form-control" id="InputDate">
+                      <button class="btn btn-default" type="button" (click)="openDialogSearchVendor()">
+                        <img src="assets/images/icon/menu.svg" width="12px" />
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 text-right">
-                        <label class="text-black">ผู้ซื้อ</label>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" id="InputDate">
-                        </div> 
-                      </div>
-                      <div class="col-md-2 text-right">
-                        <label class="text-black">ถึง</label>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" id="InputDate">
-                        <button class="btn btn-default" type="button">
-                          <img src="assets/images/icon/menu.svg" width="12px" />
-                        </button>
-                        </div> 
-                      </div>
+                  <div class="col-md-2 text-right">
+                    <label class="text-black">ผู้ซื้อ</label>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control" formControlName="verdorTaxIdForm">
                     </div>
+                  </div>
+                  <div class="col-md-2 text-right">
+                    <label class="text-black">ถึง</label>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control" formControlName="verdorTaxIdTo">
+                      <button class="btn btn-default" type="button">
+                        <img src="assets/images/icon/menu.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
     </div>
-    </div>
-</div>
+  </div>
+</form>
