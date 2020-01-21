@@ -20,15 +20,10 @@ import { ReportComponent } from './report/report.component';
 import { OptionIndependentComponent } from './option-independent/option-independent.component';
 import { OptionAdditionalLogComponent } from './option-additional-log/option-additional-log.component';
 import {MatTableModule} from '@angular/material/table';
-import {MatMenuModule} from '@angular/material/menu';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatDialog } from '@angular/material';
+import {Component, Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CopyComponent } from './copy/copy.component';
 
-/*const appRoutes: Routes = [
-  { path: 'status', component: StatusComponent },
-
-];*/
 
 
 @NgModule({
@@ -40,9 +35,11 @@ import { CopyComponent } from './copy/copy.component';
     ReportComponent,
     OptionIndependentComponent,
     OptionAdditionalLogComponent,
+    CopyComponent
+  
+  ],
+  entryComponents: [
     CopyComponent,
-  
-  
   ],
   imports: [
     CommonModule,
@@ -62,15 +59,9 @@ import { CopyComponent } from './copy/copy.component';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatMenuModule,
-    DragDropModule,
-    MatDialog
+    MatDialogModule
   ]
 })
 export class PagesModule { 
-  constructor(public dialog: MatDialog) {}
 
-  openDialog() {
-    
-  }
 }
