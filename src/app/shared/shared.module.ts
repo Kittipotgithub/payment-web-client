@@ -7,11 +7,12 @@ import { MatDialogModule, MatTabsModule, MatDatepickerModule, MatNativeDateModul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogSaveParameterComponent } from './component/tab-status/dialog-save-parameter/dialog-save-parameter.component';
 
 
 
 @NgModule({
-  declarations: [ DialogSearchVendorComponent],
+  declarations: [ DialogSearchVendorComponent, DialogSaveParameterComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -24,6 +25,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatProgressBarModule,
     MatTooltipModule,
   ],
-  entryComponents: [DialogSearchVendorComponent],
+  entryComponents: [DialogSearchVendorComponent,DialogSaveParameterComponent],
 })
 export class SharedModule { }

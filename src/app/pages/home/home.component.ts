@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatTabChangeEvent, MatDialog } from '@angular/material';
+import { DialogSaveParameterComponent } from 'src/app/shared/component/tab-status/dialog-save-parameter/dialog-save-parameter.component';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +16,41 @@ export class HomeComponent implements OnInit {
     {path: 'report', label: 'รายงาน/สื่อกลางข้อมูล'},
   ];*/
 
-  test ='3435'
+  listObjectParameterTab = []
+  listObjectIndependentTab = []
 
-  constructor() { }
+
+  tabSelectedIndex = 0;
+  constructor(
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
+
+
+  }
+
+  receiveObjectFromParameter($event) {
+    console.log('receiveObjectFromParameter')
+    console.log($event)
+    this.listObjectParameterTab = $event
+  }
+
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
    
+    this.tabSelectedIndex = tabChangeEvent.index;
+    console.log(this.tabSelectedIndex)
+    if(this.tabSelectedIndex === 0){
+       const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
+        width: '250px',
+        data: {}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+
+      });
+    }
   }
 
 }
