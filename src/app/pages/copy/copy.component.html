@@ -6,17 +6,15 @@
       <label class="text-black">การอ้างอิง</label>
     </div>
     <div class="col-md-12">
-      <div class="input-group input-group-lg">
       <input type="text" class="form-control" id="InputDate">
-      </div> 
     </div>
   </div>
-  <div class="row">
+  <div class="row margin-tb-size ">
     <div class="col-md-12 text-left">
       <label class="text-black">วันที่ประมวลผล</label>
     </div>
     <div class="col-md-12">
-      <div class="input-group input-group-lg">
+      <div class="input-group">
       <input type="text" class="form-control" id="InputDate">
       <button class="btn btn-default" type="button" (click)="OpenDiaDate()">
         <img src="assets/images/icon/calendar.svg" width="12px" />
@@ -24,17 +22,15 @@
       </div> 
     </div>
   </div>
-  <div class="row">
+  <div class="row margin-tb-size ">
     <div class="col-md-12 text-left">
       <label class="text-black">รหัส</label>
     </div>
     <div class="col-md-12">
-      <div class="input-group input-group-lg">
       <input type="text" class="form-control" id="InputDate">
-      </div> 
     </div>
   </div>
-  <div class="row">
+  <div class="row margin-tb-size ">
     <div class="col-md-12 text-left">
       <label class="text-black">การพัฒนา</label>
     </div>
@@ -45,18 +41,19 @@
       </div>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-md-12">
-        <span class="fill-remaining-space">
-          <button mat-icon-button class="copy_icon">
-            <mat-icon>close</mat-icon>
-          </button>
-        </span>
-        <span class="fill-remaining-space">
-          <button mat-icon-button class="copy_icon">
-            <mat-icon>check</mat-icon>
-          </button>
-        </span>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-success btn-lg" style="width: 100%;">
+          <i class="material-icons" style="font-size:15px;">done</i>
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-danger btn-lg" style="width: 100%;">
+          <i class="material-icons" style="font-size:15px;">clear</i>
+        </button>  
+      </div>
     </div>
   </div>
 </div>

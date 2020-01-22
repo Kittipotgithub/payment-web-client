@@ -30,7 +30,6 @@ body {
   .col-center {
     text-align: center;
 }
-  
 .input-group .form-control {
     position: relative;
     z-index: 2;
@@ -101,6 +100,9 @@ height: 1.25rem;
     font-size: 14px;
     font-weight: 500;
 }
+.mat-checkbox {
+    font-family:'Kanit', sans-serif,'Roboto', sans-serif;
+}
 .mat-dialog-title {
     font: 18px 'Kanit', sans-serif,'Roboto', sans-serif;
 }
@@ -108,4 +110,14 @@ height: 1.25rem;
     background-color: #ffd335;
     color: #fff;
 }
+.form-control {
+    font-size: 14px;
+}
+.form-control .borderradius {
+    border-radius: 15px;
+}
 
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
