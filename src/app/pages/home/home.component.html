@@ -1,42 +1,36 @@
-  <div class="row">
-    <div class="col-md-12">
-      <mat-toolbar color="primary">
-        <!--button mat-button class="app-menu-button">
-          <i class="material-icons">menu</i>
-        </!--button-->
-        <span class="title">รายการการชำระเงิน</span>
-        <span class="fill-remaining-space">
-          <button mat-icon-button (click)="openDialog()" class="btn_menu1">
-            <mat-icon>file_copy</mat-icon>
-          </button>
-        </span>
-        <span class="fill-remaining-space">
-          <button mat-icon-button class="btn_menu1">
-            <mat-icon>insert_drive_file</mat-icon>
-          </button>
-        </span>
-      </mat-toolbar>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <mat-toolbar color="primary">
+      <h3 class="title">รายการการชำระเงิน</h3>
+      <span class="fill-remaining-space">
+        <button mat-icon-button (click)="openDialog()" class="btn_menu1">
+          <mat-icon style="font-size:15px;padding:5px;">file_copy</mat-icon>
+        </button>
+      </span>
+      <span class="fill-remaining-space">
+        <button mat-icon-button class="btn_menu1">
+          <mat-icon style="font-size:15px;padding:5px;">insert_drive_file</mat-icon>
+        </button>
+      </span>
+    </mat-toolbar>
   </div>
+</div>
  <div class="body">
   <div class ="container-fluid">
     <div class="row">
-      <div class="col-md-2 text-right">
-        <label class="text-black">วันที่ประมวลผล</label>
-      </div>
-      <div class="col-md-3">
+      <div class="col-md-4 col-left">
+        <h4 class="text-black"><b>วันที่ประมวลผล</b></h4>
         <div class="input-group input-group-lg">
-        <input type="text" class="form-control" id="InputDate">
-        <button class="btn btn-default" type="button">
-          <img src="assets/images/icon/calendar.svg" width="12px" />
-        </button>
-        </div> 
+          <input type="text" class="form-control" id="InputDate" [matDatepicker]="myDatepicker">
+          <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
+            <img src="assets/images/icon/calendar.svg" width="12px">
+            <mat-datepicker #myDatepicker></mat-datepicker>
+          </button>
+          </div>
       </div>
-      <div class="col-md-2 text-right">
-        <label class="text-black">การกำหนด</label>
-      </div>
-      <div class="col-md-3">
-        <div class="input-group input-group-lg">
+      <div class="col-md-4">
+        <h4 class="text-black"><b>การกำหนด</b></h4>
+         <div class="input-group input-group-lg">
         <input type="text" class="form-control" >
         <button class="btn btn-default" type="button"(click)="test()" >
           <img src="assets/images/icon/menu.svg" width="12px" />
