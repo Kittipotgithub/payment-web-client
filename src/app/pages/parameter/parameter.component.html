@@ -10,7 +10,7 @@
               <img src="assets/images/icon/calendar.svg" width="12px">
               <mat-datepicker #myDatepicker></mat-datepicker>
             </button>
-            </div>
+          </div>
         </div>
         <div class="col-md-4 col-left">
           <label class="text-black">บันทึกเอกสาร</label>
@@ -20,7 +20,7 @@
               <img src="assets/images/icon/calendar.svg" width="12px">
               <mat-datepicker #myDatepicker2></mat-datepicker>
             </button>
-            </div>
+          </div>
         </div>
         <div class="col-md-4 col-left">
           <label class="text-black">รายการลูกค้าครบกำหนดถึง</label>
@@ -30,8 +30,30 @@
               <img src="assets/images/icon/calendar.svg" width="12px">
               <mat-datepicker #myDatepicker3></mat-datepicker>
             </button>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-left">
+          <label class="text-black">วิธีชำระเงิน</label>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" id="InputDate">
+            <button class="btn btn-default" type="button" (click)="test()">
+              <img src="assets/images/icon/menu.svg" width="12px" />
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4 col-left">
+          <label class="text-black">วันชำระถัดไป</label>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" id="InputDate" [matDatepicker]="myDatepicker4">
+            <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker4.open()">
+              <img src="assets/images/icon/calendar.svg" width="12px">
+              <mat-datepicker #myDatepicker4></mat-datepicker>
+            </button>
+          </div>
+        </div>
+
       </div>
       <br>
       <div class="tabbody">
