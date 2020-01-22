@@ -3,7 +3,7 @@
         <div class="panel-heading">เกณฑ์การเลือก</div>
         <div class="panel-body">
 
-            <div class="row">
+            <!--div class="row">
                 <div class="col-md-6 col-left">
                     <label class="text-black">ชื่อฟิวด์</label>
                     <div class="input-group input-group-lg">
@@ -19,14 +19,44 @@
                         <label class="custom-control-label" for="checkbox-3">ไม่รวมค่า</label>
                     </div>
                 </div>
-            </div>
-            <div class="row margin-tb-size">
+            </!--div>
+            <div-- class="row margin-tb-size">
                 <div class="col-md-6 col-left">
                     <label class="text-black">มูลค่า</label>
                     <input class="form-control" type="textareax" maxlength="10" />
                     <input class="form-control" type="textareax" maxlength="10" />
                 </div>
-            </div>
+            </div-->
+            <h4>ชื่อฟิลด์</h4>
+            <mat-form-field class="indepen_form">
+            <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <input type="text" class="form-control" id="InputDate">
+            <br>
+            <h4>ชื่อฟิลด์</h4>
+            <mat-form-field class="indepen_form">
+            <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <input type="text" class="form-control" id="InputDate">
+            <br>
+            <h4>ชื่อฟิลด์</h4>
+            <mat-form-field class="indepen_form">
+            <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+            </mat-option>
+            </mat-select>
+            </mat-form-field>
+            <input type="text" class="form-control" id="InputDate">
+            <br>
         </div>
     </div>
 </div>
