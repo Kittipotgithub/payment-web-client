@@ -4,6 +4,7 @@ import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { AccountComponent } from '../account/account.component';
 import { CopyComponent } from '../copy/copy.component';
+import { PaymentComponent } from '../payment/payment.component';
 
 export interface PeriodicElement {
   pay: string;

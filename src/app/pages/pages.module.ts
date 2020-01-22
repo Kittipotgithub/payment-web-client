@@ -20,7 +20,6 @@ import { ReportComponent } from './report/report.component';
 import { OptionIndependentComponent } from './option-independent/option-independent.component';
 import { OptionAdditionalLogComponent } from './option-additional-log/option-additional-log.component';
 import {MatTableModule} from '@angular/material/table';
-import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -78,7 +77,6 @@ import { FormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatDialogModule,
     DragDropModule,
-    MatSelectModule,
     FormsModule
   ]
 })
