@@ -29,35 +29,16 @@
             </div-->
             <h4>ชื่อฟิลด์</h4>
             <mat-form-field class="indepen_form">
-            <mat-select>
+            <mat-select  ng-disabled="form.$invalid" ng-click="isShow = true">
             <mat-option *ngFor="let food of foods" [value]="food.value">
                 {{food.viewValue}}
             </mat-option>
             </mat-select>
             </mat-form-field>
-            <input type="text" class="form-control" id="InputDate">
-            <br>
-            <h4>ชื่อฟิลด์</h4>
-            <mat-form-field class="indepen_form">
-            <mat-select>
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-            </mat-option>
-            </mat-select>
-            </mat-form-field>
-            <input type="text" class="form-control" id="InputDate">
-            <br>
-            <h4>ชื่อฟิลด์</h4>
-            <mat-form-field class="indepen_form">
-            <mat-select>
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-            </mat-option>
-            </mat-select>
-            </mat-form-field>
-            <input type="text" class="form-control" id="InputDate">
-            <br>
             <button mat-button>เพิ่มฟิลด์</button>
+            <br><br>
+
+
         </div>
     </div>
 </div>

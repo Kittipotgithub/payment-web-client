@@ -11,6 +11,8 @@ export interface Food {
   styleUrls: ['./option-independent.component.scss']
 })
 export class OptionIndependentComponent implements OnInit {
+
+  modifedtext: string;
   
   foods: Food[] = [
     {value: '1', viewValue: 'เลขที่เอกสาร'},
@@ -27,5 +29,6 @@ export class OptionIndependentComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }
