@@ -23,9 +23,23 @@ export class OptionIndependentComponent implements OnInit {
     {value: '8', viewValue: 'อื่นๆ'}
   ];
 
+  modifedtext: string;
+  
+  foods: Food[] = [
+    {value: '1', viewValue: 'เลขที่เอกสาร'},
+    {value: '2', viewValue: 'ประเภทเอกสาร'},
+    {value: '3', viewValue: 'วันผ่านรายการ'},
+    {value: '4', viewValue: 'การอ้างอิง'},
+    {value: '5', viewValue: 'แหล่งของเงิน'},
+    {value: '6', viewValue: 'วิธีการชำระเงิน'},
+    {value: '7', viewValue: 'การระงับการชำระเงิน'},
+    {value: '8', viewValue: 'อื่นๆ'}
+  ];
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }

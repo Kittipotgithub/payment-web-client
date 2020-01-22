@@ -74,6 +74,15 @@ export class ParameterComponent implements OnInit {
     });
   }
 
+  OpenPayment(): void {
+    const dialog = this.dialog.open(PaymentComponent, {
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   ngOnInit() {
     console.log(this.parameter)
     this.createFormControl()
