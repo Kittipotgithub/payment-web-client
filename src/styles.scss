@@ -6,7 +6,8 @@ body {
     margin: 0; 
     font-size: 14px;
     line-height: 1.42857143;
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    // font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-family: 'Kanit', sans-serif,'Roboto', sans-serif;
     background-color: whitesmoke;
 }
 // Class
@@ -16,6 +17,20 @@ body {
 .tabbody {
     padding-top: 20px;
 }
+.headmenu {
+    background: #42578c;
+    padding: 10px;
+}
+.col-left {
+    text-align: left;
+}
+  .col-right {
+    text-align: right;
+}
+  .col-center {
+    text-align: center;
+}
+  
 .input-group .form-control {
     position: relative;
     z-index: 2;
@@ -55,6 +70,12 @@ body {
 }
 
 // Customize
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 100;
+}
 .mat-toolbar.mat-primary {
     background: #0088cc;
     color: #fff;
@@ -68,32 +89,23 @@ top: .8rem;
 width: 1.25rem;
 height: 1.25rem;
 }
-
-.cdk-overlay-pane.my-dialog {
-  position: relative!important;
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
+    font: 18px 'Kanit', sans-serif,'Roboto', sans-serif;
+    margin: 0;
 }
-.close.mat-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-  line-height: 14px;
-  min-width: auto;
+.mat-tab-group {
+    font-family:'Kanit', sans-serif,'Roboto', sans-serif;
+}
+.mat-tab-label, .mat-tab-link {
+    font-family:'Kanit', sans-serif,'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+.mat-dialog-title {
+    font: 18px 'Kanit', sans-serif,'Roboto', sans-serif;
+}
+.mat-calendar-body-selected {
+    background-color: #ffd335;
+    color: #fff;
 }
 
-.content-border {
-    border: 1px solid #85929E;
-    position: relative;
-    padding: 20px 10px;
-    width: 100%;
-    margin-top: 10px;
-    span.topic-header {
-      font-family: 'SarabunExtraBold';
-      position: absolute;
-      top: -11px;
-      background: white;
-      label {
-        font-size: 13px;
-      }
-    }
-  }
