@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { AccountComponent } from '../account/account.component';
+import { CopyComponent } from '../copy/copy.component';
 
 export interface PeriodicElement {
   pay: string;
@@ -53,6 +54,16 @@ export class ParameterComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CopyComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  
 
   OpenAcc(): void {
     const dialog = this.dialog.open(AccountComponent, {
