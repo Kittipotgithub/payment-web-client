@@ -1,0 +1,62 @@
+<button class="close" mat-button (click)="closeDialog()">X</button>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">คัดลอก</h1>
+<div mat-dialog-content>
+<div class="row">
+    <div class="col-md-12 text-left">
+      <label class="text-black">การอ้างอิง</label>
+    </div>
+    <div class="col-md-12">
+      <div class="input-group input-group-lg">
+      <input type="text" class="form-control" id="InputDate">
+      </div> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-left">
+      <label class="text-black">วันที่ประมวลผล</label>
+    </div>
+    <div class="col-md-12">
+      <div class="input-group input-group-lg">
+      <input type="text" class="form-control" id="InputDate">
+      <button class="btn btn-default" type="button" (click)="OpenDiaDate()">
+        <img src="assets/images/icon/calendar.svg" width="12px" />
+      </button>
+      </div> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-left">
+      <label class="text-black">รหัส</label>
+    </div>
+    <div class="col-md-12">
+      <div class="input-group input-group-lg">
+      <input type="text" class="form-control" id="InputDate">
+      </div> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-left">
+      <label class="text-black">การพัฒนา</label>
+    </div>
+    <div class="col-md-12">
+      <div class="custom-control custom-checkbox checkbox-xl">
+        <input type="checkbox" class="custom-control-input" id="checkbox-3" checked="">
+        <label class="custom-control-label" for="checkbox-3">รายละเอียดวันที่ปรับปรุง</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <span class="fill-remaining-space">
+          <button mat-icon-button class="copy_icon">
+            <mat-icon>close</mat-icon>
+          </button>
+        </span>
+        <span class="fill-remaining-space">
+          <button mat-icon-button class="copy_icon">
+            <mat-icon>check</mat-icon>
+          </button>
+        </span>
+    </div>
+  </div>
+</div>

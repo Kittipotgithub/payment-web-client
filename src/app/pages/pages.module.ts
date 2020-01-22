@@ -26,6 +26,7 @@ import { CopyComponent } from './copy/copy.component';
 import { CopydateComponent } from './copydate/copydate.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AccountComponent } from './account/account.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -40,14 +41,16 @@ import { AccountComponent } from './account/account.component';
     OptionAdditionalLogComponent,
     CopyComponent,
     CopydateComponent,
-    AccountComponent
+    AccountComponent,
+    PaymentComponent
   
   ],
   entryComponents: [
     CopyComponent,
     StatusComponent,
     CopydateComponent,
-    AccountComponent
+    AccountComponent,
+    PaymentComponent 
   ],
   imports: [
     CommonModule,
