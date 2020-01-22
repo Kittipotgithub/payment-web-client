@@ -1,62 +1,38 @@
 <button class="close" mat-button (click)="closeDialog()">X</button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">คัดลอก</h1>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">วิธีการชำระเงิน</h1>
 <div mat-dialog-content>
 <div class="row">
     <div class="col-md-12 text-left">
-      <label class="text-black">การอ้างอิง</label>
+      <label class="text-black">วิธีการชำระเงินที่เลือก</label>
     </div>
     <div class="col-md-12">
-      <div class="input-group input-group-lg">
-      <input type="text" class="form-control" id="InputDate">
-      </div> 
+      <mat-form-field>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-left">
+    <label class="text-black">วิธีการชำระเงินเหลือ</label>
   </div>
-  <div class="row">
-    <div class="col-md-12 text-left">
-      <label class="text-black">วันที่ประมวลผล</label>
-    </div>
-    <div class="col-md-12">
-      <div class="input-group input-group-lg">
-      <input type="text" class="form-control" id="InputDate">
-      <button class="btn btn-default" type="button" (click)="OpenDiaDate()">
-        <img src="assets/images/icon/calendar.svg" width="12px" />
-      </button>
-      </div> 
-    </div>
+  <div class="col-md-12">
+    <mat-form-field>
+      <mat-select>
+        <mat-option *ngFor="let food of foods1" [value]="food.value1">
+          {{food.viewValue1}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="row">
-    <div class="col-md-12 text-left">
-      <label class="text-black">รหัส</label>
-    </div>
-    <div class="col-md-12">
-      <div class="input-group input-group-lg">
-      <input type="text" class="form-control" id="InputDate">
-      </div> 
-    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button mat-button (click)="closeDialog()">OK</button>
   </div>
-  <div class="row">
-    <div class="col-md-12 text-left">
-      <label class="text-black">การพัฒนา</label>
-    </div>
-    <div class="col-md-12">
-      <div class="custom-control custom-checkbox checkbox-xl">
-        <input type="checkbox" class="custom-control-input" id="checkbox-3" checked="">
-        <label class="custom-control-label" for="checkbox-3">รายละเอียดวันที่ปรับปรุง</label>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-        <span class="fill-remaining-space">
-          <button mat-icon-button class="copy_icon">
-            <mat-icon>close</mat-icon>
-          </button>
-        </span>
-        <span class="fill-remaining-space">
-          <button mat-icon-button class="copy_icon">
-            <mat-icon>check</mat-icon>
-          </button>
-        </span>
-    </div>
-  </div>
+</div>
+
 </div>

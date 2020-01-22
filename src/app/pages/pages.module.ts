@@ -27,6 +27,7 @@ import { CopydateComponent } from './copydate/copydate.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -71,7 +72,8 @@ import { PaymentComponent } from './payment/payment.component';
     MatFormFieldModule,
     MatTableModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    MatSelectModule
   ]
 })
 export class PagesModule { 
