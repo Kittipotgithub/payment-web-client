@@ -27,7 +27,10 @@ export class OptionIndependentComponent implements OnInit {
 
   add() {
     this.containers.push(this.containers.length);
-    this.show4 = true;
+  }
+
+  del() {
+    this.containers.splice(this.containers.length-1);
   }
 
   //modifedtext: string;

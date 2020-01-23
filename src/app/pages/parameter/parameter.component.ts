@@ -60,6 +60,10 @@ export class ParameterComponent implements OnInit {
     this.show = true;
   }
 
+  del() {
+    this.containers.splice(this.containers.length-1);
+  }
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
