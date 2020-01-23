@@ -1,6 +1,10 @@
 <div class="tabbody">
     <div class="panel panel-primary">
-        <div class="panel-heading">เกณฑ์การเลือก</div>
+        <div class="panel-heading">เกณฑ์การเลือก
+            <button class="btn btn-default pull-right" type="button" (click)="add()">
+                เพิ่มฟิลด์
+            </button>
+        </div>
         <div class="panel-body">
 
             <!--div class="row">
@@ -27,37 +31,86 @@
                     <input class="form-control" type="textareax" maxlength="10" />
                 </div>
             </div-->
-            <h4>ชื่อฟิลด์</h4>
-            <mat-form-field class="indepen_form">
-            <mat-select>
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-            </mat-option>
-            </mat-select>
-            </mat-form-field>
-            <input type="text" class="form-control" id="InputDate">
-            <br>
-            <h4>ชื่อฟิลด์</h4>
-            <mat-form-field class="indepen_form">
-            <mat-select>
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-            </mat-option>
-            </mat-select>
-            </mat-form-field>
-            <input type="text" class="form-control" id="InputDate">
-            <br>
-            <h4>ชื่อฟิลด์</h4>
-            <mat-form-field class="indepen_form">
-            <mat-select>
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
-            </mat-option>
-            </mat-select>
-            </mat-form-field>
-            <input type="text" class="form-control" id="InputDate">
-            <br>
-            <button mat-button>เพิ่มฟิลด์</button>
+            <!-- 1 -->
+            <div>
+                <div class="col-md-11">
+                    <mat-form-field class="indepen_form">
+                        <mat-label>ชื่อฟิลด์</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value" (click)="toggle()">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    <ng-container *ngIf="show">
+                        <input type="text" class="form-control" id="InputDate">
+                    </ng-container>
+                </div>
+            </div>
+            <!-- 2 -->
+            <div >
+                <div class="col-md-11" style="padding-top: 20px;">
+                    <mat-form-field class="indepen_form">
+                        <mat-label>ชื่อฟิลด์</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value" (click)="toggle1()">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    <ng-container *ngIf="show1">
+                        <input type="text" class="form-control" id="InputDate">
+                    </ng-container>
+                </div>
+            </div>
+            <!-- 3 -->
+            <div>
+                <div class="col-md-11" style="padding-top: 20px;">
+                    <mat-form-field class="indepen_form">
+                        <mat-label>ชื่อฟิลด์</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value" (click)="toggle2()">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    <ng-container *ngIf="show2">
+                        <input type="text" class="form-control" id="InputDate">
+                    </ng-container>
+                </div>
+            </div>
+            <!-- 4 -->
+            <div *ngFor="let container of containers" >
+                <div class="col-md-11" style="padding-top: 20px;">
+                    <mat-form-field class="indepen_form">
+                        <mat-label>ชื่อฟิลด์</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value" (click)="toggle3()">
+                                {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-1" style="padding-top: 20px;">
+                    <button type="button" class="btn btn-danger btn-lg" (click)="del()">
+                        <i class="material-icons" style="font-size:15px;">clear</i>
+                    </button> 
+                </div>
+                <div class="col-md-11">
+                    <ng-container *ngIf="show3">
+                        <input type="text" class="form-control" id="InputDate">
+                    </ng-container>
+                </div>
+            </div>
         </div>
     </div>
 </div>

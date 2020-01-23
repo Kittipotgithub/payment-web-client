@@ -38,7 +38,7 @@
           <label class="text-black">วิธีชำระเงิน</label>
           <div class="input-group input-group-lg">
             <input type="text" class="form-control" id="InputDate">
-            <button class="btn btn-default" type="button" (click)="test()">
+            <button class="btn btn-default" type="button" (click)="OpenPayment()">
               <img src="assets/images/icon/menu.svg" width="12px" />
             </button>
           </div>
@@ -72,6 +72,8 @@
         <div class="panel panel-primary">
           <div class="panel-heading">การควบคุมการชำระเงิน</div>
           <div class="panel-body">
+            <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+              <div class="example-item">
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
               <ng-container matColumnDef="code">
@@ -98,6 +100,8 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+              </div>
+          </cdk-virtual-scroll-viewport>
           </div>
         </div>
       </div>
@@ -105,13 +109,17 @@
         <div class="col-md-8">
           <div class="tabbody">
             <div class="panel panel-primary">
-              <div class="panel-heading">บัญชี</div>
+              <div class="panel-heading">บัญชี 
+                  <button class="btn btn-default pull-right" type="button" (click)="add()">
+                  เพิ่มฟิลด์
+                </button>
+              </div>
               <div class="panel-body">
-                <div class="col-md-6 col-left margin-tb-size">
+                <div class="col-md-5 col-left">
                   <label class="text-black">ผู้ขาย</label>
                   <input type="text" class="form-control" formControlName="verdorTaxIdForm">
                 </div>
-                <div class="col-md-6 col-left margin-tb-size">
+                <div class="col-md-5 col-left">
                   <label class="text-black">ถึง</label>
                   <div class="input-group input-group-lg">
                     <input type="text" class="form-control" formControlName="verdorTaxIdTo">
@@ -121,6 +129,28 @@
                   </div>
                 </div>
               </div>
+              <div *ngFor="let container of containers">
+              <div class="panel-body">
+                <div class="col-md-5 col-left">
+                  <label class="text-black">ผู้ขาย</label>
+                  <input type="text" class="form-control" formControlName="verdorTaxIdForm">
+                </div>
+                <div class="col-md-5 col-left">
+                  <label class="text-black">ถึง</label>
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" formControlName="verdorTaxIdTo">
+                      <button class="btn btn-default" type="button" (click)="OpenAcc()">
+                        <img src="assets/images/icon/menu.svg" width="12px" />
+                      </button>
+                  </div>
+                </div>
+                <div class="col-md-2 col-left" style="padding-top: 25px;">
+                  <button type="button" class="btn btn-danger btn-lg" (click)="del()">
+                    <i class="material-icons" style="font-size:15px;">clear</i>
+                  </button>  
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>

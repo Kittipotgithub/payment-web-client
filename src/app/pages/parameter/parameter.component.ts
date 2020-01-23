@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { AccountComponent } from '../account/account.component';
 import { CopyComponent } from '../copy/copy.component';
+import { PaymentComponent } from '../payment/payment.component';
 
 export interface PeriodicElement {
   pay: string;
@@ -22,7 +23,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-parameter',
   templateUrl: './parameter.component.html',
-  styleUrls: ['./parameter.component.scss']
+  styleUrls: ['./parameter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ParameterComponent implements OnInit {
   displayedColumns: string[] = ['code', 'pay', 'nextpay'];
@@ -50,10 +52,25 @@ export class ParameterComponent implements OnInit {
   parameterForm: FormGroup;
   verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
   verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
+
+  containers = [];
+
+  add() {
+    this.containers.push(this.containers.length);
+    this.show = true;
+  }
+
+  del() {
+    this.containers.splice(this.containers.length-1);
+  }
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) { }
+
+  public show;
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CopyComponent, {
@@ -67,6 +84,15 @@ export class ParameterComponent implements OnInit {
 
   OpenAcc(): void {
     const dialog = this.dialog.open(AccountComponent, {
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  OpenPayment(): void {
+    const dialog = this.dialog.open(PaymentComponent, {
     });
 
     dialog.afterClosed().subscribe(result => {

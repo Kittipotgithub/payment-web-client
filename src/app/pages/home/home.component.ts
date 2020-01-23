@@ -4,6 +4,7 @@ import { DialogSaveParameterComponent } from 'src/app/shared/component/tab-statu
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CopyComponent } from '../copy/copy.component';
+import { StatuspopupComponent } from '../statuspopup/statuspopup.component';
 
 
 @Component({
@@ -68,9 +69,7 @@ export class HomeComponent implements OnInit {
     this.tabSelectedIndex = tabChangeEvent.index;
     // console.log(this.tabSelectedIndex)
     if (this.tabSelectedIndex === 0) {
-      const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
-        width: '250px',
-        data: {}
+      const dialogRef = this.dialog.open(StatuspopupComponent, {
       });
 
       dialogRef.afterClosed().subscribe(result => {

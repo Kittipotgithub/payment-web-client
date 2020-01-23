@@ -20,7 +20,6 @@ import { ReportComponent } from './report/report.component';
 import { OptionIndependentComponent } from './option-independent/option-independent.component';
 import { OptionAdditionalLogComponent } from './option-additional-log/option-additional-log.component';
 import {MatTableModule} from '@angular/material/table';
-import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -28,6 +27,12 @@ import { CopyComponent } from './copy/copy.component';
 import { CopydateComponent } from './copydate/copydate.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AccountComponent } from './account/account.component';
+import { PaymentComponent } from './payment/payment.component';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { AccountTableComponent } from './account-table/account-table.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { StatuspopupComponent } from './statuspopup/statuspopup.component';
 
 
 
@@ -42,14 +47,20 @@ import { AccountComponent } from './account/account.component';
     OptionAdditionalLogComponent,
     CopyComponent,
     CopydateComponent,
-    AccountComponent
+    AccountComponent,
+    PaymentComponent,
+    AccountTableComponent,
+    StatuspopupComponent
   
   ],
   entryComponents: [
     CopyComponent,
     StatusComponent,
     CopydateComponent,
-    AccountComponent
+    AccountComponent,
+    PaymentComponent,
+    AccountTableComponent,
+    StatuspopupComponent 
   ],
   imports: [
     CommonModule,
@@ -72,7 +83,9 @@ import { AccountComponent } from './account/account.component';
     MatSelectModule,
     MatCheckboxModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule,
+    ScrollingModule
   ]
 })
 export class PagesModule { 
