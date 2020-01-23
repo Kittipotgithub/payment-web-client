@@ -23,12 +23,44 @@ export class OptionIndependentComponent implements OnInit {
     {value: '8', viewValue: 'อื่นๆ'}
   ];
 
-  modifedtext: string;
+  containers = [];
+
+  add() {
+    this.containers.push(this.containers.length);
+    this.show4 = true;
+  }
+
+  //modifedtext: string;
 
   constructor() { }
 
+  public show;
+  public show1;
+  public show2;
+  public show3;
+  public show4;
+  
   ngOnInit() {
   }
 
+  toggle() {
+    this.show = true;
+  }
+
+  toggle1() {
+    this.show1 = true;
+  }
+
+  toggle2() {
+    this.show2 = true;
+  }
+
+  toggle3() {
+    this.show3 = true;
+  }
+
+  /*toggle4() {
+    this.show4 = true;
+  }*/
 
 }
