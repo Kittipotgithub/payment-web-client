@@ -31,6 +31,7 @@ import { PaymentComponent } from './payment/payment.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { AccountTableComponent } from './account-table/account-table.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -80,7 +81,8 @@ import { AccountTableComponent } from './account-table/account-table.component';
     MatCheckboxModule,
     MatDialogModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    ScrollingModule
   ]
 })
 export class PagesModule { 

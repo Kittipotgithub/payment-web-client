@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
@@ -23,7 +23,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-parameter',
   templateUrl: './parameter.component.html',
-  styleUrls: ['./parameter.component.scss']
+  styleUrls: ['./parameter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ParameterComponent implements OnInit {
   displayedColumns: string[] = ['code', 'pay', 'nextpay'];

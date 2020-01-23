@@ -26,6 +26,8 @@
     <!--/div-->
   </div>
   <br>
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div class="example-item">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="code">
@@ -46,4 +48,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>
