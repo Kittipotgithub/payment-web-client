@@ -52,10 +52,21 @@ export class ParameterComponent implements OnInit {
   parameterForm: FormGroup;
   verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
   verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
+
+  containers = [];
+
+  add() {
+    this.containers.push(this.containers.length);
+    this.show = true;
+  }
+
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) { }
+
+  public show;
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CopyComponent, {
