@@ -3,16 +3,17 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 
 export interface PeriodicElement {
   pay: string;
-  code: number;
+  code: string;
   nextpay: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { code: 101010, pay: '11/11/11', nextpay: '12/12/12' },
-  { code: 101011, pay: '12/11/11', nextpay: '13/12/12' },
-  { code: 101012, pay: '13/11/11', nextpay: '14/12/12' },
-  { code: 101013, pay: '14/11/11', nextpay: '15/12/12' },
-  { code: 101014, pay: '15/11/11', nextpay: '16/12/12' },
+  { code: '07.11.2019', pay: 'H0001', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  { code: '07.11.2019', pay: 'H0002', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  { code: '29.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  { code: '29.10.2019', pay: 'Z-DI2', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  { code: '29.10.2019', pay: 'Z-IN1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
 ];
 
 @Component({

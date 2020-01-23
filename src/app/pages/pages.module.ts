@@ -30,6 +30,7 @@ import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { AccountTableComponent } from './account-table/account-table.component';
 
 
 
@@ -45,7 +46,8 @@ import { FormsModule } from '@angular/forms';
     CopyComponent,
     CopydateComponent,
     AccountComponent,
-    PaymentComponent
+    PaymentComponent,
+    AccountTableComponent
   
   ],
   entryComponents: [
@@ -53,7 +55,8 @@ import { FormsModule } from '@angular/forms';
     StatusComponent,
     CopydateComponent,
     AccountComponent,
-    PaymentComponent 
+    PaymentComponent,
+    AccountTableComponent 
   ],
   imports: [
     CommonModule,

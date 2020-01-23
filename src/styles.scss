@@ -117,7 +117,14 @@ height: 1.25rem;
     border-radius: 15px;
 }
 
-
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+table {
+    width: 100%;
+}
+
+.date_dialog {
+    width: 1000px;
+    height: 400px;
+  }
