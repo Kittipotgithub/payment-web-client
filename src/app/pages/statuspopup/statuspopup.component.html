@@ -1,0 +1,30 @@
+<button class="close" mat-button (click)="closeDialog()">X</button>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">ออกจากการแก้ไข</h1>
+<div mat-dialog-content>
+<div class="row">
+    <div class="col-md-12 text-left">
+      <label class="text-black">เก็บบันทึกข้อมูลหรือไม่</label>
+    </div>
+  </div>
+  
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <button type="button" class="btn btn-success btn-lg" style="width: 100%;">
+          <i class="material-icons" style="font-size:15px;">ใช่</i>
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-danger btn-lg" style="width: 100%;">
+          <i class="material-icons" style="font-size:15px;">ไม่ใช่</i>
+        </button>  
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-danger btn-lg" style="width: 100%;">
+          <i class="material-icons" style="font-size:15px;">ยกเลิก</i>
+        </button>  
+      </div>
+    </div>
+  </div>
+</div>

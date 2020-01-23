@@ -32,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { AccountTableComponent } from './account-table/account-table.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { StatuspopupComponent } from './statuspopup/statuspopup.component';
 
 
 
@@ -48,7 +49,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     CopydateComponent,
     AccountComponent,
     PaymentComponent,
-    AccountTableComponent
+    AccountTableComponent,
+    StatuspopupComponent
   
   ],
   entryComponents: [
@@ -57,7 +59,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     CopydateComponent,
     AccountComponent,
     PaymentComponent,
-    AccountTableComponent 
+    AccountTableComponent,
+    StatuspopupComponent 
   ],
   imports: [
     CommonModule,
