@@ -1,62 +1,72 @@
-<form [formGroup]="omFormCreate">
-
-  <div class="row">
-    <div class="col-md-2">
-      <label class="text-black"> รหัสหน่วยงาน </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeFrom" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 text-right">
-      <label> ถึง </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeTo" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <mat-toolbar color="primary">
+      <h3 class="title">ปลด block</h3>
+    </mat-toolbar>
   </div>
-  <div class="row">
-    <div class="col-md-2">
-      <label class="text-black"> รหัสจังหวัด </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeFrom" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 text-right">
-      <label> ถึง </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeTo" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="row">
+</div>
+<div class="body">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="omFormCreate">
+          <div class="row">
+            <div class="col-md-2">
+              <label class="text-black"> รหัสหน่วยงาน </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeFrom" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 text-right">
+              <label> ถึง </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeTo" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="text-black"> รหัสจังหวัด </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeFrom" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 text-right">
+              <label> ถึง </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeTo" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
           <div class="col-md-2">
             <label class="text-black"> ปีบัญชี </label>
           </div>
@@ -68,64 +78,64 @@
           </div>
         </div> -->
 
-  <div class="row">
-    <div class="col-md-2">
-      <label class="text-black"> ผู้ขาย </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 text-right">
-      <label> ถึง </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdTo" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <label class="text-black"> หน่วยเบิกจ่าย </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeFrom" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 text-right">
-      <label> ถึง </label>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group">
-        <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeTo" />
-        <div class="input-group-append button-group-search">
-          <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-            <img src="assets/images/icon/fa-search.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="text-black"> ผู้ขาย </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 text-right">
+              <label> ถึง </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdTo" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label class="text-black"> หน่วยเบิกจ่าย </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeFrom" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 text-right">
+              <label> ถึง </label>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeTo" />
+                <div class="input-group-append button-group-search">
+                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                    <img src="assets/images/icon/fa-search.svg" width="12px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <!-- <div class="header-collapse" [ngClass]="{ open: isOpenCollapseDetail }">
+          <div class="header-collapse" [ngClass]="{ open: isOpenCollapseDetail }">
         <div class="flex-1">
 
           <label class="text-black"> Addition Criteria </label>
@@ -179,5 +189,9 @@
             <input class="form-control " type="text" maxlength="1" formControlName="outline" />
           </div>
         </div>
-      </div> -->
-</form>
+      </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
