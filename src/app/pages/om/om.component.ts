@@ -1,7 +1,8 @@
+import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { MatDialog } from '@angular/material';
+import { Utils } from 'src/app/shared/utils';
 
 @Component({
   selector: 'app-om',
@@ -42,9 +43,15 @@ export class OmComponent implements OnInit {
   name: string;
   constructor(
     private formBuilder: FormBuilder,
-    private dialog: MatDialog, ) { }
+    private dialog: MatDialog,
+    private utils: Utils
+
+  ) { }
 
   ngOnInit() {
+    this.utils.listYear = this.utils.CalculateYear()
+    this.utils.fiscYear = this.utils.CalculateFiscYear(new Date());
+
     this.createFormControl();
     this.createFormGroup();
   }
@@ -54,7 +61,7 @@ export class OmComponent implements OnInit {
     this.departmentCodeToControl = this.formBuilder.control(''); // รหัสหน่วยงาน
     this.provinceCodeFromControl = this.formBuilder.control(''); // รหัสจังหวัด
     this.provinceCodeToControl = this.formBuilder.control(''); // รหัสจังหวัด
-    this.yearAccountControl = this.formBuilder.control(''); // ปีบัญชี
+    this.yearAccountControl = this.formBuilder.control(this.utils.fiscYear); // ปีบัญชี
     this.postDateFromControl = this.formBuilder.control(''); // วันผ่านรายการ
     this.postDateToControl = this.formBuilder.control(''); // วันผ่านรายการ
     this.vendorTaxIdFromControl = this.formBuilder.control(''); // ผุ้ขาย
@@ -124,7 +131,7 @@ export class OmComponent implements OnInit {
   openDialogSearch(): void {
     const dialogRef = this.dialog.open(DialogSearchVendorComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: { name: this.name, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {

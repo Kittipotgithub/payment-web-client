@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { AccountComponent } from '../account/account.component';
 import { CopyComponent } from '../copy/copy.component';
@@ -9,7 +8,7 @@ import { PaymentComponent } from '../payment/payment.component';
 export interface PeriodicElement {
   pay: string;
   code: number;
-  nextpay: string;
+  nextpay: string; 
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [

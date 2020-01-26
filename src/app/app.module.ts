@@ -10,6 +10,7 @@ import { PagesModule } from './pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Utils } from './shared/utils';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatAutocompleteModule
   ],
-  providers: [
+  providers: [Utils,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]

@@ -8,11 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogSaveParameterComponent } from './component/tab-status/dialog-save-parameter/dialog-save-parameter.component';
+import { DialogSearchMasterComponent } from './component/dialog-search-master/dialog-search-master.component';
 
 
 
 @NgModule({
-  declarations: [ DialogSearchVendorComponent, DialogSaveParameterComponent],
+  declarations: [ DialogSearchVendorComponent, DialogSaveParameterComponent, DialogSearchMasterComponent],
   imports: [
     CommonModule,
     HttpClientModule,
