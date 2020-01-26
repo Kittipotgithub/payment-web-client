@@ -26,6 +26,6 @@ import { DialogSearchMasterComponent } from './component/dialog-search-master/di
     MatProgressBarModule,
     MatTooltipModule,
   ],
-  entryComponents: [DialogSearchVendorComponent,DialogSaveParameterComponent],
+  entryComponents: [DialogSearchVendorComponent,DialogSaveParameterComponent,DialogSearchMasterComponent],
 })
 export class SharedModule { }

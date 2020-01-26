@@ -1,3 +1,4 @@
+import { Constant } from './shared/constant';
 
 
 import { MatTabsModule, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatNativeDateModule, MatDatepickerModule, MatExpansionModule, MatProgressBarModule, MatSnackBarModule, MatTooltipModule, MatAutocompleteModule } from '@angular/material';
@@ -34,7 +35,7 @@ import { Utils } from './shared/utils';
     MatSnackBarModule,
     MatAutocompleteModule
   ],
-  providers: [Utils,
+  providers: [Utils,Constant,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]
