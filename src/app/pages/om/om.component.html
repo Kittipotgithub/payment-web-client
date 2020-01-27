@@ -286,15 +286,20 @@
                   <div class="col-md-4">
                     <input class="form-control " type="text" maxlength="1" formControlName="outline" />
                   </div>
+                  <div class="col-md-6">
+                    <button (click)="onSearch()" class="btn-info">เริ่มค้นหา</button>
+                  </div>
+                  
                 </div>
               </div>
-              <div class="row">
-                <button (click)="onSearch()" class="btn-info">เริ่มค้นหา</button>
-              </div>
+              
             </div>
           </div>
         </form>
-
+        <!-- <div class="row" style="align-content: center;">
+          
+        </div> -->
+        
         <cdk-virtual-scroll-viewport *ngIf="listDocument.length >0 && listDocument != null" itemSize="50" class="example-viewport">
           <table class="table-normal table-result" >
             <tr>

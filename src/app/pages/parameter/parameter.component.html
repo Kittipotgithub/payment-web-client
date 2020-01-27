@@ -22,16 +22,7 @@
             </button>
           </div>
         </div>
-        <div class="col-md-4 col-left margin-tb-size">
-          <label class="text-black">รายการลูกค้าครบกำหนดถึง</label>
-          <div class="input-group input-group-lg">
-            <input type="text" class="form-control" id="InputDate" [matDatepicker]="myDatepicker3">
-            <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker3.open()">
-              <img src="assets/images/icon/calendar.svg" width="12px">
-              <mat-datepicker #myDatepicker3></mat-datepicker>
-            </button>
-          </div>
-        </div>
+       
       </div>
       <div class="row">
         <div class="col-md-4 col-left margin-tb-size">
@@ -70,16 +61,17 @@
       <br>
       <div class="tabbody">
         <div class="panel panel-primary">
-          <div class="panel-heading">การควบคุมการชำระเงิน</div>
+          <div class="panel-heading">รหัสบริษัท</div>
           <div class="panel-body">
             <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
               <div class="example-item">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <textarea   class="form-control" rows="9"></textarea>
+            <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
               <ng-container matColumnDef="code">
                 <th mat-header-cell *matHeaderCellDef> รหัสบริษัท </th>
                 <td mat-cell *matCellDef="let element">
-                  <input type="text" class="form-control" id="Input" value="10100">
+                
                 </td>
               </ng-container>
 
@@ -99,7 +91,7 @@
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+            </table> -->
               </div>
           </cdk-virtual-scroll-viewport>
           </div>
