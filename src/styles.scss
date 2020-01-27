@@ -4,7 +4,7 @@
 html, body { height: 100%; }
 body { 
     margin: 0; 
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.42857143;
     // font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-family: 'Kanit', sans-serif,'Roboto', sans-serif;
@@ -12,10 +12,10 @@ body {
 }
 // Class
 .body {
-    padding: 20px;
+    padding:10px;
 }
 .tabbody {
-    padding-top: 20px;
+    padding-top: 15px;
 }
 .headmenu {
     background: #0088cc;
@@ -43,8 +43,12 @@ body {
     border-color: #ccc;
 }
 .margin-tb-size {
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.input-head{
+  font-size: 15px;
+  font-weight: bold;
 }
 // Checkbox
 .checkbox-lg .custom-control-label::before, 
@@ -67,6 +71,11 @@ body {
     padding-top: 12px;
     padding-left: 12px;
 }
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height: 24px;
+  font-weight: bold;
+  font-size: 15px;
+}
 
 // Customize
 label {
@@ -80,7 +89,19 @@ label {
     color: #fff;
 }
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-    background-color: #0088cc;
+    background-color: #ffd335;
+}
+.mat-tab-label-active {
+    background-color: #ffca00;
+    color: #ffffff;
+    border-radius: 5px;
+}
+.mat-tab-label .mat-tab-label-content {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 16px;
 }
 .custom-control-label::before, 
 .custom-control-label::after {
@@ -97,7 +118,7 @@ height: 1.25rem;
 }
 .mat-tab-label, .mat-tab-link {
     font-family:'Kanit', sans-serif,'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 }
 .mat-checkbox {
@@ -111,7 +132,7 @@ height: 1.25rem;
     color: #fff;
 }
 .form-control {
-    font-size: 14px;
+    font-size: 16px;
 }
 .form-control .borderradius {
     border-radius: 15px;

@@ -9,7 +9,7 @@
   <div class ="container-fluid">
     <div class="row">
       <div class="col-md-4 col-left">
-        <h4 class="text-black"><b>วันที่ประมวลผล</b></h4>
+        <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
         <div class="input-group input-group-lg">
           <input type="text" class="form-control" id="InputDate" [matDatepicker]="myDatepicker">
           <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
@@ -19,13 +19,26 @@
           </div>
       </div>
       <div class="col-md-4">
-        <h4 class="text-black"><b>การกำหนด</b></h4>
+        <h3 class="text-black"><b>การกำหนด</b></h3>
          <div class="input-group input-group-lg">
         <input type="text" class="form-control" >
         <button class="btn btn-default" type="button"(click)="test()" >
           <img src="assets/images/icon/menu.svg" width="12px" />
         </button>
         </div>
+      </div>
+      <div class="col-md-4" style="padding-top:20px;">
+        <span><b>คัดลอกพารามิเตอร์ : </b></span>&nbsp;
+        <span class="fill-remaining-space">
+          <button mat-icon-button (click)="openDialog()" class="btn_menu1">
+            <mat-icon style="font-size:15px;padding:5px;">file_copy</mat-icon>
+          </button>
+        </span>&nbsp;
+        <span class="fill-remaining-space">
+          <button mat-icon-button class="btn_menu1">
+            <mat-icon style="font-size:15px;padding:5px;">insert_drive_file</mat-icon>
+          </button>
+        </span>
       </div>
     </div>
     <br>

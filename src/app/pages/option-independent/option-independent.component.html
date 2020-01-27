@@ -1,15 +1,16 @@
 <div class="tabbody">
   <div class="panel panel-primary">
-    <div class="panel-heading">เกณฑ์การเลือก
+    <div class="panel-heading"><h3>เกณฑ์การเลือก</h3>
       <!-- <button class="btn btn-default pull-right" type="button" (click)="add()">
         เพิ่มฟิลด์
       </button> -->
     </div>
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="independentFormCreate">
       <div class="panel-body">
+        <!-- 1 -->
         <div class="row">
-          <div class="col-md-10">
-            <mat-label>ชื่อฟิลด์</mat-label>
+          <div class="col-md-11">
+            <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
               <input readonly type="text" class="form-control" formControlName="filedNameOne">
               <button class="btn btn-default" type="button" (click)="openDialogSearchFiled('filedNameOne')">
@@ -17,9 +18,9 @@
               </button>
             </div>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" style="padding-top: 20px;">
             <div class="input-group input-group-lg">
-              <mat-checkbox formControlName="checkBoxOne" >option</mat-checkbox>
+              <mat-checkbox formControlName="checkBoxOne">option</mat-checkbox>
             </div> 
           </div>
         </div>
@@ -29,10 +30,11 @@
           </div>
           <div class="col-md-1"></div>
         </div>
-
+        <br>
+        <!-- 2 -->
         <div class="row">
-          <div class="col-md-10">
-            <mat-label>ชื่อฟิลด์</mat-label>
+          <div class="col-md-11">
+            <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
               <input readonly type="text" class="form-control" formControlName="filedNameTwo">
               <button class="btn btn-default" type="button" (click)="openDialogSearchFiled('filedNameTwo')">
@@ -40,7 +42,7 @@
               </button>
             </div>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" style="padding-top: 20px;">
             <div class="input-group input-group-lg">
               <mat-checkbox formControlName="checkBoxTwo" >option</mat-checkbox>
             </div> 
@@ -52,9 +54,11 @@
           </div>
           <div class="col-md-1"></div>
         </div>
+        <br>
+        <!-- 3 -->
         <div class="row">
-          <div class="col-md-10">
-            <mat-label>ชื่อฟิลด์</mat-label>
+          <div class="col-md-11">
+            <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
               <input readonly type="text" class="form-control" formControlName="filedNameThree">
               <button class="btn btn-default" type="button" (click)="openDialogSearchFiled('filedNameThree')">
@@ -62,7 +66,7 @@
               </button>
             </div>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" style="padding-top: 20px;">
             <div class="input-group input-group-lg">
               <mat-checkbox formControlName="checkBoxThree" >option</mat-checkbox>
             </div> 
