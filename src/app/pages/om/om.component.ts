@@ -46,8 +46,96 @@ export class OmComponent implements OnInit {
   isOpenCollapseDetail //เปิดปิด collpase
 
 
-  listDocument = [];
+  // listDocument = [];
   listMessageResponse = [];
+
+  listDocument = [
+    {
+      "id": null,
+      "docType": "KC",
+      "compCode": "12005",
+      "userWeb": "120050000110",
+      "dateDoc": 1578330000000,
+      "datePost": 1578330000000,
+      "reference": "P630000100",
+      "currency": null,
+      "revDocPost": null,
+      "revReasonPost": null,
+      "paymentCenter": null,
+      "amount": null,
+      "poDocNo": null,
+      "invDocNo": null,
+      "revInvDocNo": null,
+      "paymentMethod": null,
+      "costCenter1": null,
+      "costCenter2": null,
+      "brDocNo": null,
+      "period": 0,
+      "vendor": null,
+      "vendorTaxId": null,
+      "payee": null,
+      "accDocNo": "3100000197",
+      "revAccDocNo": null,
+      "fiscYear": "2020",
+      "revFiscYear": null,
+      "docHeaderText": null,
+      "headerDesc": null,
+      "hdRefLog": "IFW201005972E02",
+      "hdRef2": "1200500001",
+      "previousDocNo": null,
+      "postingKey": "31",
+      "accType": "K",
+      "drCr": "C",
+      "glAcc": "2101010102",
+      "fiArea": "1000",
+      "costCenter": "1200500001",
+      "fundSource": "6311220",
+      "bgCode": "12005630017003100001",
+      "bgActivity": "P1000",
+      "costActivity": null,
+      "reference3": null,
+      "assignment": null,
+      "brLine": 0,
+      "bankBook": null,
+      "gpsc": null,
+      "subAcc": null,
+      "subAccOwner": null,
+      "depositAccOwner": null,
+      "depositAcc": null,
+      "lineItemText": null,
+      "lineDesc": null,
+      "paymentTerm": "1",
+      "wtxType": null,
+      "wtxCode": null,
+      "wtxBase": null,
+      "wtxAmount": null,
+      "wtxTypeP": null,
+      "wtxCodeP": null,
+      "wtxBaseP": null,
+      "wtxAmountP": null,
+      "bankAccNo": null,
+      "bankBranchNo": null,
+      "tradingPartner": null,
+      "tradingPartnerBusArea": null,
+      "gpscGroup": null,
+      "specialGL": null,
+      "creditMemoDocNo": null,
+      "creditMemoFiscalYear": null,
+      "dateBaseline": 1578330000000,
+      "dateValue": null,
+      "assetNo": null,
+      "assetSubNo": null,
+      "qty": 0,
+      "uom": null,
+      "uomIso": null,
+      "reference1": "OTH2",
+      "reference2": null,
+      "poLine": 0,
+      "income": null,
+      "paymentBlock": "B",
+      "paymentRef": null
+    }
+  ]
 
   animal: string;
   name: string;
@@ -248,17 +336,18 @@ export class OmComponent implements OnInit {
       const response = data as any;
       const result = response.data;
       console.log(result)
+  
       if (result) {
         if (result.length > 0 && result.length <= 500) {
-          this.listDocument = result;
-          // this.selectedTabIndex = 1;
-          let i = 0
-          this.listDocument.forEach(document => {
-            document.no = i++
-            document.approve = false;
-            document.notApprove = false;
-            document.reason = ''
-          });
+          // this.listDocument = result;
+          // // this.selectedTabIndex = 1;
+          // let i = 0
+          // this.listDocument.forEach(document => {
+          //   document.no = i++
+          //   document.approve = false;
+          //   document.notApprove = false;
+          //   document.reason = ''
+          // });
         } else if (result.length > 500) {
           this.listMessageResponse.push('ไม่สามารถแสดงผลการค้นหาเกิน 500 รายการได้ กรุณาเปลี่ยนเงื่อนไขการค้นหาใหม่');
         } else {
