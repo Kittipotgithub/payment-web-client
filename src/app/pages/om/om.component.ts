@@ -237,57 +237,57 @@ export class OmComponent implements OnInit {
     console.log(payload)
 
 
-    // let data = {
-    //   lineNo: 1,
-    //   approve: false,
-    //   notApprove: false,
-    //   info: '',
-    //   diff: 'หัก',
-    //   documentType: 'KE',
-    //   documentNo: '3200000040',
-    //   referenceNo: '3200000041',
-    //   year: '2019',
-    //   referenceText: 'TEST04',
-    //   documentDate: new Date(),
-    //   postDate: new Date()
+    let data = {
+      lineNo: 1,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: 'หัก',
+      documentType: 'KE',
+      documentNo: '3200000040',
+      referenceNo: '3200000041',
+      year: '2019',
+      referenceText: 'TEST04',
+      documentDate: new Date(),
+      postDate: new Date()
 
 
-    // }
-    // let data1 = {
-    //   lineNo: 2,
-    //   approve: false,
-    //   notApprove: false,
-    //   info: '',
-    //   diff: 'หัก',
-    //   documentType: 'KL',
-    //   documentNo: '3600000040',
-    //   referenceNo: '',
-    //   year: '2020',
-    //   referenceText: 'KLเลื่อม',
-    //   documentDate: new Date(),
-    //   postDate: new Date()
+    }
+    let data1 = {
+      lineNo: 2,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: 'หัก',
+      documentType: 'KL',
+      documentNo: '3600000040',
+      referenceNo: '',
+      year: '2020',
+      referenceText: 'KLเลื่อม',
+      documentDate: new Date(),
+      postDate: new Date()
 
 
-    // }
-    // let data2 = {
-    //   lineNo: 3,
-    //   approve: false,
-    //   notApprove: false,
-    //   info: '',
-    //   diff: '',
-    //   documentType: 'KC',
-    //   documentNo: '3100000040',
-    //   referenceNo: '',
-    //   year: '2020',
-    //   referenceText: 'PK200',
-    //   documentDate: new Date(),
-    //   postDate: new Date()
+    }
+    let data2 = {
+      lineNo: 3,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: '',
+      documentType: 'KC',
+      documentNo: '3100000040',
+      referenceNo: '',
+      year: '2020',
+      referenceText: 'PK200',
+      documentDate: new Date(),
+      postDate: new Date()
 
-    // }
+    }
 
-    // this.listDocument.push(data)
-    // this.listDocument.push(data1)
-    // this.listDocument.push(data2)
+    this.listDocument.push(data)
+    this.listDocument.push(data1)
+    this.listDocument.push(data2)
 
 
 
@@ -296,7 +296,7 @@ export class OmComponent implements OnInit {
 
   search(payload) {
     // this.loadingScreenService.loadingToggleStatus(true)
-    this.listDocument = [];
+    // this.listDocument = [];
     this.paymentBlockService.search(payload).subscribe(data => {
       // this.loadingScreenService.loadingToggleStatus(false)
       // this.isDataSearchloaded = true;

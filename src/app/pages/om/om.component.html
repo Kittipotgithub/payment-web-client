@@ -13,160 +13,161 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Selection Criteria</div>
             <div class="panel-body">
-          <div class="row">
-            <div class="col-md-2">
-              <label class="text-black"> รหัสหน่วยงาน </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeFrom" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="text-black"> รหัสหน่วยงาน </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeFrom" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1 text-right">
+                  <label> ถึง </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeTo" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-1 text-right">
-              <label> ถึง </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeTo" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="text-black"> รหัสจังหวัด </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeFrom" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1 text-right">
+                  <label> ถึง </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeTo" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="text-black"> รหัสจังหวัด </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeFrom" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="text-black"> ปีบัญชี </label>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-1 text-right">
-              <label> ถึง </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeTo" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="text-black"> ปีบัญชี </label>
-            </div>
-            <div class="col-md-4">
+                <div class="col-md-4">
 
-              <select class="form-control" formControlName="yearAccount">
-                <option *ngFor="let item of utils.listYear" [ngValue]="item.id">{{ item.name }}</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="text-black"> วันผ่านรายการ </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group input-group-lg">
-                <input type="text" class="form-control" formControlName="postDateFrom" [matDatepicker]="postDateFrom">
-                <button class="btn btn-default" type="button" mat-raised-button (click)="postDateFrom.open()">
-                  <img src="assets/images/icon/calendar.svg" width="12px">
-                  <mat-datepicker #postDateFrom></mat-datepicker>
-                </button>
+                  <select class="form-control" formControlName="yearAccount">
+                    <option *ngFor="let item of utils.listYear" [ngValue]="item.id">{{ item.name }}</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="col-md-1 text-right">
-              <label> ถึง </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group input-group-lg">
-                <input type="text" class="form-control" formControlName="postDateTo" [matDatepicker]="postDateto">
-                <button class="btn btn-default" type="button" mat-raised-button (click)="postDateto.open()">
-                  <img src="assets/images/icon/calendar.svg" width="12px">
-                  <mat-datepicker #postDateto></mat-datepicker>
-                </button>
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="text-black"> วันผ่านรายการ </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" formControlName="postDateFrom"
+                      [matDatepicker]="postDateFrom">
+                    <button class="btn btn-default" type="button" mat-raised-button (click)="postDateFrom.open()">
+                      <img src="assets/images/icon/calendar.svg" width="12px">
+                      <mat-datepicker #postDateFrom></mat-datepicker>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-1 text-right">
+                  <label> ถึง </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" formControlName="postDateTo" [matDatepicker]="postDateto">
+                    <button class="btn btn-default" type="button" mat-raised-button (click)="postDateto.open()">
+                      <img src="assets/images/icon/calendar.svg" width="12px">
+                      <mat-datepicker #postDateto></mat-datepicker>
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
 
 
-          <div class="row">
-            <div class="col-md-2">
-              <label class="text-black"> ผู้ขาย </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="text-black"> ผู้ขาย </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1 text-right">
+                  <label> ถึง </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdTo" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-1 text-right">
-              <label> ถึง </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdTo" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
+              <div class="row">
+                <div class="col-md-2">
+                  <label class="text-black"> หน่วยเบิกจ่าย </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeFrom" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1 text-right">
+                  <label> ถึง </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeTo" />
+                    <div class="input-group-append button-group-search">
+                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                        <img src="assets/images/icon/fa-search.svg" width="12px" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-              <label class="text-black"> หน่วยเบิกจ่าย </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeFrom" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-1 text-right">
-              <label> ถึง </label>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group">
-                <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeTo" />
-                <div class="input-group-append button-group-search">
-                  <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
-                    <img src="assets/images/icon/fa-search.svg" width="12px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
           <!-- <div class="header-collapse" [ngClass]="{ open: isOpenCollapseDetail }">
             <div class="flex-1">
@@ -179,92 +180,93 @@
             <div class="panel panel-primary">
               <div class="panel-heading">Addition Selection</div>
               <div class="panel-body">
-            <div class="row">
-              <div class="col-md-2">
-                <label class="text-black"> วิธีการชำระเงิน </label>
-              </div>
-              <div class="col-md-4">
-                <input class="form-control " type="text" maxlength="1" formControlName="payMethodFrom" />
-              </div>
-              <div class="col-md-1 text-right">
-                <label> ถึง </label>
-              </div>
-              <div class="col-md-4">
-                <input class="form-control " type="text" maxlength="1" formControlName="payMethodTo" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <label class="text-black"> วันที่เอกสาร</label>
-              </div>
-              <div class="col-md-4">
-                <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" formControlName="documentDateFrom"
-                    [matDatepicker]="documentDateFrom">
-                  <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateFrom.open()">
-                    <img src="assets/images/icon/calendar.svg" width="12px">
-                    <mat-datepicker #documentDateFrom></mat-datepicker>
-                  </button>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label class="text-black"> วิธีการชำระเงิน </label>
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control " type="text" maxlength="1" formControlName="payMethodFrom" />
+                  </div>
+                  <div class="col-md-1 text-right">
+                    <label> ถึง </label>
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control " type="text" maxlength="1" formControlName="payMethodTo" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label class="text-black"> วันที่เอกสาร</label>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control" formControlName="documentDateFrom"
+                        [matDatepicker]="documentDateFrom">
+                      <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateFrom.open()">
+                        <img src="assets/images/icon/calendar.svg" width="12px">
+                        <mat-datepicker #documentDateFrom></mat-datepicker>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-1 text-right">
+                    <label> ถึง </label>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control" formControlName="documentDateTo"
+                        [matDatepicker]="documentDateTo">
+                      <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateTo.open()">
+                        <img src="assets/images/icon/calendar.svg" width="12px">
+                        <mat-datepicker #documentDateTo></mat-datepicker>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label class="text-black"> วันที่บันทึก</label>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control" formControlName="documentCreateDateFrom"
+                        [matDatepicker]="documentCreateDateFrom">
+                      <button class="btn btn-default" type="button" mat-raised-button
+                        (click)="documentCreateDateFrom.open()">
+                        <img src="assets/images/icon/calendar.svg" width="12px">
+                        <mat-datepicker #documentCreateDateFrom></mat-datepicker>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-1 text-right">
+                    <label> ถึง </label>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control" formControlName="documentCreateDateTo"
+                        [matDatepicker]="documentCreateDateTo">
+                      <button class="btn btn-default" type="button" mat-raised-button
+                        (click)="documentCreateDateTo.open()">
+                        <img src="assets/images/icon/calendar.svg" width="12px">
+                        <mat-datepicker #documentCreateDateTo></mat-datepicker>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label class="text-black"> แยกประเภทพิเศษ </label>
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control " type="text" maxlength="1" formControlName="specialTypeFrom" />
+                  </div>
+                  <div class="col-md-1 text-right">
+                    <label> ถึง </label>
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control " type="text" maxlength="1" formControlName="specialTypeTo" />
+                  </div>
                 </div>
               </div>
-              <div class="col-md-1 text-right">
-                <label> ถึง </label>
-              </div>
-              <div class="col-md-4">
-                <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" formControlName="documentDateTo"
-                    [matDatepicker]="documentDateTo">
-                  <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateTo.open()">
-                    <img src="assets/images/icon/calendar.svg" width="12px">
-                    <mat-datepicker #documentDateTo></mat-datepicker>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <label class="text-black"> วันที่บันทึก</label>
-              </div>
-              <div class="col-md-4">
-                <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" formControlName="documentCreateDateFrom"
-                    [matDatepicker]="documentCreateDateFrom">
-                  <button class="btn btn-default" type="button" mat-raised-button
-                    (click)="documentCreateDateFrom.open()">
-                    <img src="assets/images/icon/calendar.svg" width="12px">
-                    <mat-datepicker #documentCreateDateFrom></mat-datepicker>
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-1 text-right">
-                <label> ถึง </label>
-              </div>
-              <div class="col-md-4">
-                <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" formControlName="documentCreateDateTo"
-                    [matDatepicker]="documentCreateDateTo">
-                  <button class="btn btn-default" type="button" mat-raised-button (click)="documentCreateDateTo.open()">
-                    <img src="assets/images/icon/calendar.svg" width="12px">
-                    <mat-datepicker #documentCreateDateTo></mat-datepicker>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <label class="text-black"> แยกประเภทพิเศษ </label>
-              </div>
-              <div class="col-md-4">
-                <input class="form-control " type="text" maxlength="1" formControlName="specialTypeFrom" />
-              </div>
-              <div class="col-md-1 text-right">
-                <label> ถึง </label>
-              </div>
-              <div class="col-md-4">
-                <input class="form-control " type="text" maxlength="1" formControlName="specialTypeTo" />
-              </div>
-            </div>
-            </div>
             </div>
           </div>
           <!-- <div class="header-collapse" [ngClass]="{ open: isOpenCollapseDetail }">
@@ -277,77 +279,81 @@
             <div class="panel panel-primary">
               <div class="panel-heading">โครงร่างรายงาน</div>
               <div class="panel-body">
-            <div class="row">
-              <div class="col-md-2">
-                <label class="text-black"> โครงร่าง </label>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label class="text-black"> โครงร่าง </label>
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control " type="text" maxlength="1" formControlName="outline" />
+                  </div>
+                </div>
               </div>
-              <div class="col-md-4">
-                <input class="form-control " type="text" maxlength="1" formControlName="outline" />
+              <div class="row">
+                <button (click)="onSearch()" class="btn-info">เริ่มค้นหา</button>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <button (click)="onSearch()" class="btn-info">เริ่มค้นหา</button>
-          </div>
-          </div>
           </div>
         </form>
 
         <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <table class="table-normal table-result">
-          <tr>
-            <th>รายการ</th>
-            <th class="sort">อนุมัติ</th>
-            <th class="sort">ไม่อนุมัติ</th>
-            <th class="sort pointer" (click)="sortData('accDocNo')">Err WTinfo</th>
-            <th class="sort pointer" (click)="sortData('fiscYear')">หัก</th>
-            <th class="sort ">ประเภท</th>
-            <th class="sort pointer" (click)="sortData('docType')">เลขเอกสาร</th>
-            <th class="sort ">ปี</th>
-            <th class="sort pointer" (click)="sortData('paymentMethod')">เลขอ้างอิง</th>
+          <table class="table-normal table-result">
+            <tr>
+              <th>รายการ</th>
+              <th class="sort">อนุมัติ</th>
+              <th class="sort">ไม่อนุมัติ</th>
+              <th class="sort pointer" (click)="sortData('accDocNo')">Err WTinfo</th>
+              <th class="sort pointer" (click)="sortData('fiscYear')">หัก</th>
+              <th class="sort ">ประเภท</th>
+              <th class="sort pointer" (click)="sortData('docType')">เลขเอกสาร</th>
+              <th class="sort ">ปี</th>
+              <th class="sort pointer" (click)="sortData('paymentMethod')">เลขอ้างอิง</th>
 
-            <th class="sort pointer" (click)="sortData('amount')">การอ้างอิง</th>
-            <th class="sort">ว/ท เอกสาร</th>
-            <th class="sort">Posting Date</th>
-            <th class="sort">Test1</th>
-            <th class="sort">Test2</th>
-            <th class="sort">Test3</th>
-            <th class="sort">Test4</th>
-            <th class="sort">Test5</th>
-            <th class="sort">Test6</th>
-            <th class="sort">Test7</th>
-            <th class="sort">Test8</th>
-            <th class="sort">Test9</th>
-            <th class="sort">Test10</th>
-            <th class="sort">Test11</th>
-            <th class="sort">Test12</th>
-            <th class="sort">Test13</th>
-            <th class="sort">Test14</th>
-            <th class="sort">Test15</th>
-            <th class="sort">Test16</th>
-            <th class="sort">Test17</th>
-            <th class="sort">Test18</th>
-            <th class="sort">Test19</th>
-            <th class="sort">Test20</th>
-            <th class="sort">Test21</th>
-            <th class="sort">Test22</th>
-          </tr>
-          <tr *ngFor="let document of listDocument ; let i = index">
-            <!-- <td class="text-center">
+              <th class="sort pointer" (click)="sortData('amount')">การอ้างอิง</th>
+              <th class="sort">ว/ท เอกสาร</th>
+              <th class="sort">Posting Date</th>
+              <th class="sort">Test1</th>
+              <th class="sort">Test2</th>
+              <th class="sort">Test3</th>
+              <th class="sort">Test4</th>
+              <th class="sort">Test5</th>
+              <th class="sort">Test6</th>
+              <th class="sort">Test7</th>
+              <th class="sort">Test8</th>
+              <th class="sort">Test9</th>
+              <th class="sort">Test10</th>
+              <th class="sort">Test11</th>
+              <th class="sort">Test12</th>
+              <th class="sort">Test13</th>
+              <th class="sort">Test14</th>
+              <th class="sort">Test15</th>
+              <th class="sort">Test16</th>
+              <th class="sort">Test17</th>
+              <th class="sort">Test18</th>
+              <th class="sort">Test19</th>
+              <th class="sort">Test20</th>
+              <th class="sort">Test21</th>
+              <th class="sort">Test22</th>
+            </tr>
+            <tr *ngFor="let document of listDocument">
+              <td>รายการ</td>
+              <td class="sort">อนุมัติ</td>
+            </tr>
+            <tr *ngFor="let document of listDocument ; let i = index">
+              <!-- <td class="text-center">
               <img src="assets/images/icon/record.gif" class="icon pointer"
                 (click)="viewDocument(document.accDocNo, document.fiscYear)" />
             
             </td> -->
-            <td class="text-left">{{ i+1 }}</td>
-            <td class="text-center">
-              <input type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')" />
-            </td>
-            <td class="text-center">
-              <input type="checkbox" [checked]="document.notApprove"
-                (click)="onClickCheckedDocument(i, 'notApprove')" />
-            </td>
-            <!-- <td> <input class="text-right" class="col-12 col-md-5"  #reasonInput [value]=document.reason (blur)="setReasonIntoDocument(i,document)"/></td> -->
-            <!-- <td class="td-not-approve text-center">
+              <td class="text-left">{{ i+1 }}</td>
+              <td class="text-center">
+                <input type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')" />
+              </td>
+              <td class="text-center">
+                <input type="checkbox" [checked]="document.notApprove"
+                  (click)="onClickCheckedDocument(i, 'notApprove')" />
+              </td>
+              <!-- <td> <input class="text-right" class="col-12 col-md-5"  #reasonInput [value]=document.reason (blur)="setReasonIntoDocument(i,document)"/></td> -->
+              <!-- <td class="td-not-approve text-center">
               <input type="checkbox" data-toggle="collapse" [attr.data-target]="'#notApprove' + i"
                 [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notapproved')" />
               <div class="collapse box-not-approve" [ngClass]="{ 'd-none show': isBoxNotApproveShow }"
@@ -364,39 +370,39 @@
                 </button>
               </div>
             </td> -->
-            <td class="text-center">{{ document.info }}</td>
-            <td class="text-center">{{ document.diff }}</td>
-            <td class="text-center">{{ document.docType }}</td>
-            <td (click)="openDialogDetailDocument(document)" class="pointer">{{ document.accDocNo }}</td>
-            <td class="text-center">{{ document.fiscYear }}</td>
-            <td class="text-center">{{ document.referenceNo }}</td>
-            <td class="text-center">{{ document.referenceText }}</td>
-            <td class="text-center">{{ document.dateDoc| date: 'dd.MM.yyyy' }}</td>
-            <td class="text-center">{{ document.datePost | date: 'dd.MM.yyyy'}}</td>
+              <td class="text-center">{{ document.info }}</td>
+              <td class="text-center">{{ document.diff }}</td>
+              <td class="text-center">{{ document.docType }}</td>
+              <td (click)="openDialogDetailDocument(document)" class="pointer">{{ document.accDocNo }}</td>
+              <td class="text-center">{{ document.fiscYear }}</td>
+              <td class="text-center">{{ document.referenceNo }}</td>
+              <td class="text-center">{{ document.referenceText }}</td>
+              <td class="text-center">{{ document.dateDoc| date: 'dd.MM.yyyy' }}</td>
+              <td class="text-center">{{ document.datePost | date: 'dd.MM.yyyy'}}</td>
 
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-            <td class="text-center">{{ document.compCode }}</td>
-          </tr>
-        </table>
-      </cdk-virtual-scroll-viewport>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+              <td class="text-center">{{ document.compCode }}</td>
+            </tr>
+          </table>
+        </cdk-virtual-scroll-viewport>
       </mat-card-content>
     </mat-card>
   </div>
