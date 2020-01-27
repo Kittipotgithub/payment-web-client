@@ -97,7 +97,7 @@ export class DialogDetailDocumentComponent implements OnInit {
     console.log(document)
     // this.loadingScreenService.loadingToggleStatus(true)
     this.listDocument = [];
-    this.paymentBlockService.searchDetail(document.accDocNo).subscribe(data => {
+    this.paymentBlockService.searchDetail(document.compCode,document.accDocNo,document.fiscYear).subscribe(data => {
       // this.loadingScreenService.loadingToggleStatus(false)
       const response = data as any;
       const result = response.data;

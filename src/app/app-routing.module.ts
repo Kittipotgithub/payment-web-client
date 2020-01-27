@@ -1,3 +1,4 @@
+import { PaymentBlockComponent } from './pages/payment-block/payment-block.component';
 import { OmComponent } from './pages/om/om.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,8 @@ const routes: Routes = [
 
   { path: '', component: HomeComponent },
   { path: 'om', component: OmComponent },
+  { path: 'payment', component: PaymentBlockComponent },
+  
 ];
 
 @NgModule({

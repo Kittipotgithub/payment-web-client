@@ -295,8 +295,8 @@
           </div>
         </form>
 
-        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-          <table class="table-normal table-result">
+        <cdk-virtual-scroll-viewport *ngIf="listDocument.length >0 && listDocument != null" itemSize="50" class="example-viewport">
+          <table class="table-normal table-result" >
             <tr>
               <th>รายการ</th>
               <th class="sort">อนุมัติ</th>
@@ -331,13 +331,9 @@
               <th class="sort">Test18</th>
               <th class="sort">Test19</th>
               <th class="sort">Test20</th>
-              <th class="sort">Test21</th>
-              <th class="sort">Test22</th>
+              
             </tr>
-            <tr *ngFor="let document of listDocument">
-              <td>รายการ</td>
-              <td class="sort">อนุมัติ</td>
-            </tr>
+
             <tr *ngFor="let document of listDocument ; let i = index">
               <!-- <td class="text-center">
               <img src="assets/images/icon/record.gif" class="icon pointer"
@@ -407,3 +403,9 @@
     </mat-card>
   </div>
 </div>
+<table>
+  <tr *ngFor="let item of listDocument  ; let i = index">
+    <td>{{i+1}}</td>
+  </tr>
+
+</table>

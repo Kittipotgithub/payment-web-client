@@ -1,7 +1,7 @@
 import { DialogDetailDocumentComponent } from './../../shared/component/dialog-detail-document/dialog-detail-document.component';
 import { PaymentBlockService } from './../../core/service/om/payment-block.service';
 import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
-import { ChangeDetectionStrategy,Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Utils } from 'src/app/shared/utils';
@@ -11,7 +11,7 @@ import { DialogSearchMasterComponent } from 'src/app/shared/component/dialog-sea
   selector: 'app-om',
   templateUrl: './om.component.html',
   styleUrls: ['./om.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OmComponent implements OnInit {
 
@@ -46,8 +46,8 @@ export class OmComponent implements OnInit {
   isOpenCollapseDetail //เปิดปิด collpase
 
 
-  listDocument=[];
-  listMessageResponse=[];
+  listDocument = [];
+  listMessageResponse = [];
 
   animal: string;
   name: string;
@@ -55,7 +55,7 @@ export class OmComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private utils: Utils,
-    private paymentBlockService:PaymentBlockService,
+    private paymentBlockService: PaymentBlockService,
 
   ) { }
 
@@ -65,7 +65,7 @@ export class OmComponent implements OnInit {
 
     this.createFormControl();
     this.createFormGroup();
- 
+
   }
 
   createFormControl() {
@@ -130,7 +130,7 @@ export class OmComponent implements OnInit {
   openDialogSearch(): void {
     const dialogRef = this.dialog.open(DialogSearchMasterComponent, {
       width: '500px',
-      data: { type:'areaCode'}
+      data: { type: 'areaCode' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -234,61 +234,6 @@ export class OmComponent implements OnInit {
     // payload.= form.outline // โครงร่าง
 
     this.search(payload)
-    console.log(payload)
-
-
-    let data = {
-      lineNo: 1,
-      approve: false,
-      notApprove: false,
-      info: '',
-      diff: 'หัก',
-      documentType: 'KE',
-      documentNo: '3200000040',
-      referenceNo: '3200000041',
-      year: '2019',
-      referenceText: 'TEST04',
-      documentDate: new Date(),
-      postDate: new Date()
-
-
-    }
-    let data1 = {
-      lineNo: 2,
-      approve: false,
-      notApprove: false,
-      info: '',
-      diff: 'หัก',
-      documentType: 'KL',
-      documentNo: '3600000040',
-      referenceNo: '',
-      year: '2020',
-      referenceText: 'KLเลื่อม',
-      documentDate: new Date(),
-      postDate: new Date()
-
-
-    }
-    let data2 = {
-      lineNo: 3,
-      approve: false,
-      notApprove: false,
-      info: '',
-      diff: '',
-      documentType: 'KC',
-      documentNo: '3100000040',
-      referenceNo: '',
-      year: '2020',
-      referenceText: 'PK200',
-      documentDate: new Date(),
-      postDate: new Date()
-
-    }
-
-    this.listDocument.push(data)
-    this.listDocument.push(data1)
-    this.listDocument.push(data2)
-
 
 
 
@@ -296,7 +241,7 @@ export class OmComponent implements OnInit {
 
   search(payload) {
     // this.loadingScreenService.loadingToggleStatus(true)
-    // this.listDocument = [];
+    this.listDocument = [];
     this.paymentBlockService.search(payload).subscribe(data => {
       // this.loadingScreenService.loadingToggleStatus(false)
       // this.isDataSearchloaded = true;

@@ -9,7 +9,7 @@ import { ApiService } from '../../api.service';
 export class PaymentBlockService {
 
   constructor(private apiService: ApiService) { }
-  
+
   search(payload): Observable<any> {
     return this.apiService.post('/payment/search', payload).pipe(
       map(data => {
@@ -18,8 +18,8 @@ export class PaymentBlockService {
       })
     );
   }
-  searchDetail(payload): Observable<any> {
-    return this.apiService.get('/payment/searchDetail/'+ payload).pipe(
+  searchDetail(companyCode, docNo, year): Observable<any> {
+    return this.apiService.get('/payment/searchDetail/' + companyCode + '/' + docNo + '/' + year + '/').pipe(
       map(data => {
         console.log(data);
         return data;

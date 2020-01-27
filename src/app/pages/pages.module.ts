@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountTableComponent } from './account-table/account-table.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { StatuspopupComponent } from './statuspopup/statuspopup.component';
+import { PaymentBlockComponent } from './payment-block/payment-block.component';
 
 
 
@@ -50,7 +51,8 @@ import { StatuspopupComponent } from './statuspopup/statuspopup.component';
     AccountComponent,
     PaymentComponent,
     AccountTableComponent,
-    StatuspopupComponent
+    StatuspopupComponent,
+    PaymentBlockComponent
   
   ],
   entryComponents: [
