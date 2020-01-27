@@ -275,7 +275,7 @@
             </div>
           </div>
           <div class="row">
-            <button (click)="search()" class="btn-info">เริ่มค้นหา</button>
+            <button (click)="onSearch()" class="btn-info">เริ่มค้นหา</button>
           </div>
         </form>
 
@@ -294,6 +294,28 @@
             <th class="sort pointer" (click)="sortData('amount')">การอ้างอิง</th>
             <th class="sort">ว/ท เอกสาร</th>
             <th class="sort">Posting Date</th>
+            <th class="sort">Test1</th>
+            <th class="sort">Test2</th>
+            <th class="sort">Test3</th>
+            <th class="sort">Test4</th>
+            <th class="sort">Test5</th>
+            <th class="sort">Test6</th>
+            <th class="sort">Test7</th>
+            <th class="sort">Test8</th>
+            <th class="sort">Test9</th>
+            <th class="sort">Test10</th>
+            <th class="sort">Test11</th>
+            <th class="sort">Test12</th>
+            <th class="sort">Test13</th>
+            <th class="sort">Test14</th>
+            <th class="sort">Test15</th>
+            <th class="sort">Test16</th>
+            <th class="sort">Test17</th>
+            <th class="sort">Test18</th>
+            <th class="sort">Test19</th>
+            <th class="sort">Test20</th>
+            <th class="sort">Test21</th>
+            <th class="sort">Test22</th>
           </tr>
           <tr *ngFor="let document of listDocument ; let i = index">
             <!-- <td class="text-center">
@@ -330,12 +352,33 @@
             <td class="text-center">{{ document.info }}</td>
             <td class="text-center">{{ document.diff }}</td>
             <td class="text-center">{{ document.docType }}</td>
-            <td (click)="openDialogDetailDocument(document)" class="text-center pointer">{{ document.docNo }}</td>
-            <td class="text-center">{{ document.fiscalYear }}</td>
+            <td (click)="openDialogDetailDocument(document)" class="pointer">{{ document.accDocNo }}</td>
+            <td class="text-center">{{ document.fiscYear }}</td>
             <td class="text-center">{{ document.referenceNo }}</td>
             <td class="text-center">{{ document.referenceText }}</td>
-            <td class="text-center">{{ document.dateTrx| date: 'dd.MM.yyyy' }}</td>
-            <td class="text-center">{{ document.dateAcct | date: 'dd.MM.yyyy'}}</td>
+            <td class="text-center">{{ document.dateDoc| date: 'dd.MM.yyyy' }}</td>
+            <td class="text-center">{{ document.datePost | date: 'dd.MM.yyyy'}}</td>
+
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
+            <td class="text-center">{{ document.compCode }}</td>
           </tr>
         </table>
       </mat-card-content>

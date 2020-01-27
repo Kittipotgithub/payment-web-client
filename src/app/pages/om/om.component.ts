@@ -1,3 +1,5 @@
+import { DialogDetailDocumentComponent } from './../../shared/component/dialog-detail-document/dialog-detail-document.component';
+import { PaymentBlockService } from './../../core/service/om/payment-block.service';
 import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
@@ -42,13 +44,15 @@ export class OmComponent implements OnInit {
 
 
   listDocument=[];
+  listMessageResponse=[];
 
   animal: string;
   name: string;
   constructor(
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private utils: Utils
+    private utils: Utils,
+    private paymentBlockService:PaymentBlockService,
 
   ) { }
 
@@ -58,7 +62,7 @@ export class OmComponent implements OnInit {
 
     this.createFormControl();
     this.createFormGroup();
-    this.test()
+ 
   }
 
   createFormControl() {
@@ -119,10 +123,7 @@ export class OmComponent implements OnInit {
     });
   }
 
-  search(){
-    console.log( this.omFormCreate.value)
 
-  }
   openDialogSearch(): void {
     const dialogRef = this.dialog.open(DialogSearchMasterComponent, {
       width: '500px',
@@ -139,58 +140,198 @@ export class OmComponent implements OnInit {
   }
 
 
-  test(){
-     let data = {
-      lineNo: 1,
-      approve: false,
-      notApprove: false,
-      info: '',
-      diff: 'หัก',
-      documentType: 'KE',
-      documentNo: '3200000040',
-      referenceNo: '3200000041',
-      year: '2019',
-      referenceText: 'TEST04',
-      documentDate: new Date(),
-      postDate: new Date()
-
-
+  onSearch() {
+    const form = this.omFormCreate.value;
+    const payload = {
+      compCodeFrom: '',
+      compCodeTo: '',
+      fiAreaFrom: '',
+      fiAreaTo: '',
+      fiscalYear: '',
+      dateAcctFrom: '',
+      dateAcctTo: '',
+      bPartnerFrom: '',
+      bPartnerTo: '',
+      paymentCenterFrom: '',
+      paymentCenterTo: '',
+      docTypeFrom: '',
+      docTypeTo: '',
+      paymentMethodFrom: '',
+      paymentMethodTo: '',
+      dateDocFrom: '',
+      dateDocTo: '',
+      dateCreatedFrom: '',
+      dateCreatedTo: '',
+      specialGlFrom: '',
+      specialGlTo: ''
     }
-    let data1 = {
-      lineNo: 2,
-      approve: false,
-      notApprove: false,
-      info: '',
-      diff: 'หัก',
-      documentType: 'KL',
-      documentNo: '3600000040',
-      referenceNo: '',
-      year: '2020',
-      referenceText: 'KLเลื่อม',
-      documentDate: new Date(),
-      postDate: new Date()
-
-
+    //วันผ่านรายการ
+    let postDateFrom = ''
+    let postDateTo = ''
+    if (form.postDateFrom && form.postDateTo) {
+      const dayPostDateFrom = form.postDateFrom.getDate();
+      const monthPostDateFrom = form.postDateFrom.getMonth() + 1;
+      const yearPostDateFrom = form.postDateFrom.getFullYear();
+      const dayPostDateTo = form.postDateTo.getDate();
+      const monthPostDateTo = form.postDateTo.getMonth() + 1;
+      const yearPostDateTo = form.postDateTo.getFullYear();
+      postDateFrom = this.utils.parseDate(dayPostDateFrom, monthPostDateFrom, yearPostDateFrom);
+      postDateTo = this.utils.parseDate(dayPostDateTo, monthPostDateTo, yearPostDateTo);
     }
-    let data2 = {
-      lineNo: 3,
-      approve: false,
-      notApprove: false,
-      info: '',
-      diff: '',
-      documentType: 'KC',
-      documentNo: '3100000040',
-      referenceNo: '',
-      year: '2020',
-      referenceText: 'PK200',
-      documentDate: new Date(),
-      postDate: new Date()
-
+    //วันที่เอกสาร
+    let documentDateFrom = ''
+    let documentDateTo = ''
+    if (form.documentDateFrom && form.documentDateTo) {
+      const dayDocumentDateFrom = form.documentDateFrom.getDate();
+      const monthDocumentDateFrom = form.documentDateFrom.getMonth() + 1;
+      const yearDocumentDateFrom = form.documentDateFrom.getFullYear();
+      const dayDocumentDateTo = form.documentDateTo.getDate();
+      const monthDocumentDateTo = form.documentDateTo.getMonth() + 1;
+      const yearDocumentDateTo = form.documentDateTo.getFullYear();
+      documentDateFrom = this.utils.parseDate(dayDocumentDateFrom, monthDocumentDateFrom, yearDocumentDateFrom);
+      documentDateTo = this.utils.parseDate(dayDocumentDateTo, monthDocumentDateTo, yearDocumentDateTo);
+    }
+    // วันที่บันทึก
+    let documentCreateDateFrom = ''
+    let documentCreateDateTo = ''
+    if (form.documentCreateDateFrom && form.documentCreateDateTo) {
+      const dayDocumentCreateDateFrom = form.documentCreateDateFrom.getDate();
+      const monthDocumentCreateDateFrom = form.documentCreateDateFrom.getMonth() + 1;
+      const yearDocumentCreateDateFrom = form.documentCreateDateFrom.getFullYear();
+      const dayDocumentCreateDateTo = form.documentCreateDateTo.getDate();
+      const monthDocumentCreateDateTo = form.documentCreateDateTo.getMonth() + 1;
+      const yearDocumentCreateDateTo = form.documentCreateDateTo.getFullYear();
+      documentCreateDateFrom = this.utils.parseDate(dayDocumentCreateDateFrom, monthDocumentCreateDateFrom, yearDocumentCreateDateFrom);
+      documentCreateDateTo = this.utils.parseDate(dayDocumentCreateDateTo, monthDocumentCreateDateTo, yearDocumentCreateDateTo);
     }
 
-    this.listDocument.push(data)
-    this.listDocument.push(data1)
-    this.listDocument.push(data2)
+    payload.compCodeFrom = form.departmentCodeFrom // รหัสหน่วยงาน
+    payload.compCodeTo = form.departmentCodeTo // รหัสหน่วยงาน
+    payload.fiAreaFrom = form.provinceCodeFrom // รหัสจังหวัด
+    payload.fiAreaTo = form.provinceCodeTo // รหัสจังหวัด
+    payload.fiscalYear = this.utils.convertYearToAD(form.yearAccount) // ปีบัญชี
+    payload.dateAcctFrom = postDateFrom // วันผ่านรายการ
+    payload.dateAcctTo = postDateTo// วันผ่านรายการ
+    payload.bPartnerFrom = form.vendorTaxIdFrom // ผุ้ขาย
+    payload.bPartnerTo = form.vendorTaxIdTo // ผุ้ขาย
+    payload.paymentCenterFrom = form.disbursementCodeFrom // รหัสหน่วยเบิกจ่าย
+    payload.paymentCenterTo = form.disbursementCodeTo // รหัสหน่วยเบิกจ่าย
 
+    payload.docTypeFrom = form.docTypeFrom // ประเภทเอกสาร
+    payload.docTypeTo = form.docTypeTo // ประเภทเอกสาร
+    payload.paymentMethodFrom = form.payMethodFrom // วิธีชำระเงิน
+    payload.paymentMethodTo = form.payMethodTo // วิธีชำระเงิน
+    payload.dateDocFrom = documentDateFrom// วันที่เอกสาร
+    payload.dateDocTo = documentDateTo// วันที่เอกสาร
+    payload.dateCreatedFrom = documentCreateDateFrom // วันที่บันทึก
+    payload.dateCreatedTo = documentCreateDateTo// วันที่บันทึก
+    payload.specialGlFrom = form.specialTypeFrom // แยกประเภทพิเศษ
+    payload.specialGlTo = form.specialTypeTo // แยกประเภทพิเศษ
+
+    // payload.= form.outline // โครงร่าง
+
+    this.search(payload)
+    console.log(payload)
+
+
+    // let data = {
+    //   lineNo: 1,
+    //   approve: false,
+    //   notApprove: false,
+    //   info: '',
+    //   diff: 'หัก',
+    //   documentType: 'KE',
+    //   documentNo: '3200000040',
+    //   referenceNo: '3200000041',
+    //   year: '2019',
+    //   referenceText: 'TEST04',
+    //   documentDate: new Date(),
+    //   postDate: new Date()
+
+
+    // }
+    // let data1 = {
+    //   lineNo: 2,
+    //   approve: false,
+    //   notApprove: false,
+    //   info: '',
+    //   diff: 'หัก',
+    //   documentType: 'KL',
+    //   documentNo: '3600000040',
+    //   referenceNo: '',
+    //   year: '2020',
+    //   referenceText: 'KLเลื่อม',
+    //   documentDate: new Date(),
+    //   postDate: new Date()
+
+
+    // }
+    // let data2 = {
+    //   lineNo: 3,
+    //   approve: false,
+    //   notApprove: false,
+    //   info: '',
+    //   diff: '',
+    //   documentType: 'KC',
+    //   documentNo: '3100000040',
+    //   referenceNo: '',
+    //   year: '2020',
+    //   referenceText: 'PK200',
+    //   documentDate: new Date(),
+    //   postDate: new Date()
+
+    // }
+
+    // this.listDocument.push(data)
+    // this.listDocument.push(data1)
+    // this.listDocument.push(data2)
+
+
+
+
+  }
+
+  search(payload) {
+    // this.loadingScreenService.loadingToggleStatus(true)
+    this.listDocument = [];
+    this.paymentBlockService.search(payload).subscribe(data => {
+      // this.loadingScreenService.loadingToggleStatus(false)
+      // this.isDataSearchloaded = true;
+      const response = data as any;
+      const result = response.data;
+      console.log(result)
+      if (result) {
+        if (result.length > 0 && result.length <= 500) {
+          this.listDocument = result;
+          // this.selectedTabIndex = 1;
+          let i = 0
+          this.listDocument.forEach(document => {
+            document.no = i++
+            document.approve = false;
+            document.notApprove = false;
+            document.reason = ''
+          });
+        } else if (result.length > 500) {
+          this.listMessageResponse.push('ไม่สามารถแสดงผลการค้นหาเกิน 500 รายการได้ กรุณาเปลี่ยนเงื่อนไขการค้นหาใหม่');
+        } else {
+          this.listMessageResponse.push('ไม่พบเอกสาร');
+        }
+      } else {
+        this.listMessageResponse.push('ไม่พบเอกสาร');
+      }
+    });
+  }
+
+  openDialogDetailDocument(document) {
+    const dialogRef = this.dialog.open(DialogDetailDocumentComponent, {
+      width: '1200px',
+      data: {
+        document
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
   }
 }

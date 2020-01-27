@@ -9,11 +9,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogSaveParameterComponent } from './component/tab-status/dialog-save-parameter/dialog-save-parameter.component';
 import { DialogSearchMasterComponent } from './component/dialog-search-master/dialog-search-master.component';
+import { DialogDetailDocumentComponent } from './component/dialog-detail-document/dialog-detail-document.component';
 
 
 
 @NgModule({
-  declarations: [ DialogSearchVendorComponent, DialogSaveParameterComponent, DialogSearchMasterComponent],
+  declarations: [
+    DialogSearchVendorComponent,
+    DialogSaveParameterComponent,
+    DialogSearchMasterComponent,
+    DialogDetailDocumentComponent
+
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -26,6 +33,12 @@ import { DialogSearchMasterComponent } from './component/dialog-search-master/di
     MatProgressBarModule,
     MatTooltipModule,
   ],
-  entryComponents: [DialogSearchVendorComponent,DialogSaveParameterComponent,DialogSearchMasterComponent],
+  entryComponents:[
+    DialogSearchVendorComponent,
+    DialogSaveParameterComponent,
+    DialogSearchMasterComponent,
+    DialogDetailDocumentComponent
+
+  ],
 })
 export class SharedModule { }

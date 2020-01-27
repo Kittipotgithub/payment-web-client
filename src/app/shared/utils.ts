@@ -22,5 +22,18 @@ export class Utils {
           return year + 543; // old code
         }
       }
-
+      public parseDate(day, month, year) {
+        day = +day < 10 ? '0' + day : day;
+        month = +month < 10 ? '0' + month : month;
+        return year + '-' + month + '-' + day;
+      }
+      public convertYearToAD(year: string): string {
+        if (year) {
+          const buddhistYear = Number(year);
+          const adYear = buddhistYear - 543;
+          return adYear.toString();
+        } else {
+          return new Date().getFullYear.toString();
+        }
+      }
 }
