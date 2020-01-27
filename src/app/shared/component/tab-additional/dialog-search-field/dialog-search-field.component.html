@@ -1,59 +1,62 @@
 <button class="close" mat-button (click)="closeDialog()">X</button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">ตัวเลือก</h1>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>ตัวเลือก</b></h1>
+<hr>
 <div mat-dialog-content class="date_dialog">
-  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-    <form (keydown.enter)="$event.preventDefault()" [formGroup]="searchFiledFormCreate">
+  <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport"> -->
+
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]="searchFiledFormCreate" style="padding-bottom: 40px;">
       <div class="example-item">
-        <div class="row">
-          <div class="col-12 col-md-2">
-            <label class="text-underline-blue"> ประเภทฟิวด์  </label>
+        <div class="col-12">
+          <div class="col-12 col-md-2" style="margin-right: -55px;">
+            <label class="text-underline-blue input-head"> ประเภทฟิวด์ : </label>
           </div>
-          <mat-radio-group formControlName="type" (change)="changeType($event)" aria-label="Select an option">
-            <mat-radio-button name="type" value="1">ตั้งต้น</mat-radio-button>
-            <mat-radio-button name="type" value="2">เอกสาร</mat-radio-button>
-            <mat-radio-button name="type" value="3">ผู้ขาย</mat-radio-button>
-          </mat-radio-group>
+          <div class="col-12 col-md-10">
+            <mat-radio-group formControlName="type" (change)="changeType($event)" aria-label="Select an option">
+              <mat-radio-button name="type" value="1">ตั้งต้น</mat-radio-button>&nbsp;
+              <mat-radio-button name="type" value="2">เอกสาร</mat-radio-button>&nbsp;
+              <mat-radio-button name="type" value="3">ผู้ขาย</mat-radio-button>
+            </mat-radio-group>
+          </div>
         </div>
       </div>
     </form>
-
     <div class="example-item">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="filedName">
-          <th mat-header-cell *matHeaderCellDef> ชื่อฟิวด์ </th>
+          <th mat-header-cell *matHeaderCellDef class="info"> ชื่อฟิวด์ </th>
           <td mat-cell *matCellDef="let element"> {{element.filedName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="filedTable">
-          <th mat-header-cell *matHeaderCellDef> ชื่อตาราง </th>
+          <th mat-header-cell *matHeaderCellDef class="info"> ชื่อตาราง </th>
           <td mat-cell *matCellDef="let element"> {{element.filedTable}} </td>
         </ng-container>
 
         <!-- <ng-container matColumnDef="nextpay">
-      <th mat-header-cell *matHeaderCellDef> เมือง </th>
-      <td mat-cell *matCellDef="let element"> {{element.nextpay}} </td>
-    </ng-container>
+          <th mat-header-cell *matHeaderCellDef> เมือง </th>
+          <td mat-cell *matCellDef="let element"> {{element.nextpay}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> ชื่อ 1 </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> ชื่อ 1 </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="seller">
-      <th mat-header-cell *matHeaderCellDef> ผู้ขาย </th>
-      <td mat-cell *matCellDef="let element"> {{element.seller}} </td>
-    </ng-container>
+        <ng-container matColumnDef="seller">
+          <th mat-header-cell *matHeaderCellDef> ผู้ขาย </th>
+          <td mat-cell *matCellDef="let element"> {{element.seller}} </td>
+        </ng-container>
 
-    <ng-container matColumnDef="code1">
-      <th mat-header-cell *matHeaderCellDef> รหัส </th>
-      <td mat-cell *matCellDef="let element"> {{element.code1}} </td>
-    </ng-container> -->
+        <ng-container matColumnDef="code1">
+          <th mat-header-cell *matHeaderCellDef> รหัส </th>
+          <td mat-cell *matCellDef="let element"> {{element.code1}} </td>
+        </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="chooseDataSearch(row)"></tr>
 
       </table>
     </div>
-  </cdk-virtual-scroll-viewport>
+  <!-- </cdk-virtual-scroll-viewport> -->
 </div>

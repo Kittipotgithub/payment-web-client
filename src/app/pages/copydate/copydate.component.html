@@ -1,22 +1,23 @@
 <button class="close" mat-button (click)="closeDialog()">X</button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">ข้อจำกัด</h1>
-<div mat-dialog-content class="date_dialog" style="margin-bottom: -45px;">
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>ข้อจำกัด</b></h1>
+<hr>
+<div mat-dialog-content class="date_dialog">
   <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
     <div class="example-item">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef> วันที่ประมวลผล </th>
+      <th mat-header-cell *matHeaderCellDef class="info"> วันที่ประมวลผล </th>
       <td mat-cell *matCellDef="let element"> {{element.code}} </td>
     </ng-container>
 
     <ng-container matColumnDef="pay">
-      <th mat-header-cell *matHeaderCellDef> รหัส </th>
+      <th mat-header-cell *matHeaderCellDef class="info"> รหัส </th>
       <td mat-cell *matCellDef="let element"> {{element.pay}} </td>
     </ng-container>
 
     <ng-container matColumnDef="nextpay">
-      <th mat-header-cell *matHeaderCellDef> สถานะการดำเนินการ </th>
+      <th mat-header-cell *matHeaderCellDef class="info"> สถานะการดำเนินการ </th>
       <td mat-cell *matCellDef="let element"> {{element.nextpay}} </td>
     </ng-container>
 
@@ -26,7 +27,7 @@
     </div>
   </cdk-virtual-scroll-viewport>
 </div>
-  <div class="row pull-right">
+  <div class="row pull-right" style="padding-top: 15px;">
       <div class="col-md-12">
         <button type="button" class="btn btn-success btn-lg">
           <i class="material-icons" style="font-size:15px;">done</i>
