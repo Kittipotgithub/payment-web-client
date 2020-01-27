@@ -1,5 +1,6 @@
+import { AppDateAdapter, APP_DATE_FORMATS } from './../../shared/format-datepicker';
 import { Component, OnInit, Input } from '@angular/core';
-import { MatTabChangeEvent, MatDialog } from '@angular/material';
+import { MatTabChangeEvent, MatDialog, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { DialogSaveParameterComponent } from 'src/app/shared/component/tab-status/dialog-save-parameter/dialog-save-parameter.component';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -10,7 +11,11 @@ import { StatuspopupComponent } from '../statuspopup/statuspopup.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+   providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
+  ],
 })
 export class HomeComponent implements OnInit {
 

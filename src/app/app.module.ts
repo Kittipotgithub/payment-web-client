@@ -1,7 +1,7 @@
 import { Constant } from './shared/constant';
 
 
-import { MatTabsModule, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatNativeDateModule, MatDatepickerModule, MatExpansionModule, MatProgressBarModule, MatSnackBarModule, MatTooltipModule, MatAutocompleteModule } from '@angular/material';
+import { MatTabsModule, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatNativeDateModule, MatDatepickerModule, MatExpansionModule, MatProgressBarModule, MatSnackBarModule, MatTooltipModule, MatAutocompleteModule, MAT_DATE_LOCALE } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -36,6 +36,7 @@ import { Utils } from './shared/utils';
     MatAutocompleteModule
   ],
   providers: [Utils,Constant,
+    { provide: MAT_DATE_LOCALE, useValue: 'th-TH' },
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]
