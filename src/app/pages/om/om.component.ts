@@ -15,6 +15,9 @@ import { DialogSearchMasterComponent } from 'src/app/shared/component/dialog-sea
 })
 export class OmComponent implements OnInit {
 
+  panleExpanded = true;
+  panleExpanded1 = true;
+
 
   omFormCreate: FormGroup;
   departmentCodeFromControl: FormControl; // รหัสหน่วยงาน

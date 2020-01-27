@@ -11,8 +11,8 @@
       <mat-card-content>
         <form [formGroup]="omFormCreate">
           <div class="panel panel-primary">
-            <div class="panel-heading">Selection Criteria</div>
-            <div class="panel-body">
+            <div class="panel-heading pointerCursor" (click)="panleExpanded = !panleExpanded">Selection Criteria</div>
+            <div class="panel-body" *ngIf="panleExpanded">
               <div class="row">
                 <div class="col-md-2">
                   <label class="text-black"> รหัสหน่วยงาน </label>
@@ -178,8 +178,8 @@
           </div> -->
           <div class="collapse-detail" [ngClass]="{ show: isOpenCollapseDetail }">
             <div class="panel panel-primary">
-              <div class="panel-heading">Addition Selection</div>
-              <div class="panel-body">
+              <div class="panel-heading pointerCursor" (click)="panleExpanded1 = !panleExpanded1">Addition Selection</div>
+              <div class="panel-body" *ngIf="panleExpanded1">
                 <div class="row">
                   <div class="col-md-2">
                     <label class="text-black"> วิธีการชำระเงิน </label>
@@ -277,8 +277,8 @@
       </div> -->
           <div class="collapse-detail" [ngClass]="{ show: isOpenCollapseDetail }">
             <div class="panel panel-primary">
-              <div class="panel-heading">โครงร่างรายงาน</div>
-              <div class="panel-body">
+              <div class="panel-heading pointerCursor" (click)="panleExpanded2 = !panleExpanded2">โครงร่างรายงาน</div>
+              <div class="panel-body" *ngIf="panleExpanded2">
                 <div class="row">
                   <div class="col-md-2">
                     <label class="text-black"> โครงร่าง </label>
