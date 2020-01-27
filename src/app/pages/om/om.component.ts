@@ -17,6 +17,7 @@ export class OmComponent implements OnInit {
 
   panleExpanded = true;
   panleExpanded1 = true;
+  panleExpanded2 = true;
 
 
   omFormCreate: FormGroup;
