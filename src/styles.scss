@@ -378,3 +378,12 @@ table {
 
 
 
+  .box-readonly-input {
+    input {
+      background-color: #e4e7ea !important;
+      pointer-events: none;
+    }
+    label {
+      color: black !important;
+    }
+  }
