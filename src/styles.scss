@@ -135,7 +135,14 @@ table {
 }
 
 table {
+    text-align: left;
+    position: relative;
     font-size: 13px;
+    th {
+      position:sticky !important;
+      z-index: 999 !important;
+      top: 0;
+    }
     th.sort {
       cursor: pointer;
       text-decoration: underline;

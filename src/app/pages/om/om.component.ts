@@ -1,7 +1,7 @@
 import { DialogDetailDocumentComponent } from './../../shared/component/dialog-detail-document/dialog-detail-document.component';
 import { PaymentBlockService } from './../../core/service/om/payment-block.service';
 import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy,Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Utils } from 'src/app/shared/utils';
@@ -10,9 +10,12 @@ import { DialogSearchMasterComponent } from 'src/app/shared/component/dialog-sea
 @Component({
   selector: 'app-om',
   templateUrl: './om.component.html',
-  styleUrls: ['./om.component.scss']
+  styleUrls: ['./om.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OmComponent implements OnInit {
+
+
   omFormCreate: FormGroup;
   departmentCodeFromControl: FormControl; // รหัสหน่วยงาน
   departmentCodeToControl: FormControl; // รหัสหน่วยงาน
