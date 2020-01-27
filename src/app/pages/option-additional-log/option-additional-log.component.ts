@@ -9,16 +9,11 @@ import { MatDialog } from '@angular/material';
 })
 export class OptionAdditionalLogComponent implements OnInit {
 
-
-
-  logFormCreate: FormGroup;
-
-  // checkBoxOneControl: FormControl; // check box
-  // checkBoxOneControl: FormControl; // check box
-  // checkBoxOneControl: FormControl; // check box
-  // checkBoxOneControl: FormControl; // check box
-
-
+  additionLogForm: FormGroup;
+  checkBoxDueDateControl: FormControl; // ตรวจสอบวันที่ครบกำหนด
+  checkBoxPaymentMethodAllControl: FormControl; // เลือกวิธีชำระเงินในทุกกรณี
+  checkBoxPaymentMethodUnsuccessControl: FormControl; // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+  checkBoxDisplayDetailControl: FormControl; //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
   vendorTaxIdOneFromControl: FormControl; // vendor
   vendorTaxIdOneToControl: FormControl; // vendor
   vendorTaxIdTwoFromControl: FormControl; // vendor
@@ -26,9 +21,8 @@ export class OptionAdditionalLogComponent implements OnInit {
   vendorTaxIdThreeFromControl: FormControl; // vendor
   vendorTaxIdThreeToControl: FormControl; // vendor
 
-
-
-
+  isDisabledCheckBoxDueDate: boolean = false   //for disabled checkbox
+  isDisabledCheckBoxPaymentMethodAll: boolean = false//for disabled checkbox
 
   constructor(
     private dialog: MatDialog,
@@ -36,42 +30,65 @@ export class OptionAdditionalLogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.createIndependentFormControl();
-    // this.createIndependentFormGroup();
+    this.createAdditionLogFormControl();
+    this.createAdditionLogFormGroup();
+    this.defaultInputAdditionLogForm()
 
   }
-  // createIndependentFormControl() {
-  //   this.filedNameOneControl = this.formBuilder.control('');
-  //   this.checkBoxOneControl = this.formBuilder.control('');
-  //   this.conditionFiledOneControl = this.formBuilder.control('');
-
-  //   this.filedNameTwoControl = this.formBuilder.control('');
-  //   this.checkBoxTwoControl = this.formBuilder.control('');
-  //   this.conditionFiledTwoControl = this.formBuilder.control('');
-
-  //   this.filedNameThreeControl = this.formBuilder.control('');
-  //   this.checkBoxThreeControl = this.formBuilder.control('');
-  //   this.conditionFiledThreeControl = this.formBuilder.control('');
-
-  // }
-
-  // createIndependentFormGroup() {
-  //   this.independentFormCreate = this.formBuilder.group({
-
-  //     filedNameOne: this.filedNameOneControl,
-  //     checkBoxOne: this.checkBoxOneControl,
-  //     conditionFiledOne: this.conditionFiledOneControl,
-
-  //     filedNameTwo: this.filedNameTwoControl,
-  //     checkBoxTwo: this.checkBoxTwoControl,
-  //     conditionFiledTwo: this.conditionFiledTwoControl,
-
-  //     filedNameThree: this.filedNameThreeControl,
-  //     checkBoxThree: this.checkBoxThreeControl,
-  //     conditionFiledThree: this.conditionFiledThreeControl,
-
-  //   });
-
-  // }
+  createAdditionLogFormControl() {
+    this.checkBoxDueDateControl = this.formBuilder.control(''); // ตรวจสอบวันที่ครบกำหนด
+    this.checkBoxPaymentMethodAllControl = this.formBuilder.control(''); // เลือกวิธีชำระเงินในทุกกรณี
+    this.checkBoxPaymentMethodUnsuccessControl = this.formBuilder.control(''); // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+    this.checkBoxDisplayDetailControl = this.formBuilder.control(''); //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
+    this.vendorTaxIdOneFromControl = this.formBuilder.control(''); // vendor
+    this.vendorTaxIdOneToControl = this.formBuilder.control(''); // vendor
+    this.vendorTaxIdTwoFromControl = this.formBuilder.control(''); // vendor
+    this.vendorTaxIdTwoToControl = this.formBuilder.control(''); // vendor
+    this.vendorTaxIdThreeFromControl = this.formBuilder.control(''); // vendor
+    this.vendorTaxIdThreeToControl = this.formBuilder.control(''); // vendor
+  }
+  createAdditionLogFormGroup() {
+    this.additionLogForm = this.formBuilder.group({
+      checkBoxDueDate: this.checkBoxDueDateControl, // ตรวจสอบวันที่ครบกำหนด
+      checkBoxPaymentMethodAll: this.checkBoxPaymentMethodAllControl, // เลือกวิธีชำระเงินในทุกกรณี
+      checkBoxPaymentMethodUnsuccess: this.checkBoxPaymentMethodUnsuccessControl, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+      checkBoxDisplayDetail: this.checkBoxDisplayDetailControl, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
+      vendorTaxIdOneFrom: this.vendorTaxIdOneFromControl, // vendor
+      vendorTaxIdOneTo: this.vendorTaxIdOneToControl, // vendor
+      vendorTaxIdTwoFrom: this.vendorTaxIdTwoFromControl, // vendor
+      vendorTaxIdTwoTo: this.vendorTaxIdTwoToControl, // vendor
+      vendorTaxIdThreeFrom: this.vendorTaxIdThreeFromControl, // vendor
+      vendorTaxIdThreeTo: this.vendorTaxIdThreeToControl, // vendor
+    });
+  }
+  defaultInputAdditionLogForm() {
+    this.additionLogForm.patchValue({
+      checkBoxDueDate: false, // ตรวจสอบวันที่ครบกำหนด
+      checkBoxPaymentMethodAll: false, // เลือกวิธีชำระเงินในทุกกรณี
+      checkBoxPaymentMethodUnsuccess: false, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+      checkBoxDisplayDetail: false, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
+      vendorTaxIdOneFrom: '', // vendor
+      vendorTaxIdOneTo: '', // vendor
+      vendorTaxIdTwoFrom: '', // vendor
+      vendorTaxIdTwoTo: '', // vendor
+      vendorTaxIdThreeFrom: '', // vendor
+      vendorTaxIdThreeTo: '', // vendor
+    });
+  }
+  checkValidationAdditionLog(event, type) {
+    if (type === 'dueDate') {
+      if (event.checked) {
+        this.isDisabledCheckBoxPaymentMethodAll = true
+      } else {
+        this.isDisabledCheckBoxPaymentMethodAll = false
+      }
+    } else if (type === 'paymentMethodAll') {
+      if (event.checked) {
+        this.isDisabledCheckBoxDueDate = true
+      } else {
+        this.isDisabledCheckBoxDueDate = false
+      }
+    }
+  }
 
 }
