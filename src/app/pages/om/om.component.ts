@@ -1,7 +1,9 @@
+import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { DialogSearchVendorComponent } from 'src/app/shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { MatDialog } from '@angular/material';
+import { Utils } from 'src/app/shared/utils';
+import { DialogSearchMasterComponent } from 'src/app/shared/component/dialog-search-master/dialog-search-master.component';
 
 @Component({
   selector: 'app-om',
@@ -38,15 +40,25 @@ export class OmComponent implements OnInit {
 
   isOpenCollapseDetail //เปิดปิด collpase
 
+
+  listDocument=[];
+
   animal: string;
   name: string;
   constructor(
     private formBuilder: FormBuilder,
-    private dialog: MatDialog, ) { }
+    private dialog: MatDialog,
+    private utils: Utils
+
+  ) { }
 
   ngOnInit() {
+    this.utils.listYear = this.utils.CalculateYear()
+    this.utils.fiscYear = this.utils.CalculateFiscYear(new Date());
+
     this.createFormControl();
     this.createFormGroup();
+    this.test()
   }
 
   createFormControl() {
@@ -54,7 +66,7 @@ export class OmComponent implements OnInit {
     this.departmentCodeToControl = this.formBuilder.control(''); // รหัสหน่วยงาน
     this.provinceCodeFromControl = this.formBuilder.control(''); // รหัสจังหวัด
     this.provinceCodeToControl = this.formBuilder.control(''); // รหัสจังหวัด
-    this.yearAccountControl = this.formBuilder.control(''); // ปีบัญชี
+    this.yearAccountControl = this.formBuilder.control(this.utils.fiscYear); // ปีบัญชี
     this.postDateFromControl = this.formBuilder.control(''); // วันผ่านรายการ
     this.postDateToControl = this.formBuilder.control(''); // วันผ่านรายการ
     this.vendorTaxIdFromControl = this.formBuilder.control(''); // ผุ้ขาย
@@ -107,24 +119,14 @@ export class OmComponent implements OnInit {
     });
   }
 
-  // openDialogSearch(type) {
+  search(){
+    console.log( this.omFormCreate.value)
 
-  //   const dialogRef = this.dialog.open(DialogSearchVendorComponent, {
-  //     height: '400px',
-  //     width: '600px',
-  //     data: {},
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-
-  //     }
-  //   });
-  // }
+  }
   openDialogSearch(): void {
-    const dialogRef = this.dialog.open(DialogSearchVendorComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
+    const dialogRef = this.dialog.open(DialogSearchMasterComponent, {
+      width: '500px',
+      data: { type:'areaCode'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -136,4 +138,59 @@ export class OmComponent implements OnInit {
     this.isOpenCollapseDetail = !this.isOpenCollapseDetail;
   }
 
+
+  test(){
+     let data = {
+      lineNo: 1,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: 'หัก',
+      documentType: 'KE',
+      documentNo: '3200000040',
+      referenceNo: '3200000041',
+      year: '2019',
+      referenceText: 'TEST04',
+      documentDate: new Date(),
+      postDate: new Date()
+
+
+    }
+    let data1 = {
+      lineNo: 2,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: 'หัก',
+      documentType: 'KL',
+      documentNo: '3600000040',
+      referenceNo: '',
+      year: '2020',
+      referenceText: 'KLเลื่อม',
+      documentDate: new Date(),
+      postDate: new Date()
+
+
+    }
+    let data2 = {
+      lineNo: 3,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: '',
+      documentType: 'KC',
+      documentNo: '3100000040',
+      referenceNo: '',
+      year: '2020',
+      referenceText: 'PK200',
+      documentDate: new Date(),
+      postDate: new Date()
+
+    }
+
+    this.listDocument.push(data)
+    this.listDocument.push(data1)
+    this.listDocument.push(data2)
+
+  }
 }
