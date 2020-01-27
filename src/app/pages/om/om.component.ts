@@ -1,5 +1,5 @@
 import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy,Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Utils } from 'src/app/shared/utils';
@@ -8,9 +8,12 @@ import { DialogSearchMasterComponent } from 'src/app/shared/component/dialog-sea
 @Component({
   selector: 'app-om',
   templateUrl: './om.component.html',
-  styleUrls: ['./om.component.scss']
+  styleUrls: ['./om.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OmComponent implements OnInit {
+
+
   omFormCreate: FormGroup;
   departmentCodeFromControl: FormControl; // รหัสหน่วยงาน
   departmentCodeToControl: FormControl; // รหัสหน่วยงาน
@@ -187,10 +190,44 @@ export class OmComponent implements OnInit {
       postDate: new Date()
 
     }
+    let data3 = {
+      lineNo: 4,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: '',
+      documentType: 'KC',
+      documentNo: '3100000040',
+      referenceNo: '',
+      year: '2020',
+      referenceText: 'PK200',
+      documentDate: new Date(),
+      postDate: new Date()
+
+    }
+    let data4 = {
+      lineNo: 5,
+      approve: false,
+      notApprove: false,
+      info: '',
+      diff: '',
+      documentType: 'KC',
+      documentNo: '3100000040',
+      referenceNo: '',
+      year: '2020',
+      referenceText: 'PK200',
+      documentDate: new Date(),
+      postDate: new Date()
+
+    }
+
 
     this.listDocument.push(data)
     this.listDocument.push(data1)
     this.listDocument.push(data2)
+    this.listDocument.push(data3)
+    this.listDocument.push(data4)
+
 
   }
 }
