@@ -30,6 +30,10 @@ export class TabParameterComponent implements OnInit {
   listVendor = [
     { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
     { id: 2, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 3, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 4, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 5, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 6, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
   ];
 
 
@@ -166,15 +170,12 @@ export class TabParameterComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-  add() {
+  addInputVendor() {
     this.listVendor.push({ id: this.listVendor.length + 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' });
-
     console.log(this.listVendor)
   }
-
-
-  del() {
-    this.listVendor.splice(this.listVendor.length - 1);
+  deleteInputVendor(index) {
+    this.listVendor.splice(index,1);
   }
 
 }
