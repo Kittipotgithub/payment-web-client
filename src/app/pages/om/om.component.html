@@ -302,41 +302,45 @@
           
         </div> -->
         
-        <div style="overflow:auto;max-height:345px;">
+        <div style="overflow:auto;max-height:400px;">
           <table class="table-normal table-result" >
             <tr>
               <th>รายการ</th>
-              <th class="sort">อนุมัติ </th>
-              <th class="sort">ไม่อนุมัติ</th>
-              <th class="sort pointer" (click)="sortData('accDocNo')">Err WTinfo</th>
-              <th class="sort pointer" (click)="sortData('fiscYear')">หัก</th>
-              <th class="sort ">ประเภท</th>
-              <th class="sort pointer" (click)="sortData('docType')">เลขเอกสาร</th>
-              <th class="sort ">ปี</th>
-              <th class="sort pointer" (click)="sortData('paymentMethod')">เลขอ้างอิง</th>
-              <th class="sort pointer" (click)="sortData('amount')">การอ้างอิง</th>
-              <th class="sort">ว/ท เอกสาร</th>
-              <th class="sort">Posting Date</th>
-              <th class="sort">Test1</th>
-              <th class="sort">Test2</th>
-              <th class="sort">Test3</th>
-              <th class="sort">Test4</th>
-              <th class="sort">Test5</th>
-              <th class="sort">Test6</th>
-              <th class="sort">Test7</th>
-              <th class="sort">Test8</th>
-              <th class="sort">Test9</th>
-              <th class="sort">Test10</th>
-              <th class="sort">Test11</th>
-              <th class="sort">Test12</th>
-              <th class="sort">Test13</th>
-              <th class="sort">Test14</th>
-              <th class="sort">Test15</th>
-              <th class="sort">Test16</th>
-              <th class="sort">Test17</th>
-              <th class="sort">Test18</th>
-              <th class="sort">Test19</th>
-              <th class="sort">Test20</th>
+              <!-- icon - Sort -->
+              <!-- <i class="material-icons">arrow_drop_up</i> -->
+              <!-- <i class="material-icons">arrow_drop_down</i> -->
+
+              <th class="sort">อนุมัติ<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">ไม่อนุมัติ<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort pointer" (click)="sortData('accDocNo')">Err WTinfo<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort pointer" (click)="sortData('fiscYear')">หัก<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort ">ประเภท<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort pointer" (click)="sortData('docType')">เลขเอกสาร<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort ">ปี<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort pointer" (click)="sortData('paymentMethod')">เลขอ้างอิง<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort pointer" (click)="sortData('amount')">การอ้างอิง<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">ว/ท เอกสาร<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Posting Date<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test1<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test2<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test3<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test4<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test5<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test6<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test7<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test8<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test9<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test10<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test11<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test12<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test13<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test14<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test15<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test16<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test17<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test18<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test19<i class="material-icons">arrow_drop_down</i></th>
+              <th class="sort">Test20<i class="material-icons">arrow_drop_down</i></th>
             </tr>
             <tr *ngFor="let document of listDocument ; let i = index">
               <!-- <td class="text-center">
