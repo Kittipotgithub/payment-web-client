@@ -64,42 +64,44 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3>บัญชี
+                <button class="btn btn-default " type="button" (click)="test()">
+                  test
+                </button>
                 <button class="btn btn-default pull-right" type="button" (click)="add()">
                   เพิ่มฟิลด์
                 </button>
+
               </h3>
             </div>
             <div class="panel-body">
-              <div class="col-md-5 col-left">
-                <label class="text-black input-head">ผู้ขาย</label>
-                <input type="text" class="form-control" formControlName="verdorTaxIdForm">
-              </div>
-              <div class="col-md-5 col-left">
-                <label class="text-black input-head">ถึง</label>
-                <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" formControlName="verdorTaxIdTo">
-                  <button class="btn btn-default" type="button" (click)="openDialogSearchVendor()">
-                    <img src="assets/images/icon/menu.svg" width="12px" />
-                  </button>
+              <div class="row">
+                <div class="col-12 col-md-5">
+                  <label class="input-head">ผู้ขาย </label>
+                </div>
+                <div class="col-12 col-md-5">
+                  <label class="input-head">ถึง </label>
                 </div>
               </div>
-            </div>
-            <div *ngFor="let container of containers">
-              <div class="panel-body">
-                <div class="col-md-5 col-left">
-                  <label class="text-black input-head">ผู้ขาย</label>
-                  <input type="text" class="form-control" formControlName="verdorTaxIdForm">
-                </div>
-                <div class="col-md-5 col-left">
-                  <label class="text-black input-head">ถึง</label>
+              <div class="row" *ngFor="let item of listVendor;let i = index">
+                <div class="col-12 col-md-5">
                   <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" formControlName="verdorTaxIdTo">
-                    <button class="btn btn-default" type="button" (click)="openDialogSearchVendor()">
-                      <img src="assets/images/icon/menu.svg" width="12px" />
+                    <input #vendorTaxIdFrom type="text" [value]="item.vendorTaxIdFrom" class="form-control"
+                      (blur)="setVendor(i)">
+                    <button class="btn btn-default" type="button" (click)="openDialogSearchVendor(i,'vendorTaxIdFrom')">
+                      <img src="assets/images/icon/fa-search.svg" width="12px" />
                     </button>
                   </div>
                 </div>
-                <div class="col-md-2 col-left" style="padding-top: 25px;">
+                <div class="col-12 col-md-5">
+                  <div class="input-group input-group-lg">
+                    <input #vendorTaxIdTo type="text" [value]="item.vendorTaxIdTo" class="form-control"
+                      (blur)="setVendor(i)">
+                    <button class="btn btn-default" type="button" (click)="openDialogSearchVendor(i,'vendorTaxIdTo')">
+                      <img src="assets/images/icon/fa-search.svg" width="12px" />
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-2 col-left">
                   <button type="button" class="btn btn-danger btn-lg" (click)="del()">
                     <i class="material-icons" style="font-size:15px;">clear</i>
                   </button>
@@ -109,6 +111,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </form>

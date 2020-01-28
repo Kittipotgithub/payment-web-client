@@ -1,6 +1,6 @@
 import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { DialogSearchPaymentMethodComponent } from './../../shared/component/tab-param/dialog-search-payment-method/dialog-search-payment-method.component';
-import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -11,7 +11,8 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./tab-parameter.component.scss']
 })
 export class TabParameterComponent implements OnInit {
-
+  @ViewChildren('vendorTaxIdFrom') vendorTaxIdFrom: QueryList<ElementRef>;
+  @ViewChildren('vendorTaxIdTo') vendorTaxIdTo: QueryList<ElementRef>;
 
   listParameterTab = [];
   @Output() messageFromParameter = new EventEmitter<any>();
@@ -26,25 +27,18 @@ export class TabParameterComponent implements OnInit {
   verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
   verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
 
-  containers = [];
+  listVendor = [
+    { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 2, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+  ];
 
-
-
-  add() {
-    this.containers.push(this.containers.length);
-    this.show = true;
-  }
-
-  del() {
-    this.containers.splice(this.containers.length - 1);
-  }
 
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) { }
 
-  public show;
+
 
 
   ngOnInit() {
@@ -88,6 +82,28 @@ export class TabParameterComponent implements OnInit {
       verdorTaxIdTo: '1234',
     })
   }
+  test() {
+    console.log(this.vendorTaxIdTo)
+    console.log(this.vendorTaxIdFrom)
+
+
+
+  }
+  setVendor(index) {
+    const vendorTaxIdFrom = this.vendorTaxIdFrom.toArray()[index].nativeElement.value;
+    const vendorTaxIdTo = this.vendorTaxIdTo.toArray()[index].nativeElement.value;
+    if (vendorTaxIdFrom) {
+      this.listVendor[index].vendorTaxIdFrom = vendorTaxIdFrom
+    } else {
+      this.listVendor[index].vendorTaxIdFrom = ''
+    }
+    if (vendorTaxIdTo) {
+      this.listVendor[index].vendorTaxIdTo = vendorTaxIdTo
+    } else {
+      this.listVendor[index].vendorTaxIdTo = ''
+    }
+    console.log(this.listVendor)
+  }
 
   openDialogSearchVendorTest(): void {
     console.log('openDialogSearchVendor')
@@ -119,12 +135,19 @@ export class TabParameterComponent implements OnInit {
 
 
 
-  openDialogSearchVendor(): void {
-    const dialog = this.dialog.open(DialogSearchVendorComponent, {
+  openDialogSearchVendor(index, type): void {
+    const dialog = this.dialog.open(DialogSearchPaymentMethodComponent, {
     });
-
     dialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed ');
+      console.log(result)
+      if (result && result.event) {
+        if (type === 'vendorTaxIdFrom') {
+          this.listVendor[index].vendorTaxIdFrom = result.value
+        } else if (type === 'vendorTaxIdTo') {
+          this.listVendor[index].vendorTaxIdTo = result.value
+        }
+      }
+      console.log('The dialog was closed');
     });
   }
 
@@ -142,6 +165,16 @@ export class TabParameterComponent implements OnInit {
       }
       console.log('The dialog was closed');
     });
+  }
+  add() {
+    this.listVendor.push({ id: this.listVendor.length + 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' });
+
+    console.log(this.listVendor)
+  }
+
+
+  del() {
+    this.listVendor.splice(this.listVendor.length - 1);
   }
 
 }
