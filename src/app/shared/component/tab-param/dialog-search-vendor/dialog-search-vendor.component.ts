@@ -17,11 +17,12 @@ export class DialogSearchVendorComponent implements OnInit {
       dialogRef.disableClose = false;
     }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  ngOnInit() {
-  }
+    closeDialog(): void {
+      const dialogRef = this.dialogRef.close();
+  
+    }
+  
+    ngOnInit() {
+    }
 
 }

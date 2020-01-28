@@ -1,23 +1,245 @@
-<button type="button" class="close" (click)="onNoClick()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-<h1 mat-dialog-title>Favorite Animal</h1>
-<div mat-dialog-content>
-  My favorite animal is:
-  <ul>
-    <li>
-      <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
-    </li>
-  </ul>
+<!-- <button class="close" mat-button (click)="closeDialog()">X</button> -->
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>ทางเลือกแบบหลายทางสำหรับผู้ขาย</b>
+  <span class="pull-right">
+    <button type="button" class="btn btn-success btn-lg">
+    <i class="material-icons" style="font-size:15px;">done</i>
+    </button>&nbsp;
+    <button type="button" class="btn btn-danger btn-lg" mat-button (click)="closeDialog()">
+    <i class="material-icons" style="font-size:15px;">clear</i>
+    </button> 
+</span>
+
+</h1>
+<hr>
+<div mat-dialog-content class="date_dialog">
+  <div class="panel panel-primary">
+    <div class="panel-heading">การเลือกมูลค่าเดียว</div>
+    <div class="panel-body">
+      <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg ">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="row margin-tb-size ">
+          <div class="col-md-3 text-right">
+            <label class="text-black">จากบรรทัด</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ของ</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">ช่วงกว้าง</div>
+    <div class="panel-body">
+      <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black"></label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ถึง</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ถึง</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ถึง</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ถึง</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 text-right">
+            <label class="text-black">+</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ถึง</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row margin-tb-size ">
+          <div class="col-md-3 text-right">
+            <label class="text-black">จากบรรทัด</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+          <div class="col-md-1 text-right">
+            <label class="text-black">ของ</label>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputConfig">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="test()">
+                <img src="assets/images/icon/menu.svg" width="12px">
+              </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>  
 </div>
-
-
-<!-- Copyright 2019 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

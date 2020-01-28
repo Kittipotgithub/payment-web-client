@@ -1,23 +1,31 @@
-<button type="button" class="close" (click)="onNoClick()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-<h1 mat-dialog-title>Favorite Animal</h1>
+<button class="close" mat-button (click)="closeDialog()">X</button>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>ออกจากการแก้ไข</b></h1>
+<hr>
 <div mat-dialog-content>
-  My favorite animal is:
-  <ul>
-    <li>
-      <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
-    </li>
-    <li>
-      <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
-    </li>
-  </ul>
+<div class="row">
+    <div class="col-md-12 text-left">
+      <label class="text-black">เก็บบันทึกข้อมูลหรือไม่</label>
+    </div>
+  </div>
+  
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <button type="button" class="btn btn-success btn-lg" style="width: 100%;">
+          <i class="material-icons" style="font-size:15px;">&nbsp;ใช่&nbsp;</i>
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-danger btn-lg">
+          <i class="material-icons" style="font-size:15px;">ไม่ใช่</i>
+        </button>  
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-warning btn-lg">
+          <i class="material-icons" style="font-size:15px;color: white;">ยกเลิก</i>
+        </button>  
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<!-- Copyright 2019 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

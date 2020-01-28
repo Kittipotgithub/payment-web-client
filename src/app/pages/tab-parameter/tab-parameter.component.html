@@ -1,0 +1,108 @@
+<form [formGroup]="parameterForm">
+    <div class="body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 col-left margin-tb-size">
+            <label class="text-black input-head"><b>วันที่ผ่านรายการ</b></label>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control date-mat-input" id="InputDate" [matDatepicker]="myDatepicker">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
+                <img src="assets/images/icon/calendar.svg" width="12px">
+                <mat-datepicker #myDatepicker></mat-datepicker>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 col-left margin-tb-size">
+            <label class="text-black input-head">บันทึกเอกสาร</label>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control date-mat-input" id="InputDate" [matDatepicker]="myDatepicker2">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker2.open()">
+                <img src="assets/images/icon/calendar.svg" width="12px">
+                <mat-datepicker #myDatepicker2></mat-datepicker>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 col-left margin-tb-size">
+            <label class="text-black input-head">วิธีชำระเงิน</label>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" id="InputDate">
+              <button class="btn btn-default" type="button" (click)="openDialogSearchPaymentMethod()">
+                <img src="assets/images/icon/menu.svg" width="12px" />
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 col-left margin-tb-size">
+            <label class="text-black input-head">วันชำระถัดไป</label>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control date-mat-input" id="InputDate" [matDatepicker]="myDatepicker4">
+              <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker4.open()">
+                <img src="assets/images/icon/calendar.svg" width="12px">
+                <mat-datepicker #myDatepicker4></mat-datepicker>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="tabbody">
+          <div class="panel panel-primary">
+            <div class="panel-heading"><h3>รหัสบริษัท</h3></div>
+            <div class="panel-body">
+              <cdk-virtual-scroll-viewport itemSize="50" class="para-textarea">
+                <div class="example-item">
+                  <textarea   class="form-control" rows="9"></textarea>
+                </div>
+            </cdk-virtual-scroll-viewport>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="panel panel-primary">
+              <div class="panel-heading"><h3>บัญชี
+                  <button class="btn btn-default pull-right" type="button" (click)="add()">
+                  เพิ่มฟิลด์
+                </button>
+              </h3> 
+              </div>
+              <div class="panel-body">
+                <div class="col-md-5 col-left">
+                  <label class="text-black input-head">ผู้ขาย</label>
+                  <input type="text" class="form-control" formControlName="verdorTaxIdForm">
+                </div>
+                <div class="col-md-5 col-left">
+                  <label class="text-black input-head">ถึง</label>
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" formControlName="verdorTaxIdTo">
+                      <button class="btn btn-default" type="button" (click)="openDialogSearchVendor()">
+                        <img src="assets/images/icon/menu.svg" width="12px" />
+                      </button>
+                  </div>
+                </div>
+              </div>
+              <div *ngFor="let container of containers">
+              <div class="panel-body">
+                <div class="col-md-5 col-left">
+                  <label class="text-black input-head">ผู้ขาย</label>
+                  <input type="text" class="form-control" formControlName="verdorTaxIdForm">
+                </div>
+                <div class="col-md-5 col-left">
+                  <label class="text-black input-head">ถึง</label>
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" formControlName="verdorTaxIdTo">
+                      <button class="btn btn-default" type="button" (click)="openDialogSearchVendor()">
+                        <img src="assets/images/icon/menu.svg" width="12px" />
+                      </button>
+                  </div>
+                </div>
+                <div class="col-md-2 col-left" style="padding-top: 25px;">
+                  <button type="button" class="btn btn-danger btn-lg" (click)="del()">
+                    <i class="material-icons" style="font-size:15px;">clear</i>
+                  </button>  
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

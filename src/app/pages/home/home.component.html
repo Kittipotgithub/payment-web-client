@@ -30,7 +30,7 @@
       <div class="col-md-4" style="padding-top:20px;">
         <span><b>คัดลอกพารามิเตอร์ : </b></span>&nbsp;
         <span class="fill-remaining-space">
-          <button mat-icon-button (click)="openDialog()" class="btn_menu1">
+          <button mat-icon-button (click)="openDialogCopyParameterComponent()" class="btn_menu1">
             <mat-icon style="font-size:15px;padding:5px;">file_copy</mat-icon>
           </button>
         </span>&nbsp;
@@ -49,16 +49,16 @@
           <mat-card-content>
             <mat-tab-group (selectedTabChange)="tabChanged($event)">
               <mat-tab label="สถานะ">
-               <app-status></app-status>
+               <app-tab-status></app-tab-status>
               </mat-tab>
               <mat-tab label="พารามิเตอร์">
-                <app-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-parameter>
+                <app-tab-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter>
               </mat-tab>
               <mat-tab label="การเลือกอิสระ">
-                <app-option-independent></app-option-independent>
+                <app-tab-independent></app-tab-independent>
               </mat-tab>
               <mat-tab label="log เพิ่มเติม">
-                <app-option-additional-log></app-option-additional-log>
+                <app-tab-additional-log></app-tab-additional-log>
               </mat-tab>
               <!--mat-tab label="รายงาน/สื่อกลางข้อมูล">
               </!--mat-tab-->

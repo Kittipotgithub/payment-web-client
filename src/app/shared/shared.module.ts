@@ -12,6 +12,9 @@ import { DialogSearchMasterComponent } from './component/dialog-search-master/di
 import { DialogDetailDocumentComponent } from './component/dialog-detail-document/dialog-detail-document.component';
 import { DialogSearchFieldComponent } from './component/tab-additional/dialog-search-field/dialog-search-field.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DialogSearchPaymentMethodComponent } from './component/tab-param/dialog-search-payment-method/dialog-search-payment-method.component';
+import { DialogCopyParameterComponent } from './component/dialog-copy-parameter/dialog-copy-parameter.component';
+import { DialogSearchParameterComponent } from './component/dialog-search-parameter/dialog-search-parameter.component';
 
 
 
@@ -21,7 +24,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     DialogSaveParameterComponent,
     DialogSearchMasterComponent,
     DialogDetailDocumentComponent,
-    DialogSearchFieldComponent
+    DialogSearchFieldComponent,
+    DialogSearchPaymentMethodComponent,
+    DialogCopyParameterComponent,
+    DialogSearchParameterComponent
 
   ],
   imports: [
@@ -55,7 +61,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     DialogSaveParameterComponent,
     DialogSearchMasterComponent,
     DialogDetailDocumentComponent,
-    DialogSearchFieldComponent
+    DialogSearchFieldComponent,
+    DialogSearchPaymentMethodComponent,
+    DialogCopyParameterComponent,
+    DialogSearchParameterComponent
 
   ],
 })

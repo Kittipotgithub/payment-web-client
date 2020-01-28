@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 export interface DialogData {
-  
+
 }
 @Component({
   selector: 'app-dialog-save-parameter',
@@ -13,11 +13,11 @@ export class DialogSaveParameterComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogSaveParameterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-      dialogRef.disableClose = false;
-    }
+  }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close();
+
   }
 
   ngOnInit() {
