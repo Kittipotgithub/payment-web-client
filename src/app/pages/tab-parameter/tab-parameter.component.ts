@@ -14,7 +14,9 @@ export class TabParameterComponent implements OnInit {
   @ViewChildren('vendorTaxIdFrom') vendorTaxIdFrom: QueryList<ElementRef>;
   @ViewChildren('vendorTaxIdTo') vendorTaxIdTo: QueryList<ElementRef>;
 
-  listParameterTab = [];
+
+
+  @Input() parameter
   @Output() messageFromParameter = new EventEmitter<any>();
 
   parameterForm: FormGroup;
@@ -24,8 +26,8 @@ export class TabParameterComponent implements OnInit {
   paymentDateControl: FormControl;  // วันชำระถัดไป
   companyCodeControl: FormControl;  // รหัสบริษัท
 
-  verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
-  verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
+  // verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
+  // verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
 
   listVendor = [
     { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
@@ -46,10 +48,15 @@ export class TabParameterComponent implements OnInit {
 
 
   ngOnInit() {
-
+    console.log(this.parameter)
     this.createFormControl()
     this.createFormGroup()
-    this.defaultInput()
+    if (this.parameter) {
+      this.setInputFromParameter()
+    } else {
+      this.defaultInput()
+    }
+
   }
 
   createFormControl() {
@@ -59,8 +66,8 @@ export class TabParameterComponent implements OnInit {
     this.paymentDateControl = this.formBuilder.control('');  // วันชำระถัดไป
     this.companyCodeControl = this.formBuilder.control('');  // รหัสบริษัท
 
-    this.verdorTaxIdFormControl = this.formBuilder.control('');
-    this.verdorTaxIdToControl = this.formBuilder.control('');
+    // this.verdorTaxIdFormControl = this.formBuilder.control('');
+    // this.verdorTaxIdToControl = this.formBuilder.control('');
   }
   createFormGroup() {
     this.parameterForm = this.formBuilder.group({
@@ -70,8 +77,8 @@ export class TabParameterComponent implements OnInit {
       paymentDate: this.paymentDateControl,  // วันชำระถัดไป
       companyCode: this.companyCodeControl,  // รหัสบริษัท
 
-      verdorTaxIdForm: this.verdorTaxIdFormControl,
-      verdorTaxIdTo: this.verdorTaxIdToControl
+      // verdorTaxIdForm: this.verdorTaxIdFormControl,
+      // verdorTaxIdTo: this.verdorTaxIdToControl
     })
   }
   defaultInput() {
@@ -81,18 +88,19 @@ export class TabParameterComponent implements OnInit {
       paymentMethod: '',  // วิธีชำระเงิน  
       paymentDate: '',  // วันชำระถัดไป
       companyCode: '',  // รหัสบริษัท
-
-      verdorTaxIdForm: '9999',
-      verdorTaxIdTo: '1234',
     })
   }
-  test() {
-    console.log(this.vendorTaxIdTo)
-    console.log(this.vendorTaxIdFrom)
-
-
-
+  setInputFromParameter() {
+    this.listVendor = this.parameter.vendor
+    this.parameterForm.patchValue({
+      postDate: this.parameter.postDate,  // วันที่ผ่านรายการ
+      saveDate: this.parameter.saveDate,  // บันทึกเอกสาร
+      paymentMethod: this.parameter.paymentMethod,  // วิธีชำระเงิน  
+      paymentDate: this.parameter.paymentDate,  // วันชำระถัดไป
+      companyCode: this.parameter.companyCode,  // รหัสบริษัท
+    })
   }
+
   setVendor(index) {
     const vendorTaxIdFrom = this.vendorTaxIdFrom.toArray()[index].nativeElement.value;
     const vendorTaxIdTo = this.vendorTaxIdTo.toArray()[index].nativeElement.value;
@@ -109,32 +117,17 @@ export class TabParameterComponent implements OnInit {
     console.log(this.listVendor)
   }
 
-  openDialogSearchVendorTest(): void {
-    console.log('openDialogSearchVendor')
-    //for test send para
-    const data: any = {
-      typeAccountName: 'glAccName',
-      centerName: 'costCenterName',
-      sourceMoneyName: 'fundSourceName',
-      sourceBudgetName: 'bgCodeName',
-      mainActivityName: 'bgActivityName',
-      subActivityName: 'costActivityName',
-      subAccountName: 'subAccName',
-      ownSubAccountName: 'subAccOwnerName',
-      packageName: 'gpscGroupName',
-    }
-    this.listParameterTab.push(data)
-    this.messageFromParameter.emit(this.listParameterTab)
+  // test() {
+  //   console.log(this.vendorTaxIdTo)
+  //   console.log(this.vendorTaxIdFrom)
 
-    //   const dialogRef = this.dialog.open(DialogSearchVendorComponent, {
-    //     width: '250px',
-    //     data: {}
-    //   });
+  // }
+  updateParameter(): void {
+    this.parameterForm.value.vendor = this.listVendor
+    this.parameter = this.parameterForm.value
 
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     console.log('The dialog was closed');
+    this.messageFromParameter.emit(this.parameter)
 
-    //   });
   }
 
 
@@ -175,7 +168,7 @@ export class TabParameterComponent implements OnInit {
     console.log(this.listVendor)
   }
   deleteInputVendor(index) {
-    this.listVendor.splice(index,1);
+    this.listVendor.splice(index, 1);
   }
 
 }

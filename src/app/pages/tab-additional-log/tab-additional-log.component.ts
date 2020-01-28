@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 
@@ -8,6 +8,10 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./tab-additional-log.component.scss']
 })
 export class TabAdditionalLogComponent implements OnInit {
+
+  @Input() additionLog: any
+  @Output() messageFromAdditionLog = new EventEmitter<any>();
+
   additionLogForm: FormGroup;
   checkBoxDueDateControl: FormControl; // ตรวจสอบวันที่ครบกำหนด
   checkBoxPaymentMethodAllControl: FormControl; // เลือกวิธีชำระเงินในทุกกรณี
@@ -88,6 +92,13 @@ export class TabAdditionalLogComponent implements OnInit {
         this.isDisabledCheckBoxDueDate = false
       }
     }
+  }
+  updateParameter(): void {
+    // this.additionLogForm.value.vendor = this.listVendor
+    this.additionLog = this.additionLogForm.value
+
+    this.messageFromAdditionLog.emit(this.additionLog)
+
   }
 
 }
