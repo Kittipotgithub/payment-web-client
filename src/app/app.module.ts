@@ -37,7 +37,7 @@ import { Utils } from './shared/utils';
   ],
   providers: [Utils,Constant,
     { provide: MAT_DATE_LOCALE, useValue: 'th-TH' },
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    
   ],
   bootstrap: [AppComponent]
 })
