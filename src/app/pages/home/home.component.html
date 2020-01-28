@@ -5,8 +5,8 @@
     </mat-toolbar>
   </div>
 </div>
- <div class="body">
-  <div class ="container-fluid">
+<div class="body">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-4 col-left">
         <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
@@ -16,15 +16,15 @@
             <img src="assets/images/icon/calendar.svg" width="12px">
             <mat-datepicker #myDatepicker></mat-datepicker>
           </button>
-          </div>
+        </div>
       </div>
       <div class="col-md-4">
         <h3 class="text-black"><b>การกำหนด</b></h3>
-         <div class="input-group input-group-lg">
-        <input type="text" class="form-control" >
-        <button class="btn btn-default" type="button"(click)="test()" >
-          <img src="assets/images/icon/menu.svg" width="12px" />
-        </button>
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control">
+          <button class="btn btn-default" type="button" (click)="test()">
+            <img src="assets/images/icon/menu.svg" width="12px" />
+          </button>
         </div>
       </div>
       <div class="col-md-4" style="padding-top:20px;">
@@ -44,15 +44,17 @@
     <br>
     <!-- Material Tab -->
     <div class="row">
-        <div class="col-md-12">
+      <div class="col-md-12">
         <mat-card>
           <mat-card-content>
             <mat-tab-group (selectedTabChange)="tabChanged($event)">
               <mat-tab label="สถานะ">
-               <app-tab-status></app-tab-status>
+                <app-tab-status></app-tab-status>
               </mat-tab>
               <mat-tab label="พารามิเตอร์">
-                <app-tab-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter>
+                <!-- <app-tab-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter> -->
+                <app-tab-parameter></app-tab-parameter>
+
               </mat-tab>
               <mat-tab label="การเลือกอิสระ">
                 <app-tab-independent></app-tab-independent>
@@ -65,7 +67,7 @@
             </mat-tab-group>
           </mat-card-content>
         </mat-card>
-        </div>
+      </div>
     </div>
   </div>
 </div>

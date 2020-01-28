@@ -1,25 +1,9 @@
 import { DialogSearchVendorComponent } from './../../shared/component/tab-param/dialog-search-vendor/dialog-search-vendor.component';
 import { DialogSearchPaymentMethodComponent } from './../../shared/component/tab-param/dialog-search-payment-method/dialog-search-payment-method.component';
 import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
-
-
-
-export interface PeriodicElement {
-  pay: string;
-  code: number;
-  nextpay: string; 
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { code: 101010, pay: '11/11/11', nextpay: '12/12/12' },
-  { code: 101011, pay: '12/11/11', nextpay: '13/12/12' },
-  { code: 101012, pay: '13/11/11', nextpay: '14/12/12' },
-  { code: 101013, pay: '14/11/11', nextpay: '15/12/12' },
-  { code: 101014, pay: '15/11/11', nextpay: '16/12/12' },
-];
 
 @Component({
   selector: 'app-tab-parameter',
@@ -28,33 +12,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class TabParameterComponent implements OnInit {
 
-  displayedColumns: string[] = ['code', 'pay', 'nextpay'];
-  dataSource = ELEMENT_DATA;
 
-  @Input('parameter') parameter
-  set test(value) {
-    console.log(value)
-
-  }
-
-
-  // @Input() set m_select(m_select: String) {
-
-  //   console.log('m_select11213213', m_select);
-
-  // }
-  //   get allowDay(): boolean 
-  //   set allowDay(value: boolean) {
-  //    console.log(value)
-  // }
   listParameterTab = [];
   @Output() messageFromParameter = new EventEmitter<any>();
 
   parameterForm: FormGroup;
+  postDateControl: FormControl;  // วันที่ผ่านรายการ
+  saveDateControl: FormControl;  // บันทึกเอกสาร
+  paymentMethodControl: FormControl;  // วิธีชำระเงิน  
+  paymentDateControl: FormControl;  // วันชำระถัดไป
+  companyCodeControl: FormControl;  // รหัสบริษัท
+
   verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
   verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
 
   containers = [];
+
+
 
   add() {
     this.containers.push(this.containers.length);
@@ -62,7 +36,7 @@ export class TabParameterComponent implements OnInit {
   }
 
   del() {
-    this.containers.splice(this.containers.length-1);
+    this.containers.splice(this.containers.length - 1);
   }
 
   constructor(
@@ -73,46 +47,43 @@ export class TabParameterComponent implements OnInit {
   public show;
 
 
-
-  
-
-  openDialogSearchVendor(): void {
-    const dialog = this.dialog.open(DialogSearchVendorComponent, {
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed ');
-    });
-  }
-
-  openDialogSearchPaymentMethod(): void {
-    const dialog = this.dialog.open(DialogSearchPaymentMethodComponent, {
-    });
-
-    dialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
   ngOnInit() {
-    console.log(this.parameter)
+
     this.createFormControl()
     this.createFormGroup()
     this.defaultInput()
   }
 
   createFormControl() {
+    this.postDateControl = this.formBuilder.control('');  // วันที่ผ่านรายการ
+    this.saveDateControl = this.formBuilder.control('');  // บันทึกเอกสาร
+    this.paymentMethodControl = this.formBuilder.control('');  // วิธีชำระเงิน  
+    this.paymentDateControl = this.formBuilder.control('');  // วันชำระถัดไป
+    this.companyCodeControl = this.formBuilder.control('');  // รหัสบริษัท
+
     this.verdorTaxIdFormControl = this.formBuilder.control('');
     this.verdorTaxIdToControl = this.formBuilder.control('');
   }
   createFormGroup() {
     this.parameterForm = this.formBuilder.group({
+      postDate: this.postDateControl,  // วันที่ผ่านรายการ
+      saveDate: this.saveDateControl,  // บันทึกเอกสาร
+      paymentMethod: this.paymentMethodControl,  // วิธีชำระเงิน  
+      paymentDate: this.paymentDateControl,  // วันชำระถัดไป
+      companyCode: this.companyCodeControl,  // รหัสบริษัท
+
       verdorTaxIdForm: this.verdorTaxIdFormControl,
       verdorTaxIdTo: this.verdorTaxIdToControl
     })
   }
   defaultInput() {
     this.parameterForm.patchValue({
+      postDate: '',  // วันที่ผ่านรายการ
+      saveDate: '',  // บันทึกเอกสาร
+      paymentMethod: '',  // วิธีชำระเงิน  
+      paymentDate: '',  // วันชำระถัดไป
+      companyCode: '',  // รหัสบริษัท
+
       verdorTaxIdForm: '9999',
       verdorTaxIdTo: '1234',
     })
@@ -144,6 +115,33 @@ export class TabParameterComponent implements OnInit {
     //     console.log('The dialog was closed');
 
     //   });
+  }
+
+
+
+  openDialogSearchVendor(): void {
+    const dialog = this.dialog.open(DialogSearchVendorComponent, {
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed ');
+    });
+  }
+
+  openDialogSearchPaymentMethod(): void {
+    const paymentMethod = this.parameterForm.controls.paymentMethod.value
+    const dialog = this.dialog.open(DialogSearchPaymentMethodComponent, {
+      data: { paymentMethod }
+    });
+    dialog.afterClosed().subscribe(result => {
+      console.log(result)
+      if (result && result.event) {
+        this.parameterForm.patchValue({
+          paymentMethod: result.value,  // วิธีชำระเงิน  
+        })
+      }
+      console.log('The dialog was closed');
+    });
   }
 
 }
