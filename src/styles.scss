@@ -66,6 +66,35 @@ body {
   font-weight: bold;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif, 'Roboto', sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+.date_dialog {
+    width: 1000px;
+    height: auto;
+  }
+
+.example-viewport {
+  height: 400px;
+  border: 0px solid black;
+}
+
+.para-textarea  {
+  height: 235px;
+  border: 0px solid black;
+}
+
 // Checkbox
 .checkbox-lg .custom-control-label::before,
 .checkbox-lg .custom-control-label::after {
@@ -97,12 +126,19 @@ body {
   font-size: 15px;
 }
 
-// Customize
+// Customize - Mat
 label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: 100;
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+  top: .8rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .mat-toolbar.mat-primary {
@@ -127,13 +163,6 @@ label {
   align-items: center;
   white-space: nowrap;
   font-size: 16px;
-}
-
-.custom-control-label::before,
-.custom-control-label::after {
-  top: .8rem;
-  width: 1.25rem;
-  height: 1.25rem;
 }
 
 .mat-toolbar,
@@ -171,6 +200,11 @@ label {
   color: #fff;
 }
 
+.mat-card {
+  font-family: 'Kanit', sans-serif, 'Roboto', sans-serif;
+}
+
+// Form
 .form-control {
   font-size: 16px;
 }
@@ -183,71 +217,37 @@ label {
   pointer-events: none;
 }
 
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-
-
-
-
+// table
 table {
-  width: 100%;
-}
-
-.date_dialog {
-    width: 1000px;
-    height: auto;
+  text-align: left;
+  position: relative;
+  font-size: 13px;
+  th {
+    position:sticky !important;
+    z-index: 999 !important;
+    top: 0;
   }
-
-.example-viewport {
-  height: 400px;
-  border: 0px solid black;
-}
-
-.para-textarea  {
-  height: 235px;
-  border: 0px solid black;
-}
-
-
-
-table {
-    text-align: left;
-    position: relative;
-    font-size: 13px;
-    th {
-      position:sticky !important;
-      z-index: 999 !important;
-      top: 0;
-    }
-    th.sort {
-      cursor: pointer;
-      text-decoration: underline;
-      font-weight: bold;
-    }
-    input[type="checkbox"] {
-      width: auto;
-      margin: 0 auto;
-    }
-    td:last-child,
-    th:last-child {
-      padding-right: 5px !important;
-    }
-    th, td {
-      padding: 5px 5px;
-    }
-    thead .info{
-      background-color: #e4f5ff;
-      font-size: 16px;
-      font-weight: bold;
-    }
+  th.sort {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  input[type="checkbox"] {
+    width: auto;
+    margin: 0 auto;
+  }
+  td:last-child,
+  th:last-child {
+    padding-right: 5px !important;
+  }
+  th, td {
+    padding: 5px 5px;
+  }
+  thead .info{
+    background-color: #e4f5ff;
+    font-size: 16px;
+    font-weight: bold;
+  }
   td:last-child,
   th:last-child {
     padding-right: 5px !important;
@@ -259,37 +259,28 @@ table {
 }
 
 table.table-normal {
-  // min-width: 991px;
   width: 100%;
-  border: 1px solid #4c6d95;
-
   th {
     padding: 5px 5px;
     background-color: $header-modal-color;
     color: white;
     border: 1px solid white;
     text-align: center;
-    border: 1px solid #4c6d95;
   }
-
   tr:nth-child(odd) {
     background-color: $tr-odd;
   }
-
   td {
     padding: 5px 5px;
   }
-
   tfoot {
     td {
       background-color: #F5F5F5;
     }
-
     td.summary {
       color: white;
       background-color: #4b6d96;
     }
-
     td.summary-result {
       color: black;
       background-color: #ffff99;
@@ -300,13 +291,11 @@ table.table-normal {
 table.table-result {
   width: 100%;
   text-align: center;
-
   th {
-    background-color: #b4c3f6;
+    background-color: #e4f5ff;
     color: black;
     padding: 5px 20px 5px 20px;
   }
-
   tbody {
     td {
       background-color: white;
@@ -314,20 +303,17 @@ table.table-result {
       padding: 5px 0px;
     }
   }
-
   tfoot {
     td {
       background-color: #F5F5F5;
       padding: 5px 0px;
     }
-
     td.summary {
       text-align: right;
       color: white;
       background-color: #4b6d96;
       padding: 5px;
     }
-
     td.summary-result {
       text-align: right;
       color: black;
@@ -339,7 +325,6 @@ table.table-result {
 
 table.table-presave {
   border: 1px solid #B4C3F6;
-
   tr th {
     border: 1px solid #B4C3F6;
     color: black;
@@ -380,13 +365,11 @@ table.bg-light-blue {
   th {
     background-color: $bg-light-blue;
   }
-
   tfoot {
     td.summary {
       text-align: left;
       background-color: #1E5691;
     }
-
     td.summary-result {
       text-align: right;
       background-color: #F2F5A9;
@@ -395,16 +378,12 @@ table.bg-light-blue {
 }
 
 .table-set-tax {
-  th {}
-
   td {
     padding: 10px 0px;
     background-color: white !important;
   }
-
   .radio-inline {
     justify-content: left;
-
     span {
       width: auto;
       padding-right: 15px;
@@ -414,76 +393,59 @@ table.bg-light-blue {
 
 .my-table-collpse {
   min-width: 991px;
-
   th {
     background-color: #ccffff;
   }
-
   th:nth-child(1) {
     text-align: center;
   }
-
   tbody tr td:nth-child(1) {
     padding-left: 10px;
   }
-
   tbody tr td:nth-child(2),
   th:nth-child(2) {
     text-align: right;
   }
-
   tbody tr:hover td {
     background: #E5E8E8;
   }
-
   tbody tr.tr-collapse:hover td {
     background: #F4F6F6;
   }
-
   tbody tr td:first-child {
     text-align: left;
     cursor: pointer;
   }
-
   tbody tr.first-row td {
     background: #31cbd1;
   }
-
   tbody tr.second-row td,
   tbody tr.second-row td,
   tbody tr.second-row td {
     background: #fdff99;
   }
-
   tbody tr.third-row td {
     background: #fdfe00;
   }
-
   tbody tr.forth-row td {
     background: #cdffc8;
   }
-
-
   tbody tr.fifth-row td {
     background: #339866;
     color: white;
   }
-
   tbody tr.tr-collapse td:nth-child(7) {
     text-align: left;
     padding-left: 10px;
   }
-
   th:nth-child(-n + 6),
   tbody tr td:nth-child(-n + 6) {
     border-right: 1.5px solid #4D4C49;
   }
-
   th:nth-child(2),
   tbody tr td:nth-child(2) {
     padding-right: 10px;
   }
-
   tbody .tr-collapse {
     td {
       background-color: white !important;
@@ -503,16 +465,12 @@ span.break-word-text {
   word-break: break-word;
 }
 
-
-
 .box-readonly-input {
   input {
     background-color: #e4e7ea !important;
     pointer-events: none;
   }
-
   label {
     color: black !important;
   }
-
 }

@@ -11,30 +11,31 @@
       <mat-card-content>
         <form [formGroup]="omFormCreate">
           <div class="panel panel-primary">
-            <div class="panel-heading pointerCursor" (click)="panleExpanded = !panleExpanded">Selection Criteria</div>
+            <div class="panel-heading pointerCursor" (click)="panleExpanded = !panleExpanded">
+              <h3>Selection Criteria</h3></div>
             <div class="panel-body" *ngIf="panleExpanded">
               <div class="row">
                 <div class="col-md-2">
-                  <label class="text-black"> รหัสหน่วยงาน </label>
+                  <label class="text-black input-head"> รหัสหน่วยงาน </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeFrom" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-1 text-right">
-                  <label> ถึง </label>
+                  <label class="input-head "> ถึง </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeTo" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
@@ -43,26 +44,26 @@
               </div>
               <div class="row">
                 <div class="col-md-2">
-                  <label class="text-black"> รหัสจังหวัด </label>
+                  <label class="text-black input-head"> รหัสจังหวัด </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeFrom" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-1 text-right">
-                  <label> ถึง </label>
+                  <label class="input-head"> ถึง </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeTo" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
@@ -71,7 +72,7 @@
               </div>
               <div class="row">
                 <div class="col-md-2">
-                  <label class="text-black"> ปีบัญชี </label>
+                  <label class="text-black input-head"> ปีบัญชี </label>
                 </div>
                 <div class="col-md-4">
 
@@ -82,7 +83,7 @@
               </div>
               <div class="row">
                 <div class="col-md-2">
-                  <label class="text-black"> วันผ่านรายการ </label>
+                  <label class="text-black input-head"> วันผ่านรายการ </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group input-group-lg">
@@ -95,7 +96,7 @@
                   </div>
                 </div>
                 <div class="col-md-1 text-right">
-                  <label> ถึง </label>
+                  <label class="input-head"> ถึง </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group input-group-lg">
@@ -107,31 +108,28 @@
                   </div>
                 </div>
               </div>
-
-
-
               <div class="row">
                 <div class="col-md-2">
-                  <label class="text-black"> ผู้ขาย </label>
+                  <label class="text-black input-head"> ผู้ขาย </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-1 text-right">
-                  <label> ถึง </label>
+                  <label class="input-head"> ถึง </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdTo" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
@@ -140,26 +138,26 @@
               </div>
               <div class="row">
                 <div class="col-md-2">
-                  <label class="text-black"> หน่วยเบิกจ่าย </label>
+                  <label class="text-black input-head"> หน่วยเบิกจ่าย </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeFrom" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-1 text-right">
-                  <label> ถึง </label>
+                  <label class="input-head"> ถึง </label>
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
                     <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeTo" />
                     <div class="input-group-append button-group-search">
-                      <button class="btn btn-info" (click)="openDialogSearch('departmentCodeFrom')" type="button">
+                      <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
                       </button>
                     </div>
@@ -178,17 +176,18 @@
           </div> -->
           <div class="collapse-detail" [ngClass]="{ show: isOpenCollapseDetail }">
             <div class="panel panel-primary">
-              <div class="panel-heading pointerCursor" (click)="panleExpanded1 = !panleExpanded1">Addition Selection</div>
+              <div class="panel-heading pointerCursor" (click)="panleExpanded1 = !panleExpanded1">
+                <h3>Addition Selection</h3></div>
               <div class="panel-body" *ngIf="panleExpanded1">
                 <div class="row">
                   <div class="col-md-2">
-                    <label class="text-black"> วิธีการชำระเงิน </label>
+                    <label class="text-black input-head"> วิธีการชำระเงิน </label>
                   </div>
                   <div class="col-md-4">
                     <input class="form-control " type="text" maxlength="1" formControlName="payMethodFrom" />
                   </div>
                   <div class="col-md-1 text-right">
-                    <label> ถึง </label>
+                    <label class="input-head"> ถึง </label>
                   </div>
                   <div class="col-md-4">
                     <input class="form-control " type="text" maxlength="1" formControlName="payMethodTo" />
@@ -196,7 +195,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    <label class="text-black"> วันที่เอกสาร</label>
+                    <label class="text-black input-head"> วันที่เอกสาร</label>
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
@@ -209,7 +208,7 @@
                     </div>
                   </div>
                   <div class="col-md-1 text-right">
-                    <label> ถึง </label>
+                    <label class="input-head"> ถึง </label>
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
@@ -224,7 +223,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    <label class="text-black"> วันที่บันทึก</label>
+                    <label class="text-black input-head"> วันที่บันทึก</label>
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
@@ -238,7 +237,7 @@
                     </div>
                   </div>
                   <div class="col-md-1 text-right">
-                    <label> ถึง </label>
+                    <label class="input-head"> ถึง </label>
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
@@ -254,13 +253,13 @@
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    <label class="text-black"> แยกประเภทพิเศษ </label>
+                    <label class="text-black input-head"> แยกประเภทพิเศษ </label>
                   </div>
                   <div class="col-md-4">
                     <input class="form-control " type="text" maxlength="1" formControlName="specialTypeFrom" />
                   </div>
                   <div class="col-md-1 text-right">
-                    <label> ถึง </label>
+                    <label class="input-head"> ถึง </label>
                   </div>
                   <div class="col-md-4">
                     <input class="form-control " type="text" maxlength="1" formControlName="specialTypeTo" />
@@ -277,17 +276,20 @@
       </div> -->
           <div class="collapse-detail" [ngClass]="{ show: isOpenCollapseDetail }">
             <div class="panel panel-primary">
-              <div class="panel-heading pointerCursor" (click)="panleExpanded2 = !panleExpanded2">โครงร่างรายงาน</div>
+              <div class="panel-heading pointerCursor" (click)="panleExpanded2 = !panleExpanded2">
+                <h3>โครงร่างรายงาน</h3></div>
               <div class="panel-body" *ngIf="panleExpanded2">
                 <div class="row">
                   <div class="col-md-2">
-                    <label class="text-black"> โครงร่าง </label>
+                    <label class="text-black input-head"> โครงร่าง </label>
                   </div>
                   <div class="col-md-4">
                     <input class="form-control " type="text" maxlength="1" formControlName="outline" />
                   </div>
                   <div class="col-md-6">
-                    <button (click)="onSearch()" class="btn-info">เริ่มค้นหา</button>
+                    <button mat-icon-button class="btn btn-info" (click)="onSearch()" >
+                        <span style="font-size:15px;">เริ่มค้นหา</span>
+                    </button>
                   </div>
                   
                 </div>
@@ -300,11 +302,11 @@
           
         </div> -->
         
-        <cdk-virtual-scroll-viewport *ngIf="listDocument.length >0 && listDocument != null" itemSize="50" class="example-viewport">
+        <div style="overflow:auto;max-height:345px;">
           <table class="table-normal table-result" >
             <tr>
               <th>รายการ</th>
-              <th class="sort">อนุมัติ</th>
+              <th class="sort">อนุมัติ </th>
               <th class="sort">ไม่อนุมัติ</th>
               <th class="sort pointer" (click)="sortData('accDocNo')">Err WTinfo</th>
               <th class="sort pointer" (click)="sortData('fiscYear')">หัก</th>
@@ -312,7 +314,6 @@
               <th class="sort pointer" (click)="sortData('docType')">เลขเอกสาร</th>
               <th class="sort ">ปี</th>
               <th class="sort pointer" (click)="sortData('paymentMethod')">เลขอ้างอิง</th>
-
               <th class="sort pointer" (click)="sortData('amount')">การอ้างอิง</th>
               <th class="sort">ว/ท เอกสาร</th>
               <th class="sort">Posting Date</th>
@@ -336,22 +337,21 @@
               <th class="sort">Test18</th>
               <th class="sort">Test19</th>
               <th class="sort">Test20</th>
-              
             </tr>
-
             <tr *ngFor="let document of listDocument ; let i = index">
               <!-- <td class="text-center">
               <img src="assets/images/icon/record.gif" class="icon pointer"
                 (click)="viewDocument(document.accDocNo, document.fiscYear)" />
             
             </td> -->
-              <td class="text-left">{{ i+1 }}</td>
+              <td class="text-center">{{ i+1 }}</td>
               <td class="text-center">
-                <input type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')" />
+                <!-- <input type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')" /> -->
+                <mat-checkbox type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')"></mat-checkbox>
               </td>
               <td class="text-center">
-                <input type="checkbox" [checked]="document.notApprove"
-                  (click)="onClickCheckedDocument(i, 'notApprove')" />
+                <!-- <input type="checkbox" [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notApprove')" /> -->
+                  <mat-checkbox type="checkbox" [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notApprove')" ></mat-checkbox>
               </td>
               <!-- <td> <input class="text-right" class="col-12 col-md-5"  #reasonInput [value]=document.reason (blur)="setReasonIntoDocument(i,document)"/></td> -->
               <!-- <td class="td-not-approve text-center">
@@ -380,7 +380,6 @@
               <td class="text-center">{{ document.referenceText }}</td>
               <td class="text-center">{{ document.dateDoc| date: 'dd.MM.yyyy' }}</td>
               <td class="text-center">{{ document.datePost | date: 'dd.MM.yyyy'}}</td>
-
               <td class="text-center">{{ document.compCode }}</td>
               <td class="text-center">{{ document.compCode }}</td>
               <td class="text-center">{{ document.compCode }}</td>
@@ -403,7 +402,7 @@
               <td class="text-center">{{ document.compCode }}</td>
             </tr>
           </table>
-        </cdk-virtual-scroll-viewport>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
