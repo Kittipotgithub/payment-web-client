@@ -15,6 +15,8 @@ export interface Food {
 })
 export class TabIndependentComponent implements OnInit {
 
+  // Tab
+  panleExpanded = true;
 
   independentFormCreate: FormGroup;
 

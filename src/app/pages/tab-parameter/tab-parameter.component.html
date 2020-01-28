@@ -47,10 +47,13 @@
       </div>
       <div class="tabbody">
         <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3>รหัสบริษัท</h3>
+          <div class="panel-heading pointerCursor" (click)="panleExpanded = !panleExpanded">
+            <h3>รหัสบริษัท
+              <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded">add</i></span>
+              <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded">remove</i></span>
+            </h3>
           </div>
-          <div class="panel-body">
+          <div class="panel-body" *ngIf="panleExpanded">
             <cdk-virtual-scroll-viewport itemSize="50" class="para-textarea">
               <div class="example-item">
                 <textarea class="form-control" formControlName="companyCode" rows="9"></textarea>
@@ -62,18 +65,16 @@
       <div class="row">
         <div class="col-md-8">
           <div class="panel panel-primary">
-            <div class="panel-heading">
+            <div class="panel-heading pointerCursor" (click)="panleExpanded1 = !panleExpanded1">
               <h3>บัญชี
-                <button class="btn btn-default " type="button" (click)="test()">
-                  test
-                </button>
-                <button class="btn btn-default pull-right" type="button" (click)="addInputVendor()">
-                  เพิ่มฟิลด์
-                </button>
-
+                <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded1">add</i></span>
+                <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded1">remove</i></span>
               </h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" *ngIf="panleExpanded1">
+              <button class="btn btn-default pull-right" type="button" (click)="addInputVendor()">
+                เพิ่มฟิลด์
+              </button>
               <div class="row">
                 <div class="col-12 col-md-5">
                   <label class="input-head">ผู้ขาย </label>

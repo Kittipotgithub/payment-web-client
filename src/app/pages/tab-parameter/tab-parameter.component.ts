@@ -13,8 +13,10 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 export class TabParameterComponent implements OnInit {
   @ViewChildren('vendorTaxIdFrom') vendorTaxIdFrom: QueryList<ElementRef>;
   @ViewChildren('vendorTaxIdTo') vendorTaxIdTo: QueryList<ElementRef>;
-
-
+  
+  // Tab
+  panleExpanded = true;
+  panleExpanded1 = true;
 
   @Input() parameter
   @Output() messageFromParameter = new EventEmitter<any>();

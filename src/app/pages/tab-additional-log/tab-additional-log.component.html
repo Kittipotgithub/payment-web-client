@@ -1,10 +1,13 @@
 <div class="tabbody">
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="additionLogForm">
       <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3>ต้องการประเภทการรายงานตรวจสอบ</h3>
+        <div class="panel-heading pointerCursor" (click)="panleExpanded = !panleExpanded">
+          <h3>ต้องการประเภทการรายงานตรวจสอบ
+            <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded">add</i></span>
+            <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded">remove</i></span>
+          </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" *ngIf="panleExpanded">
           <div class="row">
             <div class="col-12 col-md-6">
               <mat-checkbox [disabled]="isDisabledCheckBoxDueDate" formControlName="checkBoxDueDate"
@@ -33,10 +36,13 @@
         </div>
       </div>
       <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3>บัญชีที่ต้องการ</h3>
+        <div class="panel-heading pointerCursor" (click)="panleExpanded1 = !panleExpanded1">
+          <h3>บัญชีที่ต้องการ
+            <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded1">add</i></span>
+            <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded1">remove</i></span>
+          </h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" *ngIf="panleExpanded1">
           <div class="row">
             <div class="col-12 col-md-6">
               <label class="input-head">ผู้ขาย ( จาก / ถึง )</label>

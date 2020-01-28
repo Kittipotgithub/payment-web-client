@@ -12,7 +12,11 @@
         <form [formGroup]="omFormCreate">
           <div class="panel panel-primary">
             <div class="panel-heading pointerCursor" (click)="panleExpanded = !panleExpanded">
-              <h3>Selection Criteria</h3></div>
+              <h3>Selection Criteria
+                <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded">add</i></span>
+                <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded">remove</i></span>
+              </h3>
+            </div>
             <div class="panel-body" *ngIf="panleExpanded">
               <div class="row">
                 <div class="col-md-2">
@@ -177,7 +181,11 @@
           <div class="collapse-detail" [ngClass]="{ show: isOpenCollapseDetail }">
             <div class="panel panel-primary">
               <div class="panel-heading pointerCursor" (click)="panleExpanded1 = !panleExpanded1">
-                <h3>Addition Selection</h3></div>
+                <h3>Addition Selection
+                  <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded1">add</i></span>
+                  <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded1">remove</i></span>
+                </h3>
+              </div>
               <div class="panel-body" *ngIf="panleExpanded1">
                 <div class="row">
                   <div class="col-md-2">
@@ -277,7 +285,11 @@
           <div class="collapse-detail" [ngClass]="{ show: isOpenCollapseDetail }">
             <div class="panel panel-primary">
               <div class="panel-heading pointerCursor" (click)="panleExpanded2 = !panleExpanded2">
-                <h3>โครงร่างรายงาน</h3></div>
+                <h3>โครงร่างรายงาน
+                  <span class="pull-right"><i class="material-icons" *ngIf="!panleExpanded2">add</i></span>
+                  <span class="pull-right"><i class="material-icons" *ngIf="panleExpanded2">remove</i></span>
+                </h3>
+              </div>
               <div class="panel-body" *ngIf="panleExpanded2">
                 <div class="row">
                   <div class="col-md-2">

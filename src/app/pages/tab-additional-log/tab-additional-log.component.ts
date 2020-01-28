@@ -9,6 +9,10 @@ import { MatDialog } from '@angular/material';
 })
 export class TabAdditionalLogComponent implements OnInit {
 
+  // Tab
+  panleExpanded = true;
+  panleExpanded1 = true;
+
   @Input() additionLog: any
   @Output() messageFromAdditionLog = new EventEmitter<any>();
 

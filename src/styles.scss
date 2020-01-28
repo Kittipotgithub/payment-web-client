@@ -15,7 +15,10 @@ body {
   font-family: 'Kanit', sans-serif, 'Roboto', sans-serif;
   background-color: whitesmoke;
 }
-
+// color
+.c-blue{
+  color:#007bff;
+}
 // Class
 .body {
   padding: 10px;
@@ -64,6 +67,10 @@ body {
 .input-head {
   font-size: 15px;
   font-weight: bold;
+}
+
+.pointerCursor {
+  cursor: pointer;
 }
 
 html,

@@ -1,41 +1,33 @@
-<button type="button" class="close" (click)="onNoClick()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">รหัสกิจกรรมหลัก</h1>
+<button class="close" mat-button (click)="onNoClick()">X</button>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>รหัสกิจกรรมหลัก</b></h1>
+<hr>
 <div mat-dialog-content >  
-      <div class="row">
-        <input type="text" class="form-control" #searchValue />
-      </div>
-      <div class="row">
-        <p class="text-red">{{ errorMessage }}</p>
-      </div>
-      <div class="row">
-        <button (click)="search(searchValue)" class="btn-info">เริ่มค้นหา</button>
-      </div>
-      <div class="row">
-      <div class="mt-4">
-        <table class="table-normal table-result">
-          <tr>
-           
-            <th class="sort">เลือก</th>
-            <th class="sort">รหัสกิจกรรมหลัก</th>
-            <th class="sort">ชื่อของเขตฟังก์ชั่น</th>
-          </tr>
-          <tbody>
-            <tr *ngFor="let item of listDocument ; let i = index">
-              <td><mat-icon>folder_open</mat-icon></td>
-              <td>{{ item.code  }}</td>
-              <td>{{ item.name  }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="row">
+    <div class="col-md-11">
+      <input type="text" class="form-control" #searchValue/>
     </div>
-    
-
+    <div class="col-md-1">
+      <button mat-icon-button class="btn btn-info" (click)="search(searchValue)">
+          <span style="font-size:15px;">เริ่มค้นหา</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" style="padding-top:10px;">
+    <div class="col-md-12">
+      <table class="table-normal table-result">
+        <tr>
+          <th>เลือก</th>
+          <th>รหัสกิจกรรมหลัก</th>
+          <th>ชื่อของเขตฟังก์ชั่น</th>
+        </tr>
+        <tbody>
+          <tr *ngFor="let item of listDocument ; let i = index">
+            <td><mat-icon>folder_open</mat-icon></td>
+            <td>{{ item.code}}</td>
+            <td>{{ item.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-
-<!-- Copyright 2019 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

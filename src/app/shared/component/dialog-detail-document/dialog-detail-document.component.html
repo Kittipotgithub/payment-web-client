@@ -1,55 +1,59 @@
-<button type="button" class="close" (click)="onNoClick()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">Search</h1>
+<button class="close" mat-button (click)="onNoClick()">X</button>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>Search</b></h1>
+<hr>
 <div mat-dialog-content >
   <div class="content-box">
     <div *ngIf="documentDetail" class="content-item">
       <div class="content-detail mb-4">
         <div class="row">
-          <div class="col-12 col-md-2"><label class="text-black"> เลขที่เอกสาร </label>
-          </div>
-          <div class="col-12 col-md-3">
-            <p>{{ documentDetail.docNo }}</p>
-          </div>
-          <div class="col-12 col-md-2"><label class="text-black"> รหัสบริษัท </label></div>
-          <div class="col-12 col-md-2">
-            <p>{{ documentDetail.compCode }}</p>
-          </div>
-          <div class="col-12 col-md-2"><label class="text-black"> ปีบัญชี </label>
+          <div class="col-12 col-md-2"><label class="text-black input-head">เลขที่เอกสาร :</label>
           </div>
           <div class="col-12 col-md-2">
-            <p>{{ documentDetail.fiscalYear }}</p>
+            <!-- <p class="c-blue">{{ documentDetail.docNo}}</p> -->
+            <p class="c-blue">test</p>
+          </div>
+          <div class="col-12 col-md-2"><label class="text-black input-head">รหัสบริษัท :</label></div>
+          <div class="col-12 col-md-2">
+            <p class="c-blue">{{ documentDetail.compCode }}</p>
+          </div>
+          <div class="col-12 col-md-2"><label class="text-black input-head">ปีบัญชี :</label>
+          </div>
+          <div class="col-12 col-md-2">
+            <!-- <p class="c-blue">{{ documentDetail.fiscalYear }}</p> -->
+            <p class="c-blue">test</p>
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-md-2"><label class="text-black"> ว/ทเอกสาร </label>
-          </div>
-          <div class="col-12 col-md-3">
-            <p>{{ docNoFromSearchDetail }}</p>
-          </div>
-          <div class="col-12 col-md-2"><label class="text-black"> วันผ่านรายการ </label></div>
-          <div class="col-12 col-md-2">
-            <p>{{ docStatus }}</p>
-          </div>
-          <div class="col-12 col-md-2"><label class="text-black"> งวด </label>
+          <div class="col-12 col-md-2"><label class="text-black input-head">ว/ทเอกสาร :</label>
           </div>
           <div class="col-12 col-md-2">
-            <p>{{ docNoFromSearchDetail }}</p>
+            <!-- <p class="c-blue">{{ docNoFromSearchDetail }}</p> -->
+            <p class="c-blue">test</p>
+          </div>
+          <div class="col-12 col-md-2"><label class="text-black input-head">วันผ่านรายการ :</label></div>
+          <div class="col-12 col-md-2">
+            <!-- <p class="c-blue">{{ docStatus }}</p> -->
+            <p class="c-blue">test</p>
+          </div>
+          <div class="col-12 col-md-2"><label class="text-black input-head">งวด :</label>
+          </div>
+          <div class="col-12 col-md-2">
+            <!-- <p class="c-blue">{{ docNoFromSearchDetail }}</p> -->
+            <p class="c-blue">test</p>
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-md-2"><label class="text-black"> เอก.อิง </label>
+          <div class="col-12 col-md-2"><label class="text-black input-head">เอก.อิง :</label>
           </div>
-          <div class="col-12 col-md-3">
-            <p>{{ docNoFromSearchDetail }}</p>
+          <div class="col-12 col-md-2">
+            <!-- <p class="c-blue">{{ docNoFromSearchDetail }}</p> -->
+            <p class="c-blue">test</p>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-md-2"><label class="text-black"> สง.ในเอกสาร </label>
+          <div class="col-12 col-md-2"><label class="text-black input-head">สง.ในเอกสาร : </label>
           </div>
-          <div class="col-12 col-md-3">
-            <p>{{ docNoFromSearchDetail }}</p>
+          <div class="col-12 col-md-2">
+            <!-- <p class="c-blue">{{ docNoFromSearchDetail }}</p> -->
+            <p class="c-blue">test</p>
           </div>
         </div>
       </div>
