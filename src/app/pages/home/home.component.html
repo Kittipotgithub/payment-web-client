@@ -52,15 +52,15 @@
                 <app-tab-status></app-tab-status>
               </mat-tab>
               <mat-tab label="พารามิเตอร์">
-                <!-- <app-tab-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter> -->
-                <app-tab-parameter></app-tab-parameter>
+                <app-tab-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter>
+                <!-- <app-tab-parameter></app-tab-parameter> -->
 
               </mat-tab>
               <mat-tab label="การเลือกอิสระ">
                 <app-tab-independent></app-tab-independent>
               </mat-tab>
               <mat-tab label="log เพิ่มเติม">
-                <app-tab-additional-log></app-tab-additional-log>
+                <app-tab-additional-log [additionLog]="listObjectAdditionLogTab" (messageFromAdditionLog)="receiveObjectFromAdditionLog($event)"></app-tab-additional-log>
               </mat-tab>
               <!--mat-tab label="รายงาน/สื่อกลางข้อมูล">
               </!--mat-tab-->
