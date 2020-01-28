@@ -1,7 +1,7 @@
 <button type="button" class="close" (click)="onNoClick()">
     <span aria-hidden="true">&times;</span>
   </button>
-<h1 mat-dialog-title>Search</h1>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane">Search</h1>
 <div mat-dialog-content >
   <div class="content-box">
     <div *ngIf="documentDetail" class="content-item">
@@ -72,10 +72,9 @@
           <th class="sort">คีย์การอ</th>
         </tr>
         <tbody>
+          
           <tr *ngFor="let item of listDocument ; let i = index">
             <td>{{ ((p - 1) * constant.PER_PAGINATION) + (i + 1) }}</td>
-
-
             <td>{{ item.postingKey }}</td>
             <td>{{ item.account  }}</td>
             <td>{{ item.lineDescription  }}</td>
