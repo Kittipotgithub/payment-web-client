@@ -11,7 +11,7 @@
       <div class="col-md-4 col-left">
         <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
         <div class="input-group input-group-lg">
-          <input type="text" class="form-control date-mat-input" id="InputDate" [matDatepicker]="myDatepicker">
+          <input type="text" [(ngModel)]="home1" [ngStyle]="{'background-color': !home1 ?'#fff' : '#f2f2f2'}" class="form-control date-mat-input" id="InputDate" [matDatepicker]="myDatepicker">
           <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
             <img src="assets/images/icon/calendar.svg" width="12px">
             <mat-datepicker #myDatepicker></mat-datepicker>
@@ -21,7 +21,7 @@
       <div class="col-md-4">
         <h3 class="text-black"><b>การกำหนด</b></h3>
         <div class="input-group input-group-lg">
-          <input type="text" class="form-control">
+          <input type="text" [(ngModel)]="home2" [ngStyle]="{'background-color': !home2 ?'#fff' : '#f2f2f2'}" class="form-control">
           <button class="btn btn-default" type="button" (click)="test()">
             <img src="assets/images/icon/menu.svg" width="12px" />
           </button>

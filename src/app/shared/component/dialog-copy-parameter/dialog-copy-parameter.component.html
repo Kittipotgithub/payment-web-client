@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-12">
     <div class="input-group">
-    <input type="text" class="form-control" id="InputDate">
+    <input type="text" [(ngModel)]="copy1" [ngStyle]="{'background-color': !copy1 ?'#fff' : '#f2f2f2'}" class="form-control" id="InputDate">
     <button class="btn btn-default" type="button" (click)="OpenDiaDate()">
       <img src="assets/images/icon/calendar.svg" width="12px" />
     </button>
@@ -25,7 +25,7 @@
     <label class="text-black input-head">รหัส</label>
   </div>
   <div class="col-md-12">
-    <input type="text" class="form-control" id="InputDate">
+    <input type="text" [(ngModel)]="copy2" [ngStyle]="{'background-color': !copy2 ?'#fff' : '#f2f2f2'}" class="form-control" id="InputDate">
   </div>
 </div>
 <div class="row margin-tb-size" style="padding-top: 10px;">

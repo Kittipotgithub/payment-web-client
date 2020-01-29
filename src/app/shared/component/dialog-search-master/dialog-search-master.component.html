@@ -4,7 +4,7 @@
 <div mat-dialog-content >  
   <div class="row">
     <div class="col-md-11">
-      <input type="text" class="form-control" #searchValue/>
+      <input type="text" [(ngModel)]="search1" [ngStyle]="{'background-color': !search1 ?'#fff' : '#f2f2f2'}" class="form-control" #searchValue/>
     </div>
     <div class="col-md-1">
       <button mat-icon-button class="btn btn-info" (click)="search(searchValue)">

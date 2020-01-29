@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeFrom" />
+                    <input class="form-control" [(ngModel)]="name1" [ngStyle]="{'background-color': !name1 ?'#fff' : '#f2f2f2'}" type="text" maxlength="5" formControlName="departmentCodeFrom" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="5" formControlName="departmentCodeTo" />
+                    <input class="form-control" [(ngModel)]="name2" [ngStyle]="{'background-color': !name2 ?'#fff' : '#f2f2f2'}" type="text" maxlength="5" formControlName="departmentCodeTo" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeFrom" />
+                    <input class="form-control" [(ngModel)]="name3" [ngStyle]="{'background-color': !name3 ?'#fff' : '#f2f2f2'}" type="text" maxlength="4" formControlName="provinceCodeFrom" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="4" formControlName="provinceCodeTo" />
+                    <input class="form-control" [(ngModel)]="name4" [ngStyle]="{'background-color': !name4 ?'#fff' : '#f2f2f2'}" type="text" maxlength="4" formControlName="provinceCodeTo" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -91,7 +91,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" formControlName="postDateFrom"
+                    <input type="text" [(ngModel)]="name5" [ngStyle]="{'background-color': !name5 ?'#fff' : '#f2f2f2'}" class="form-control" formControlName="postDateFrom"
                       [matDatepicker]="postDateFrom">
                     <button class="btn btn-default" type="button" mat-raised-button (click)="postDateFrom.open()">
                       <img src="assets/images/icon/calendar.svg" width="12px">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" formControlName="postDateTo" [matDatepicker]="postDateto">
+                    <input type="text" [(ngModel)]="name6" [ngStyle]="{'background-color': !name6 ?'#fff' : '#f2f2f2'}" class="form-control" formControlName="postDateTo" [matDatepicker]="postDateto">
                     <button class="btn btn-default" type="button" mat-raised-button (click)="postDateto.open()">
                       <img src="assets/images/icon/calendar.svg" width="12px">
                       <mat-datepicker #postDateto></mat-datepicker>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
+                    <input class="form-control" [(ngModel)]="name7" [ngStyle]="{'background-color': !name7 ?'#fff' : '#f2f2f2'}" type="text" maxlength="13" formControlName="vendorTaxIdFrom" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="13" formControlName="vendorTaxIdTo" />
+                    <input class="form-control" [(ngModel)]="name8" [ngStyle]="{'background-color': !name8 ?'#fff' : '#f2f2f2'}" type="text" maxlength="13" formControlName="vendorTaxIdTo" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -146,7 +146,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeFrom" />
+                    <input class="form-control" [(ngModel)]="name9" [ngStyle]="{'background-color': !name9 ?'#fff' : '#f2f2f2'}" type="text" maxlength="10" formControlName="disbursementCodeFrom" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -159,7 +159,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input class="form-control " type="text" maxlength="10" formControlName="disbursementCodeTo" />
+                    <input class="form-control" [(ngModel)]="name10" [ngStyle]="{'background-color': !name10 ?'#fff' : '#f2f2f2'}" type="text" maxlength="10" formControlName="disbursementCodeTo" />
                     <div class="input-group-append button-group-search">
                       <button class="btn btn-default" (click)="openDialogSearch('departmentCodeFrom')" type="button">
                         <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -192,13 +192,13 @@
                     <label class="text-black input-head"> วิธีการชำระเงิน </label>
                   </div>
                   <div class="col-md-4">
-                    <input class="form-control " type="text" maxlength="1" formControlName="payMethodFrom" />
+                    <input class="form-control" [(ngModel)]="name11" [ngStyle]="{'background-color': !name11 ?'#fff' : '#f2f2f2'}" type="text" maxlength="1" formControlName="payMethodFrom" />
                   </div>
                   <div class="col-md-1 text-right">
                     <label class="input-head"> ถึง </label>
                   </div>
                   <div class="col-md-4">
-                    <input class="form-control " type="text" maxlength="1" formControlName="payMethodTo" />
+                    <input class="form-control" [(ngModel)]="name12" [ngStyle]="{'background-color': !name12 ?'#fff' : '#f2f2f2'}" type="text" maxlength="1" formControlName="payMethodTo" />
                   </div>
                 </div>
                 <div class="row">
@@ -207,7 +207,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
-                      <input type="text" [(ngModel)]="name" [ngStyle]="{'background-color': !name ?'#f00' : '#fff'}" class="form-control" formControlName="documentDateFrom"
+                      <input type="text" [(ngModel)]="name13" [ngStyle]="{'background-color': !name13 ?'#fff' : '#f2f2f2'}" class="form-control" formControlName="documentDateFrom"
                         [matDatepicker]="documentDateFrom">
                       <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateFrom.open()">
                         <img src="assets/images/icon/calendar.svg" width="12px">
@@ -220,7 +220,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
-                      <input type="text" class="form-control" formControlName="documentDateTo"
+                      <input type="text" [(ngModel)]="name14" [ngStyle]="{'background-color': !name14 ?'#fff' : '#f2f2f2'}" class="form-control" formControlName="documentDateTo"
                         [matDatepicker]="documentDateTo">
                       <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateTo.open()">
                         <img src="assets/images/icon/calendar.svg" width="12px">
@@ -235,7 +235,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
-                      <input type="text" class="form-control" formControlName="documentCreateDateFrom"
+                      <input type="text" [(ngModel)]="name15" [ngStyle]="{'background-color': !name15 ?'#fff' : '#f2f2f2'}" class="form-control" formControlName="documentCreateDateFrom"
                         [matDatepicker]="documentCreateDateFrom">
                       <button class="btn btn-default" type="button" mat-raised-button
                         (click)="documentCreateDateFrom.open()">
@@ -249,7 +249,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
-                      <input type="text" class="form-control" formControlName="documentCreateDateTo"
+                      <input type="text" [(ngModel)]="name16" [ngStyle]="{'background-color': !name16 ?'#fff' : '#f2f2f2'}" class="form-control" formControlName="documentCreateDateTo"
                         [matDatepicker]="documentCreateDateTo">
                       <button class="btn btn-default" type="button" mat-raised-button
                         (click)="documentCreateDateTo.open()">
@@ -264,13 +264,13 @@
                     <label class="text-black input-head"> แยกประเภทพิเศษ </label>
                   </div>
                   <div class="col-md-4">
-                    <input class="form-control " type="text" maxlength="1" formControlName="specialTypeFrom" />
+                    <input class="form-control" [(ngModel)]="name17" [ngStyle]="{'background-color': !name17 ?'#fff' : '#f2f2f2'}" type="text" maxlength="1" formControlName="specialTypeFrom" />
                   </div>
                   <div class="col-md-1 text-right">
                     <label class="input-head"> ถึง </label>
                   </div>
                   <div class="col-md-4">
-                    <input class="form-control " type="text" maxlength="1" formControlName="specialTypeTo" />
+                    <input class="form-control" [(ngModel)]="name18" [ngStyle]="{'background-color': !name18 ?'#fff' : '#f2f2f2'}" type="text" maxlength="1" formControlName="specialTypeTo" />
                   </div>
                 </div>
               </div>
@@ -296,7 +296,7 @@
                     <label class="text-black input-head"> โครงร่าง </label>
                   </div>
                   <div class="col-md-4">
-                    <input class="form-control " type="text" maxlength="1" formControlName="outline" />
+                    <input class="form-control" [(ngModel)]="name19" [ngStyle]="{'background-color': !name19 ?'#fff' : '#f2f2f2'}" type="text" maxlength="1" formControlName="outline" />
                   </div>
                   <div class="col-md-6">
                     <button mat-icon-button class="btn btn-info" (click)="onSearch()" >
