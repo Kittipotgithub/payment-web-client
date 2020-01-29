@@ -207,7 +207,7 @@
                   </div>
                   <div class="col-md-4">
                     <div class="input-group input-group-lg">
-                      <input type="text" class="form-control" formControlName="documentDateFrom"
+                      <input type="text" [(ngModel)]="name" [ngStyle]="{'background-color': !name ?'#f00' : '#fff'}" class="form-control" formControlName="documentDateFrom"
                         [matDatepicker]="documentDateFrom">
                       <button class="btn btn-default" type="button" mat-raised-button (click)="documentDateFrom.open()">
                         <img src="assets/images/icon/calendar.svg" width="12px">
