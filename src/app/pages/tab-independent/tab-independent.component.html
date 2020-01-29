@@ -44,7 +44,7 @@
         </div> -->
       <div *ngFor="let item of listIndependent;let i = index">
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-10">
             <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
               <input readonly type="text" class="form-control" [value]="item.fieldName" #fieldName>
@@ -59,13 +59,18 @@
               </mat-checkbox>
             </div>
           </div>
+          <div class="col-md-1" style="padding-top: 20px;">
+            <button type="button" class="btn btn-danger btn-lg" (click)="deleteInputIndependent(i)">
+              <i class="material-icons" style="font-size:15px;">clear</i>
+            </button>
+          </div>
         </div>
         <div class="row">
-          <div class="col-md-11">
+          <div class="col-md-10">
             <input type="text" class="form-control" [value]="item.conditionfield" #conditionfield
               (blur)="setConditionfield(i)">
           </div>
-          <div class="col-md-1"></div>
+          <!--div class="col-md-1"></!--div-->
         </div>
         <br>
       </div>
