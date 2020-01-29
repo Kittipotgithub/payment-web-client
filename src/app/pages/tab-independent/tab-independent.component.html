@@ -22,8 +22,8 @@
             <div class="col-md-11">
               <mat-label class="input-head">ชื่อฟิลด์</mat-label>
               <div class="input-group input-group-lg">
-                <input readonly type="text" class="form-control" formControlName="filedNameOne">
-                <button class="btn btn-default" type="button" (click)="openDialogSearchFiled('filedNameOne')">
+                <input readonly type="text" class="form-control" formControlName="fieldNameOne">
+                <button class="btn btn-default" type="button" (click)="openDialogSearchfield('fieldNameOne')">
                   <img src="assets/images/icon/menu.svg" width="12px" />
                 </button>
               </div>
@@ -36,7 +36,7 @@
           </div>
           <div class="row">
             <div class="col-md-11">
-              <input type="text" class="form-control" formControlName="conditionFiledOne">
+              <input type="text" class="form-control" formControlName="conditionfieldOne">
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -47,8 +47,8 @@
           <div class="col-md-11">
             <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
-              <input readonly type="text" class="form-control" [value]="item.filedName" #filedName>
-              <button class="btn btn-default" type="button" (click)="openDialogSearchFiled(i)">
+              <input readonly type="text" class="form-control" [value]="item.fieldName" #fieldName>
+              <button class="btn btn-default" type="button" (click)="openDialogSearchfield(i)">
                 <img src="assets/images/icon/menu.svg" width="12px" />
               </button>
             </div>
@@ -62,8 +62,8 @@
         </div>
         <div class="row">
           <div class="col-md-11">
-            <input type="text" class="form-control" [value]="item.conditionFiled" #conditionFiled
-              (blur)="setConditionFiled(i)">
+            <input type="text" class="form-control" [value]="item.conditionfield" #conditionfield
+              (blur)="setConditionfield(i)">
           </div>
           <div class="col-md-1"></div>
         </div>
@@ -74,8 +74,8 @@
           <div class="col-md-11">
             <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
-              <input readonly type="text" class="form-control" formControlName="filedNameTwo">
-              <button class="btn btn-default" type="button" (click)="openDialogSearchFiled('filedNameTwo')">
+              <input readonly type="text" class="form-control" formControlName="fieldNameTwo">
+              <button class="btn btn-default" type="button" (click)="openDialogSearchfield('fieldNameTwo')">
                 <img src="assets/images/icon/menu.svg" width="12px" />
               </button>
             </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="row">
           <div class="col-md-11">
-            <input type="text" class="form-control" formControlName="conditionFiledTwo">
+            <input type="text" class="form-control" formControlName="conditionfieldTwo">
           </div>
           <div class="col-md-1"></div>
         </div>
@@ -97,8 +97,8 @@
           <div class="col-md-11">
             <mat-label class="input-head">ชื่อฟิลด์</mat-label>
             <div class="input-group input-group-lg">
-              <input readonly type="text" class="form-control" formControlName="filedNameThree">
-              <button class="btn btn-default" type="button" (click)="openDialogSearchFiled('filedNameThree')">
+              <input readonly type="text" class="form-control" formControlName="fieldNameThree">
+              <button class="btn btn-default" type="button" (click)="openDialogSearchfield('fieldNameThree')">
                 <img src="assets/images/icon/menu.svg" width="12px" />
               </button>
             </div>
@@ -111,7 +111,7 @@
         </div>
         <div class="row">
           <div class="col-md-11">
-            <input type="text" class="form-control" formControlName="conditionFiledThree">
+            <input type="text" class="form-control" formControlName="conditionfieldThree">
           </div>
           <div class="col-md-1"></div>
         </div> -->

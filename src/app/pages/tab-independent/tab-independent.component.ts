@@ -14,10 +14,10 @@ export interface Food {
   styleUrls: ['./tab-independent.component.scss']
 })
 export class TabIndependentComponent implements OnInit {
-  @ViewChildren('filedName') filedName: QueryList<ElementRef>;
-  @ViewChildren('conditionFiled') conditionFiled: QueryList<ElementRef>;
+  @ViewChildren('fieldName') fieldName: QueryList<ElementRef>;
+  @ViewChildren('conditionfield') conditionfield: QueryList<ElementRef>;
   @ViewChildren('optionInclude') optionInclude: QueryList<ElementRef>;
-
+  
   @Input() independent
   @Output() messageFromIndependent = new EventEmitter<any>();
 
@@ -26,22 +26,22 @@ export class TabIndependentComponent implements OnInit {
 
   // independentFormCreate: FormGroup;
 
-  // filedNameOneControl: FormControl; // ชื่อฟิลด์
+  // fieldNameOneControl: FormControl; // ชื่อฟิลด์
   // checkBoxOneControl: FormControl; // check box
-  // conditionFiledOneControl: FormControl; //เงื่อนไข
+  // conditionfieldOneControl: FormControl; //เงื่อนไข
 
-  // filedNameTwoControl: FormControl; // ชื่อฟิลด์
+  // fieldNameTwoControl: FormControl; // ชื่อฟิลด์
   // checkBoxTwoControl: FormControl; // check box
-  // conditionFiledTwoControl: FormControl; //เงื่อนไข
+  // conditionfieldTwoControl: FormControl; //เงื่อนไข
 
-  // filedNameThreeControl: FormControl; // ชื่อฟิลด์
+  // fieldNameThreeControl: FormControl; // ชื่อฟิลด์
   // checkBoxThreeControl: FormControl; // check box
-  // conditionFiledThreeControl: FormControl; //เงื่อนไข
+  // conditionfieldThreeControl: FormControl; //เงื่อนไข
 
   listIndependent = [
-    { id: 1, filedName: '', conditionFiled: '', optionInclude: false },
-    { id: 2, filedName: '', conditionFiled: '', optionInclude: false },
-    { id: 3, filedName: '', conditionFiled: '', optionInclude: false },
+    { id: 1, fieldName: '', conditionfield: '', optionInclude: false },
+    { id: 2, fieldName: '', conditionfield: '', optionInclude: false },
+    { id: 3, fieldName: '', conditionfield: '', optionInclude: false },
 
   ];
 
@@ -65,34 +65,34 @@ export class TabIndependentComponent implements OnInit {
     this.listIndependent = object
   }
   // createIndependentFormControl() {
-  //   this.filedNameOneControl = this.formBuilder.control('');
+  //   this.fieldNameOneControl = this.formBuilder.control('');
   //   this.checkBoxOneControl = this.formBuilder.control('');
-  //   this.conditionFiledOneControl = this.formBuilder.control('');
+  //   this.conditionfieldOneControl = this.formBuilder.control('');
 
-  //   this.filedNameTwoControl = this.formBuilder.control('');
+  //   this.fieldNameTwoControl = this.formBuilder.control('');
   //   this.checkBoxTwoControl = this.formBuilder.control('');
-  //   this.conditionFiledTwoControl = this.formBuilder.control('');
+  //   this.conditionfieldTwoControl = this.formBuilder.control('');
 
-  //   this.filedNameThreeControl = this.formBuilder.control('');
+  //   this.fieldNameThreeControl = this.formBuilder.control('');
   //   this.checkBoxThreeControl = this.formBuilder.control('');
-  //   this.conditionFiledThreeControl = this.formBuilder.control('');
+  //   this.conditionfieldThreeControl = this.formBuilder.control('');
 
   // }
 
   // createIndependentFormGroup() {
   //   this.independentFormCreate = this.formBuilder.group({
 
-  //     filedNameOne: this.filedNameOneControl,
+  //     fieldNameOne: this.fieldNameOneControl,
   //     checkBoxOne: this.checkBoxOneControl,
-  //     conditionFiledOne: this.conditionFiledOneControl,
+  //     conditionfieldOne: this.conditionfieldOneControl,
 
-  //     filedNameTwo: this.filedNameTwoControl,
+  //     fieldNameTwo: this.fieldNameTwoControl,
   //     checkBoxTwo: this.checkBoxTwoControl,
-  //     conditionFiledTwo: this.conditionFiledTwoControl,
+  //     conditionfieldTwo: this.conditionfieldTwoControl,
 
-  //     filedNameThree: this.filedNameThreeControl,
+  //     fieldNameThree: this.fieldNameThreeControl,
   //     checkBoxThree: this.checkBoxThreeControl,
-  //     conditionFiledThree: this.conditionFiledThreeControl,
+  //     conditionfieldThree: this.conditionfieldThreeControl,
 
   //   });
 
@@ -105,13 +105,13 @@ export class TabIndependentComponent implements OnInit {
 
   }
 
-  setConditionFiled(index) {
-    const conditionFiled = this.conditionFiled.toArray()[index].nativeElement.value;
+  setConditionfield(index) {
+    const conditionfield = this.conditionfield.toArray()[index].nativeElement.value;
 
-    if (conditionFiled) {
-      this.listIndependent[index].conditionFiled = conditionFiled
+    if (conditionfield) {
+      this.listIndependent[index].conditionfield = conditionfield
     } else {
-      this.listIndependent[index].conditionFiled = ''
+      this.listIndependent[index].conditionfield = ''
     }
 
     console.log(this.listIndependent)
@@ -130,7 +130,7 @@ export class TabIndependentComponent implements OnInit {
   }
 
   addInputIndependent() {
-    this.listIndependent.push({ id: this.listIndependent.length + 1, filedName: '', conditionFiled: '', optionInclude: false })
+    this.listIndependent.push({ id: this.listIndependent.length + 1, fieldName: '', conditionfield: '', optionInclude: false })
     console.log(this.listIndependent)
   }
   deleteInputIndependent(index) {
@@ -138,14 +138,14 @@ export class TabIndependentComponent implements OnInit {
   }
 
 
-  openDialogSearchFiled(index) {
+  openDialogSearchfield(index) {
     console.log(index)
     const dialogRef = this.dialog.open(DialogSearchFieldComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.event) {
-        this.listIndependent[index].filedName = result.value
+        this.listIndependent[index].fieldName = result.value
       }
     });
   }

@@ -81,20 +81,20 @@ export class HomeComponent implements OnInit {
     "independent": [
       {
         "id": 1,
-        "filedName": "วันผ่านรายการ",
-        "conditionFiled": "12321123",
+        "fieldName": "วันผ่านรายการ",
+        "conditionfield": "12321123",
         "optionInclude": false
       },
       {
         "id": 2,
-        "filedName": "การอ้างอิง",
-        "conditionFiled": "aaaaaa",
+        "fieldName": "การอ้างอิง",
+        "conditionfield": "aaaaaa",
         "optionInclude": true
       },
       {
         "id": 3,
-        "filedName": "วิธีการชำระเงิน",
-        "conditionFiled": "F",
+        "fieldName": "วิธีการชำระเงิน",
+        "conditionfield": "F",
         "optionInclude": false
       }
     ],
@@ -111,6 +111,48 @@ export class HomeComponent implements OnInit {
       "vendorTaxIdThreeTo": ""
     }
   }
+
+  testList =
+    {
+      "postDate": "",
+      "saveDate": "",
+      "paymentMethod": "",
+      "paymentDate": "",
+      "companyCode": "",
+      "vendor": [
+        {
+          "id": 1,
+          "vendorTaxIdFrom": "",
+          "vendorTaxIdTo": ""
+        },
+        {
+          "id": 2,
+          "vendorTaxIdFrom": "",
+          "vendorTaxIdTo": ""
+        }
+      ]
+    }
+  testList1 =
+    {
+      "postDate": "",
+      "saveDate": "",
+      "paymentMethod": "",
+      "paymentDate": "",
+      "companyCode": "",
+      "vendor": [
+        {
+          "id": 1,
+          "vendorTaxIdFrom": "",
+          "vendorTaxIdTo": ""
+        },
+        {
+          "id": 2,
+          "vendorTaxIdFrom": "",
+          "vendorTaxIdTo": ""
+        }
+      ]
+    }
+
 
   tabSelectedIndex = 0;
   constructor(
@@ -132,10 +174,10 @@ export class HomeComponent implements OnInit {
       //   this.tabParameterComponent.ngOnInit()
       //   this.tabIndependentComponent.ngOnInit()
       //   this.tabAdditionalLogComponent.ngOnInit()
-       
+
       // });
       // this.tabParameterComponent.ngOnInit()
-     
+
       this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab)
       this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab)
       this.tabAdditionalLogComponent.getIndependentFromCopy(this.listObjectAdditionLogTab)
@@ -151,8 +193,13 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-
-
+    console.log(JSON.stringify(this.testList.vendor))
+    console.log(JSON.stringify(this.testList1.vendor))
+    if (JSON.stringify(this.testList.vendor) === JSON.stringify(this.testList1.vendor)) {
+      console.log('boss')
+    } else {
+      console.log('aaa')
+    }
     // this.listObjectParameterTab = this.mockupJSON.parameter
     // this.listObjectIndependentTab = this.mockupJSON.independent
     // this.listObjectAdditionLogTab = this.mockupJSON.additionLog
@@ -181,44 +228,51 @@ export class HomeComponent implements OnInit {
     this.tabSelectedIndex = tabChangeEvent.index;
     // console.log(this.tabSelectedIndex)
     if (this.tabSelectedIndex === 0) {
+
+
       this.tabParameterComponent.updateParameter()
       this.tabAdditionalLogComponent.updateParameter()
       this.tabIndependentComponent.updateParameter()
 
+
+      console.log(this.testList.vendor)
       console.log(this.listObjectParameterTabForpayment)
       console.log(this.listObjectParameterTab)
 
       const jsonParameterForPayment = JSON.stringify(this.listObjectParameterTabForpayment)
       const jsonParameter = JSON.stringify(this.listObjectParameterTab)
-      console.log(jsonParameter)
       console.log(jsonParameterForPayment)
-      if(jsonParameterForPayment === jsonParameter){
+      console.log(jsonParameter)
+
+
+
+      if (jsonParameterForPayment === jsonParameter) {
         console.log('boss1')
-      }else{
+      } else {
         console.log('pop')
       }
+      this.listObjectParameterTabForpayment = this.listObjectParameterTab
 
-     
 
-        const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
-        });
+      // const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
+      // });
 
-        dialogRef.afterClosed().subscribe(result => {
-          // console.log('The dialog was closed');
-          this.listObjectParameterTabForpayment = this.listObjectParameterTab
-          this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
-          this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
+      // dialogRef.afterClosed().subscribe(result => {
+      //   // console.log('The dialog was closed');
+      //   this.listObjectParameterTabForpayment = this.listObjectParameterTab
+      //   this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
+      //   this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
 
-          const object = {
-            parameter: this.listObjectParameterTabForpayment,
-            independent: this.listObjectIndependentTabForpayment,
-            additionLog: this.listObjectAdditionLogTabForpayment
-          }
-          console.log(object)
-          const jsonObject = JSON.stringify(object)
-          console.log(jsonObject)
-        });
-      
+      //   const object = {
+      //     parameter: this.listObjectParameterTabForpayment,
+      //     independent: this.listObjectIndependentTabForpayment,
+      //     additionLog: this.listObjectAdditionLogTabForpayment
+      //   }
+      //   console.log(object)
+      //   const jsonObject = JSON.stringify(object)
+      //   console.log(jsonObject)
+      // });
+
     }
     // else if (this.tabSelectedIndex !== 1) {
     //   this.tabParameterComponent.updateParameter()
