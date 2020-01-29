@@ -11,7 +11,11 @@
       <div class="col-md-4 col-left">
         <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
         <div class="input-group input-group-lg">
+<<<<<<< HEAD
           <input type="text" [(ngModel)]="home1" [ngStyle]="{'background-color': !home1 ?'#fff' : '#f2f2f2'}" class="form-control date-mat-input" id="InputDate" [matDatepicker]="myDatepicker">
+=======
+          <input type="text" class="form-control date-mat-input"  [matDatepicker]="myDatepicker">
+>>>>>>> c3bffab64248479047ce9a1cbe568c5c502c69a8
           <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
             <img src="assets/images/icon/calendar.svg" width="12px">
             <mat-datepicker #myDatepicker></mat-datepicker>
@@ -57,7 +61,7 @@
 
               </mat-tab>
               <mat-tab label="การเลือกอิสระ">
-                <app-tab-independent></app-tab-independent>
+                <app-tab-independent [independent]="listObjectIndependentTab" (messageFromIndependent)="receiveObjectFromIndependent($event)"></app-tab-independent>
               </mat-tab>
               <mat-tab label="log เพิ่มเติม">
                 <app-tab-additional-log [additionLog]="listObjectAdditionLogTab" (messageFromAdditionLog)="receiveObjectFromAdditionLog($event)"></app-tab-additional-log>

@@ -91,7 +91,7 @@ export class DialogSearchFieldComponent implements OnInit {
     // this.errorMessage = '';
     this.dialogRef.close({
       event: true,
-      type: this.data.type,
+      // type: this.data.type,
       value: row.filedName,
 
     });

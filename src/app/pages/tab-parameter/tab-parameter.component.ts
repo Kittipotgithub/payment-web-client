@@ -3,6 +3,7 @@ import { DialogSearchPaymentMethodComponent } from './../../shared/component/tab
 import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { Utils } from 'src/app/shared/utils';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 export class TabParameterComponent implements OnInit {
   @ViewChildren('vendorTaxIdFrom') vendorTaxIdFrom: QueryList<ElementRef>;
   @ViewChildren('vendorTaxIdTo') vendorTaxIdTo: QueryList<ElementRef>;
-  
+
   // Tab
   panleExpanded = true;
   panleExpanded1 = true;
@@ -44,6 +45,7 @@ export class TabParameterComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private utils: Utils,
   ) { }
 
 
@@ -59,6 +61,17 @@ export class TabParameterComponent implements OnInit {
       this.defaultInput()
     }
 
+  }
+  getParameterFromCopy(object) {
+    // this.listIndependent = object
+    this.listVendor = object.vendor
+    this.parameterForm.patchValue({
+      postDate: object.postDate,  // วันที่ผ่านรายการ
+      saveDate: object.saveDate,  // บันทึกเอกสาร
+      paymentMethod: object.paymentMethod,  // วิธีชำระเงิน  
+      paymentDate: object.paymentDate,  // วันชำระถัดไป
+      companyCode: this.utils.convertCompanyArrayToCompanyText(object.companyCode),  // รหัสบริษัท
+    })
   }
 
   createFormControl() {
@@ -99,7 +112,7 @@ export class TabParameterComponent implements OnInit {
       saveDate: this.parameter.saveDate,  // บันทึกเอกสาร
       paymentMethod: this.parameter.paymentMethod,  // วิธีชำระเงิน  
       paymentDate: this.parameter.paymentDate,  // วันชำระถัดไป
-      companyCode: this.parameter.companyCode,  // รหัสบริษัท
+      companyCode: this.utils.convertCompanyArrayToCompanyText(this.parameter.companyCode),  // รหัสบริษัท
     })
   }
 
@@ -126,6 +139,7 @@ export class TabParameterComponent implements OnInit {
   // }
   updateParameter(): void {
     this.parameterForm.value.vendor = this.listVendor
+    this.parameterForm.value.companyCode = this.utils.convertCompanyTextToCompanyArray(this.parameterForm.value.companyCode)
     this.parameter = this.parameterForm.value
 
     this.messageFromParameter.emit(this.parameter)
