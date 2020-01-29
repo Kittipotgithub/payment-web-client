@@ -13,7 +13,7 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 export class TabParameterComponent implements OnInit {
   @ViewChildren('vendorTaxIdFrom') vendorTaxIdFrom: QueryList<ElementRef>;
   @ViewChildren('vendorTaxIdTo') vendorTaxIdTo: QueryList<ElementRef>;
-  
+
   // Tab
   panleExpanded = true;
   panleExpanded1 = true;
@@ -59,6 +59,17 @@ export class TabParameterComponent implements OnInit {
       this.defaultInput()
     }
 
+  }
+  getParameterFromCopy(object) {
+    // this.listIndependent = object
+    this.listVendor = object.vendor
+    this.parameterForm.patchValue({
+      postDate: object.postDate,  // วันที่ผ่านรายการ
+      saveDate: object.saveDate,  // บันทึกเอกสาร
+      paymentMethod: object.paymentMethod,  // วิธีชำระเงิน  
+      paymentDate: object.paymentDate,  // วันชำระถัดไป
+      companyCode: object.companyCode,  // รหัสบริษัท
+    })
   }
 
   createFormControl() {

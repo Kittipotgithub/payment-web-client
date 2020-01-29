@@ -37,10 +37,30 @@ export class TabAdditionalLogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.additionLog)
     this.createAdditionLogFormControl();
     this.createAdditionLogFormGroup();
-    this.defaultInputAdditionLogForm()
-
+    if (this.additionLog) {
+      this.setInputFromAddition()
+    } else {
+      this.defaultInputAdditionLogForm()
+    }
+  }
+  getIndependentFromCopy(object){
+    console.log(object)
+    // this.listIndependent = object
+    this.additionLogForm.patchValue({
+      checkBoxDueDate: object.checkBoxDueDate, // ตรวจสอบวันที่ครบกำหนด
+      checkBoxPaymentMethodAll: object.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี
+      checkBoxPaymentMethodUnsuccess: object.checkBoxPaymentMethodUnsuccess, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+      checkBoxDisplayDetail: object.checkBoxDisplayDetail, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
+      vendorTaxIdOneFrom: object.vendorTaxIdOneFrom, // vendor
+      vendorTaxIdOneTo: object.vendorTaxIdOneTo, // vendor
+      vendorTaxIdTwoFrom: object.vendorTaxIdTwoFrom, // vendor
+      vendorTaxIdTwoTo: object.vendorTaxIdTwoTo, // vendor
+      vendorTaxIdThreeFrom: object.vendorTaxIdThreeFrom, // vendor
+      vendorTaxIdThreeTo: object.venvendorTaxIdThreeTodorTax, // vendor
+    })
   }
   createAdditionLogFormControl() {
     this.checkBoxDueDateControl = this.formBuilder.control(''); // ตรวจสอบวันที่ครบกำหนด
@@ -82,7 +102,24 @@ export class TabAdditionalLogComponent implements OnInit {
       vendorTaxIdThreeTo: '', // vendor
     });
   }
+  setInputFromAddition() {
+   
+    // this.listVendor = this.parameter.vendor
+    this.additionLogForm.patchValue({
+      checkBoxDueDate: this.additionLog.checkBoxDueDate, // ตรวจสอบวันที่ครบกำหนด
+      checkBoxPaymentMethodAll: this.additionLog.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี
+      checkBoxPaymentMethodUnsuccess: this.additionLog.checkBoxPaymentMethodUnsuccess, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+      checkBoxDisplayDetail: this.additionLog.checkBoxDisplayDetail, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
+      vendorTaxIdOneFrom: this.additionLog.vendorTaxIdOneFrom, // vendor
+      vendorTaxIdOneTo: this.additionLog.vendorTaxIdOneTo, // vendor
+      vendorTaxIdTwoFrom: this.additionLog.vendorTaxIdTwoFrom, // vendor
+      vendorTaxIdTwoTo: this.additionLog.vendorTaxIdTwoTo, // vendor
+      vendorTaxIdThreeFrom: this.additionLog.vendorTaxIdThreeFrom, // vendor
+      vendorTaxIdThreeTo: this.additionLog.venvendorTaxIdThreeTodorTax, // vendor
+    })
+  }
   checkValidationAdditionLog(event, type) {
+    console.log('checkValidationAdditionLog')
     if (type === 'dueDate') {
       if (event.checked) {
         this.isDisabledCheckBoxPaymentMethodAll = true
@@ -100,6 +137,7 @@ export class TabAdditionalLogComponent implements OnInit {
   updateParameter(): void {
     // this.additionLogForm.value.vendor = this.listVendor
     this.additionLog = this.additionLogForm.value
+
 
     this.messageFromAdditionLog.emit(this.additionLog)
 

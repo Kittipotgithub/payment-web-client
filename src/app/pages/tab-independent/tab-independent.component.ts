@@ -1,5 +1,5 @@
 import { DialogSearchFieldComponent } from './../../shared/component/tab-additional/dialog-search-field/dialog-search-field.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
@@ -14,133 +14,138 @@ export interface Food {
   styleUrls: ['./tab-independent.component.scss']
 })
 export class TabIndependentComponent implements OnInit {
+  @ViewChildren('filedName') filedName: QueryList<ElementRef>;
+  @ViewChildren('conditionFiled') conditionFiled: QueryList<ElementRef>;
+  @ViewChildren('optionInclude') optionInclude: QueryList<ElementRef>;
+
+  @Input() independent
+  @Output() messageFromIndependent = new EventEmitter<any>();
 
   // Tab
   panleExpanded = true;
 
-  independentFormCreate: FormGroup;
+  // independentFormCreate: FormGroup;
 
-  filedNameOneControl: FormControl; // ชื่อฟิลด์
-  checkBoxOneControl: FormControl; // check box
-  conditionFiledOneControl: FormControl; //เงื่อนไข
+  // filedNameOneControl: FormControl; // ชื่อฟิลด์
+  // checkBoxOneControl: FormControl; // check box
+  // conditionFiledOneControl: FormControl; //เงื่อนไข
 
-  filedNameTwoControl: FormControl; // ชื่อฟิลด์
-  checkBoxTwoControl: FormControl; // check box
-  conditionFiledTwoControl: FormControl; //เงื่อนไข
+  // filedNameTwoControl: FormControl; // ชื่อฟิลด์
+  // checkBoxTwoControl: FormControl; // check box
+  // conditionFiledTwoControl: FormControl; //เงื่อนไข
 
-  filedNameThreeControl: FormControl; // ชื่อฟิลด์
-  checkBoxThreeControl: FormControl; // check box
-  conditionFiledThreeControl: FormControl; //เงื่อนไข
+  // filedNameThreeControl: FormControl; // ชื่อฟิลด์
+  // checkBoxThreeControl: FormControl; // check box
+  // conditionFiledThreeControl: FormControl; //เงื่อนไข
 
+  listIndependent = [
+    { id: 1, filedName: '', conditionFiled: '', optionInclude: false },
+    { id: 2, filedName: '', conditionFiled: '', optionInclude: false },
+    { id: 3, filedName: '', conditionFiled: '', optionInclude: false },
 
-
-  foods: Food[] = [
-    { value: '1', viewValue: 'เลขที่เอกสาร' },
-    { value: '2', viewValue: 'ประเภทเอกสาร' },
-    { value: '3', viewValue: 'วันผ่านรายการ' },
-    { value: '4', viewValue: 'การอ้างอิง' },
-    { value: '5', viewValue: 'แหล่งของเงิน' },
-    { value: '6', viewValue: 'วิธีการชำระเงิน' },
-    { value: '7', viewValue: 'การระงับการชำระเงิน' },
-    // {value: '8', viewValue: 'อื่นๆ'}
   ];
 
-  containers = [];
-
-  //modifedtext: string;
 
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
   ) { }
 
-  public show;
-  public show1;
-  public show2;
-  public show3;
-  public show4;
+
 
   ngOnInit() {
-    this.createIndependentFormControl();
-    this.createIndependentFormGroup();
+    // this.createIndependentFormControl();
+    // this.createIndependentFormGroup();
+    if (this.independent) {
+      this.listIndependent = this.independent
+    }
 
   }
-  createIndependentFormControl() {
-    this.filedNameOneControl = this.formBuilder.control('');
-    this.checkBoxOneControl = this.formBuilder.control('');
-    this.conditionFiledOneControl = this.formBuilder.control('');
+  getIndependentFromCopy(object){
+    this.listIndependent = object
+  }
+  // createIndependentFormControl() {
+  //   this.filedNameOneControl = this.formBuilder.control('');
+  //   this.checkBoxOneControl = this.formBuilder.control('');
+  //   this.conditionFiledOneControl = this.formBuilder.control('');
 
-    this.filedNameTwoControl = this.formBuilder.control('');
-    this.checkBoxTwoControl = this.formBuilder.control('');
-    this.conditionFiledTwoControl = this.formBuilder.control('');
+  //   this.filedNameTwoControl = this.formBuilder.control('');
+  //   this.checkBoxTwoControl = this.formBuilder.control('');
+  //   this.conditionFiledTwoControl = this.formBuilder.control('');
 
-    this.filedNameThreeControl = this.formBuilder.control('');
-    this.checkBoxThreeControl = this.formBuilder.control('');
-    this.conditionFiledThreeControl = this.formBuilder.control('');
+  //   this.filedNameThreeControl = this.formBuilder.control('');
+  //   this.checkBoxThreeControl = this.formBuilder.control('');
+  //   this.conditionFiledThreeControl = this.formBuilder.control('');
+
+  // }
+
+  // createIndependentFormGroup() {
+  //   this.independentFormCreate = this.formBuilder.group({
+
+  //     filedNameOne: this.filedNameOneControl,
+  //     checkBoxOne: this.checkBoxOneControl,
+  //     conditionFiledOne: this.conditionFiledOneControl,
+
+  //     filedNameTwo: this.filedNameTwoControl,
+  //     checkBoxTwo: this.checkBoxTwoControl,
+  //     conditionFiledTwo: this.conditionFiledTwoControl,
+
+  //     filedNameThree: this.filedNameThreeControl,
+  //     checkBoxThree: this.checkBoxThreeControl,
+  //     conditionFiledThree: this.conditionFiledThreeControl,
+
+  //   });
+
+  // }
+  updateParameter(): void {
+
+    this.independent = this.listIndependent
+
+    this.messageFromIndependent.emit(this.independent)
 
   }
 
-  createIndependentFormGroup() {
-    this.independentFormCreate = this.formBuilder.group({
+  setConditionFiled(index) {
+    const conditionFiled = this.conditionFiled.toArray()[index].nativeElement.value;
 
-      filedNameOne: this.filedNameOneControl,
-      checkBoxOne: this.checkBoxOneControl,
-      conditionFiledOne: this.conditionFiledOneControl,
+    if (conditionFiled) {
+      this.listIndependent[index].conditionFiled = conditionFiled
+    } else {
+      this.listIndependent[index].conditionFiled = ''
+    }
 
-      filedNameTwo: this.filedNameTwoControl,
-      checkBoxTwo: this.checkBoxTwoControl,
-      conditionFiledTwo: this.conditionFiledTwoControl,
-
-      filedNameThree: this.filedNameThreeControl,
-      checkBoxThree: this.checkBoxThreeControl,
-      conditionFiledThree: this.conditionFiledThreeControl,
-
-    });
-
+    console.log(this.listIndependent)
   }
-  aaa() {
-    console.log(this.independentFormCreate.value)
-  }
+  setOptionInclude(index) {
 
-  toggle() {
-    this.show = true;
+    const valueIndex = this.optionInclude.toArray()[index] as any
+
+    const optionInclude = valueIndex._checked
+    if (optionInclude) {
+      this.listIndependent[index].optionInclude = optionInclude
+    } else {
+      this.listIndependent[index].optionInclude = false
+    }
+    console.log(this.listIndependent)
   }
 
-  toggle1() {
-    this.show1 = true;
+  addInputIndependent() {
+    this.listIndependent.push({ id: this.listIndependent.length + 1, filedName: '', conditionFiled: '', optionInclude: false })
+    console.log(this.listIndependent)
   }
-
-  toggle2() {
-    this.show2 = true;
-  }
-
-  toggle3() {
-    this.show3 = true;
-  }
-
-  add() {
-    this.containers.push(this.containers.length);
-  }
-
-  del() {
-    this.containers.splice(this.containers.length - 1);
+  deleteInputIndependent(index) {
+    this.listIndependent.splice(index, 1);
   }
 
 
-  /*toggle4() {
-    this.show4 = true;
-  }*/
-
-
-  openDialogSearchFiled(type) {
-
+  openDialogSearchFiled(index) {
+    console.log(index)
     const dialogRef = this.dialog.open(DialogSearchFieldComponent, {
-      data: { type },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.event) {
-        this.independentFormCreate.patchValue({ [result.type]: result.value });
+        this.listIndependent[index].filedName = result.value
       }
     });
   }
