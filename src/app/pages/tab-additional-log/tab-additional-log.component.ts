@@ -46,9 +46,22 @@ export class TabAdditionalLogComponent implements OnInit {
       this.defaultInputAdditionLogForm()
     }
   }
-  getIndependentFromCopy(object){
+  getIndependentFromCopy(object) {
     console.log(object)
-    // this.listIndependent = object
+    
+
+    this.isDisabledCheckBoxDueDate = false
+    this.isDisabledCheckBoxPaymentMethodAll = false
+
+    if (object.checkBoxDueDate) {
+      this.isDisabledCheckBoxPaymentMethodAll = true
+      this.isDisabledCheckBoxDueDate = false
+    }
+    if (object.checkBoxPaymentMethodAll) {
+      this.isDisabledCheckBoxPaymentMethodAll = false
+      this.isDisabledCheckBoxDueDate = true
+    }
+
     this.additionLogForm.patchValue({
       checkBoxDueDate: object.checkBoxDueDate, // ตรวจสอบวันที่ครบกำหนด
       checkBoxPaymentMethodAll: object.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี
@@ -103,8 +116,20 @@ export class TabAdditionalLogComponent implements OnInit {
     });
   }
   setInputFromAddition() {
-   
-    // this.listVendor = this.parameter.vendor
+
+    this.isDisabledCheckBoxDueDate = false
+    this.isDisabledCheckBoxPaymentMethodAll = false
+
+    // if (this.additionLog.checkBoxDueDate) {
+    //   this.isDisabledCheckBoxPaymentMethodAll = true
+    //   this.isDisabledCheckBoxDueDate = false
+    // }
+    // if (this.additionLog.checkBoxPaymentMethodAll) {
+    //   this.isDisabledCheckBoxPaymentMethodAll = false
+    //   this.isDisabledCheckBoxDueDate = true
+    // }
+
+    
     this.additionLogForm.patchValue({
       checkBoxDueDate: this.additionLog.checkBoxDueDate, // ตรวจสอบวันที่ครบกำหนด
       checkBoxPaymentMethodAll: this.additionLog.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี
@@ -117,20 +142,42 @@ export class TabAdditionalLogComponent implements OnInit {
       vendorTaxIdThreeFrom: this.additionLog.vendorTaxIdThreeFrom, // vendor
       vendorTaxIdThreeTo: this.additionLog.venvendorTaxIdThreeTodorTax, // vendor
     })
+
+
   }
   checkValidationAdditionLog(event, type) {
     console.log('checkValidationAdditionLog')
     if (type === 'dueDate') {
       if (event.checked) {
         this.isDisabledCheckBoxPaymentMethodAll = true
+        this.additionLogForm.patchValue({
+          checkBoxDueDate: true, // ตรวจสอบวันที่ครบกำหนด
+          checkBoxPaymentMethodAll: false, // เลือกวิธีชำระเงินในทุกกรณี
+
+        })
       } else {
         this.isDisabledCheckBoxPaymentMethodAll = false
+        this.additionLogForm.patchValue({
+          checkBoxDueDate: false, // ตรวจสอบวันที่ครบกำหนด
+          checkBoxPaymentMethodAll: false, // เลือกวิธีชำระเงินในทุกกรณี
+
+        })
       }
     } else if (type === 'paymentMethodAll') {
       if (event.checked) {
         this.isDisabledCheckBoxDueDate = true
+        this.additionLogForm.patchValue({
+          checkBoxDueDate: false, // ตรวจสอบวันที่ครบกำหนด
+          checkBoxPaymentMethodAll: true, // เลือกวิธีชำระเงินในทุกกรณี
+
+        })
       } else {
         this.isDisabledCheckBoxDueDate = false
+        this.additionLogForm.patchValue({
+          checkBoxDueDate: false, // ตรวจสอบวันที่ครบกำหนด
+          checkBoxPaymentMethodAll: false, // เลือกวิธีชำระเงินในทุกกรณี
+
+        })
       }
     }
   }

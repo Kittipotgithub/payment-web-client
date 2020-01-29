@@ -1,3 +1,4 @@
+import { Utils } from 'src/app/shared/utils';
 import { DialogCopyParameterComponent } from './../../shared/component/dialog-copy-parameter/dialog-copy-parameter.component';
 import { AppDateAdapter, APP_DATE_FORMATS } from './../../shared/format-datepicker';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit {
       "saveDate": "2020-01-03T17:00:00.000Z",
       "paymentMethod": "13IJ602457",
       "paymentDate": "2019-12-31T17:00:00.000Z",
-      "companyCode": "12005",
+      "companyCode":[{"companyCodeFrom":"12005","companyCodeTo":""}],
       "vendor": [
         {
           "id": 1,
@@ -158,6 +159,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private router: Router,
+    private utils: Utils,
   ) { }
 
   openDialogCopyParameterComponent(): void {
@@ -193,13 +195,15 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(JSON.stringify(this.testList.vendor))
-    console.log(JSON.stringify(this.testList1.vendor))
-    if (JSON.stringify(this.testList.vendor) === JSON.stringify(this.testList1.vendor)) {
-      console.log('boss')
-    } else {
-      console.log('aaa')
-    }
+    // console.log(JSON.stringify(this.testList.vendor))
+    // console.log(JSON.stringify(this.testList1.vendor))
+    // if (JSON.stringify(this.testList.vendor) === JSON.stringify(this.testList1.vendor)) {
+    //   console.log('boss')
+    // } else {
+    //   console.log('aaa')
+    // }
+
+
     // this.listObjectParameterTab = this.mockupJSON.parameter
     // this.listObjectIndependentTab = this.mockupJSON.independent
     // this.listObjectAdditionLogTab = this.mockupJSON.additionLog
