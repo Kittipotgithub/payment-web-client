@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, OnInit, Input, Output, EventEmitter
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Utils } from 'src/app/shared/utils';
+import { DialogSearchVendorPaymentComponent } from 'src/app/shared/component/dialog-search-vendor-payment/dialog-search-vendor-payment.component';
 
 
 @Component({
@@ -148,7 +149,7 @@ export class TabParameterComponent implements OnInit {
 
 
   openDialogSearchVendor(index, type): void {
-    const dialog = this.dialog.open(DialogSearchPaymentMethodComponent, {
+    const dialog = this.dialog.open(DialogSearchVendorPaymentComponent, {
     });
     dialog.afterClosed().subscribe(result => {
       console.log(result)

@@ -43,53 +43,19 @@ export class DialogSearchMasterComponent implements OnInit {
   userProfile: any
 
   listDocument = [
-    {
-      "valueCode": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
+    { code: '07.11.2019', pay: 'H0001', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '07.11.2019', pay: 'H0002', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '29.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '29.10.2019', pay: 'Z-DI2', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '29.10.2019', pay: 'Z-IN1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+    { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  ];
 
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-    {
-      "code": "12005630000100000",
-      "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
-    },
-  ]
-
+  checkTest=true;
 
   constructor(
     public dialogRef: MatDialogRef<DialogSearchMasterComponent>,
@@ -268,39 +234,53 @@ export class DialogSearchMasterComponent implements OnInit {
     });
   }
   loadVendor(textSearch) {
-    const percent = textSearch.split('').filter(value => value === '%').length;
-    for (let i = 0; i < percent; i++) {
-      textSearch = textSearch.replace('%', '*');
-    }
-    const text = textSearch.split('').filter(value => value === '*').length;
-    if (text > 2) {
-      this.errorMessage = 'เงื่อนไขไม่ถูกต้อง';
-      return false;
-    } else {
-      const checkCondtion = textSearch.indexOf('**');
+    this.dataSource = this.listDocument
+    this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.vendorTaxId;
+    // const percent = textSearch.split('').filter(value => value === '%').length;
+    // for (let i = 0; i < percent; i++) {
+    //   textSearch = textSearch.replace('%', '*');
+    // }
+    // const text = textSearch.split('').filter(value => value === '*').length;
+    // if (text > 2) {
+    //   this.errorMessage = 'เงื่อนไขไม่ถูกต้อง';
+    //   return false;
+    // } else {
+    //   const checkCondtion = textSearch.indexOf('**');
 
-      if (checkCondtion === -1) {
-        if (textSearch === '*' || textSearch === '**') {
-          this.errorMessage = 'เงื่อนไขไม่ถูกต้อง';
-          return false;
-        }
-      } else {
-        this.errorMessage = 'เงื่อนไขไม่ถูกต้อง';
-        return false;
-      }
+    //   if (checkCondtion === -1) {
+    //     if (textSearch === '*' || textSearch === '**') {
+    //       this.errorMessage = 'เงื่อนไขไม่ถูกต้อง';
+    //       return false;
+    //     }
+    //   } else {
+    //     this.errorMessage = 'เงื่อนไขไม่ถูกต้อง';
+    //     return false;
+    //   }
+    // }
+    // this.errorMessage = '';
+    // this.isLoading = true;
+    // this.masterService.findVendorCodeWithParam(textSearch).subscribe(data => {
+    //   const response = data as any;
+    //   this.isLoading = false;
+    //   if (response.status === 'T') {
+    //     this.dataSource = response.data;
+    //     this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.vendorTaxId;
+    //   } else {
+    //     this.errorMessage = response.message;
+    //   }
+    // });
+  }
+  sortData(sortType) {
+
+    this.checkTest = !sortType
+
+
+    if (sortType) {
+      this.dataSource.sort((a, b) => (b.pay > a.pay ? 1 : -1));
+    } else {
+      this.dataSource.sort((a, b) => (a.pay > b.pay ? 1 : -1));
     }
-    this.errorMessage = '';
-    this.isLoading = true;
-    this.masterService.findVendorCodeWithParam(textSearch).subscribe(data => {
-      const response = data as any;
-      this.isLoading = false;
-      if (response.status === 'T') {
-        this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.vendorTaxId;
-      } else {
-        this.errorMessage = response.message;
-      }
-    });
+    console.log(this.dataSource)
   }
 
   chooseDataSearch(value, name, optional, optionalName) {

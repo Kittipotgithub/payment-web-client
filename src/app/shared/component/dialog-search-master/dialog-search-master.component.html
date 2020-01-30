@@ -28,7 +28,7 @@
     <div class="col-md-12">
       <table class="table-normal table-result">
         <tr>
-          <th *ngFor="let header of dataSourceHeader">{{ header }}</th>
+          <th *ngFor="let header of dataSourceHeader" (click)="sortData(checkTest)">{{ header }}</th>
         </tr>
         <tbody *ngIf="searchType === 'departmentCodeFrom' || searchType === 'departmentCodeTo'">
           <tr *ngFor="let data of dataSource">
@@ -64,9 +64,12 @@
             <td>
               <mat-icon class="icon pointer">folder_open</mat-icon>
             </td>
-            <td>{{ data.taxId }}</td>
+            <!-- <td>{{ data.pa }}</td>
             <td>{{ data.valueCode }}</td>
-            <td class="text-left">{{ data.name }}</td>
+            <td class="text-left">{{ data.name }}</td> -->
+            <td>{{ data.code }}</td>
+            <td>{{ data.pay }}</td>
+            <td class="text-left">{{ data.nextpay }}</td>
           </tr>
         </tbody>
       </table>

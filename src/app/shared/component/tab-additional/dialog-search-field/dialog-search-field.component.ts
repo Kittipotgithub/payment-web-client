@@ -32,7 +32,7 @@ export class DialogSearchFieldComponent implements OnInit {
   typeControl: FormControl; // ชื่อฟิลด์
 
 
-  displayedColumns: string[] = ['filedName', 'filedTable'];
+  displayedColumns: string[] = ['choose','filedName', 'filedTable'];
 
   dataSource = [];
   defaultFiled =
