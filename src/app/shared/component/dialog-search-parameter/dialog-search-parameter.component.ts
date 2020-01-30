@@ -1,4 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 export interface PeriodicElement {
@@ -27,7 +29,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DialogSearchParameterComponent implements OnInit {
   displayedColumns: string[] = ['choose','code', 'pay', 'nextpay'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   constructor(
     private dialogRef: MatDialogRef<DialogSearchParameterComponent>
@@ -39,6 +43,7 @@ export class DialogSearchParameterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
   }
 
   chooseDataSearch(data) {
