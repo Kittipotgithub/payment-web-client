@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { OmComponent } from './om/om.component';
-import { MatDialogModule, MatNativeDateModule, MatTabsModule, MatExpansionModule, MatDatepickerModule, MatAutocompleteModule } from '@angular/material';
+import { MatDialogModule, MatNativeDateModule, MatTabsModule, MatExpansionModule, MatDatepickerModule, MatAutocompleteModule, MatSort, MatSortModule } from '@angular/material';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 
-import {MatTableModule} from '@angular/material/table';
+import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -84,7 +84,8 @@ import { TabIndependentComponent } from './tab-independent/tab-independent.compo
     MatDialogModule,
     DragDropModule,
     FormsModule,
-    ScrollingModule
+    ScrollingModule,
+    MatSortModule
   ]
 })
 export class PagesModule { 

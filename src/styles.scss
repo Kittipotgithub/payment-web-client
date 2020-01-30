@@ -512,6 +512,11 @@ span.break-word-text {
 .mat-row.highlighted {
   background: #999;
 }
-.pointer {
+
+tr {
   cursor: pointer;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
 }
