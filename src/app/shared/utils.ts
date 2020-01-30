@@ -44,8 +44,8 @@ export class Utils {
       let replaceValue = item.replace(')', '');
       let arraySplitTwo = replaceValue.split(',')
       const data = {
-        companyCodeFrom: arraySplitTwo[0] ? arraySplitTwo[0] : '',
-        companyCodeTo: arraySplitTwo[1] ? arraySplitTwo[1] : ''
+        companyFrom: arraySplitTwo[0] ? arraySplitTwo[0] : '',
+        companyTo: arraySplitTwo[1] ? arraySplitTwo[1] : ''
       }
       listCompany.push(data)
     })
@@ -55,14 +55,14 @@ export class Utils {
     let companyText = ''
     companyArray.forEach(item => {
       let textString = ''
-      if (item.companyCodeFrom && item.companyCodeTo) {
-        textString += '(' + item.companyCodeFrom + ',' + item.companyCodeTo + ')'
+      if (item.companyFrom && item.companyTo) {
+        textString += '(' + item.companyFrom + ',' + item.companyTo + ')'
       } else {
-        if (item.companyCodeFrom) {
-          textString += item.companyCodeFrom
+        if (item.companyFrom) {
+          textString += item.companyFrom
         }
-        if (item.companyCodeTo) {
-          textString += ',' + item.companyCodeTo
+        if (item.companyTo) {
+          textString += ',' + item.companyTo
         }
       }
       companyText += textString + ','
@@ -71,6 +71,43 @@ export class Utils {
       companyText = companyText.substring(0, companyText.length - 1)
     }
     return companyText
+  }
+  public convertConditionFieldTextToConditionFieldArray(conditionFieldText: string): any {
+    console.log(conditionFieldText)
+    let arraySplitFirst = conditionFieldText.split(',(');
+    let listConditionField = []
+
+    arraySplitFirst.forEach(item => {
+      let replaceValue = item.replace(')', '');
+      let arraySplitTwo = replaceValue.split(',')
+      const data = {
+        conditionFieldFrom: arraySplitTwo[0] ? arraySplitTwo[0] : '',
+        conditionFieldTo: arraySplitTwo[1] ? arraySplitTwo[1] : ''
+      }
+      listConditionField.push(data)
+    })
+    return listConditionField;
+  }
+  public convertConditionFieldArrayToConditionFieldText(conditionFieldArray: any): any {
+    let conditionFieldText = ''
+    conditionFieldArray.forEach(item => {
+      let textString = ''
+      if (item.conditionFieldFrom && item.conditionFieldTo) {
+        textString += '(' + item.conditionFieldFrom + ',' + item.conditionFieldTo + ')'
+      } else {
+        if (item.conditionFieldFrom) {
+          textString += item.conditionFieldFrom
+        }
+        if (item.conditionFieldTo) {
+          textString += ',' + item.conditionFieldTo
+        }
+      }
+      conditionFieldText += textString + ','
+    })
+    if (conditionFieldText.endsWith(',')) {
+      conditionFieldText = conditionFieldText.substring(0, conditionFieldText.length - 1)
+    }
+    return conditionFieldText
   }
 
 }

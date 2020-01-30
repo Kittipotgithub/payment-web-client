@@ -1,3 +1,4 @@
+import { PaymentService } from './../../core/service/payment/payment.service';
 import { Utils } from 'src/app/shared/utils';
 import { DialogCopyParameterComponent } from './../../shared/component/dialog-copy-parameter/dialog-copy-parameter.component';
 import { AppDateAdapter, APP_DATE_FORMATS } from './../../shared/format-datepicker';
@@ -52,93 +53,109 @@ export class HomeComponent implements OnInit {
   mockupJSON = {
     "payment": {
       "paymentDate": "2020-01-29T17:00:00.000Z",
-      "paymentName": "ABCD",
-      "status": "S"
+      "paymentName": "H0001",
+      "status": ""
     },
     "parameter": {
       "postDate": "2019-12-31T17:00:00.000Z",
-      "saveDate": "2020-01-03T17:00:00.000Z",
-      "paymentMethod": "13IJ602457",
-      "paymentDate": "2019-12-31T17:00:00.000Z",
-      "companyCode": [
+      "saveDate": "2020-01-01T17:00:00.000Z",
+      "paymentMethod": "IJ04",
+      "paymentDate": "2020-01-02T17:00:00.000Z",
+      "company": "12005,(3004,3003),1234",
+      "companyCondition": [
         {
-          "companyCodeFrom": "12005",
-          "companyCodeTo": ""
+          "companyFrom": "12005",
+          "companyTo": ""
+        },
+        {
+          "companyFrom": "3004",
+          "companyTo": "3003"
         }
       ],
       "vendor": [
         {
-          "id": 1,
-          "vendorTaxIdFrom": "111111111111",
+          "vendorTaxIdFrom": "0105535159165",
           "vendorTaxIdTo": ""
         },
         {
-          "id": 2,
-          "vendorTaxIdFrom": "222222",
-          "vendorTaxIdTo": "33333"
+          "vendorTaxIdFrom": "3100501579102",
+          "vendorTaxIdTo": "3100501579109"
         },
         {
-          "id": 3,
-          "vendorTaxIdFrom": "5555",
-          "vendorTaxIdTo": ""
-        },
-        {
-          "id": 4,
-          "vendorTaxIdFrom": "999",
-          "vendorTaxIdTo": ""
-        },
-        {
-          "id": 5,
-          "vendorTaxIdFrom": "888",
-          "vendorTaxIdTo": ""
-        },
-        {
-          "id": 6,
-          "vendorTaxIdFrom": "",
+          "vendorTaxIdFrom": "1233",
           "vendorTaxIdTo": ""
         }
       ]
     },
     "independent": [
       {
-        "id": 1,
-        "fieldName": "วันผ่านรายการ",
-        "conditionfield": "12321123",
-        "optionInclude": false
+        "fieldName": "เลขที่เอกสาร",
+        "conditionField": "12005,(3004,3003)",
+        "optionExclude": true,
+        "dataType": "string",
+        "dbName": "v",
+        "tableName": "accDocNo",
+        "condition": [
+          {
+            "conditionFieldFrom": "12005",
+            "conditionFieldTo": ""
+          },
+          {
+            "conditionFieldFrom": "3004",
+            "conditionFieldTo": "3003"
+          }
+        ]
       },
       {
-        "id": 2,
-        "fieldName": "การอ้างอิง",
-        "conditionfield": "aaaaaa",
-        "optionInclude": true
+        "fieldName": "ประเภทเอกสาร",
+        "conditionField": "12005",
+        "optionExclude": false,
+        "dataType": "string",
+        "dbName": "v",
+        "tableName": "accDocNo",
+        "condition": [
+          {
+            "conditionFieldFrom": "12005",
+            "conditionFieldTo": ""
+          }
+        ]
       },
       {
-        "id": 3,
         "fieldName": "วิธีการชำระเงิน",
-        "conditionfield": "F",
-        "optionInclude": false
+        "conditionField": "F,(1,2)",
+        "optionExclude": true,
+        "dataType": "string",
+        "dbName": "v",
+        "tableName": "accDocNo",
+        "condition": [
+          {
+            "conditionFieldFrom": "F",
+            "conditionFieldTo": ""
+          },
+          {
+            "conditionFieldFrom": "1",
+            "conditionFieldTo": "2"
+          }
+        ]
       }
     ],
     "additionLog": {
       "checkBoxDueDate": true,
       "checkBoxPaymentMethodAll": false,
-      "checkBoxPaymentMethodUnsuccess": true,
+      "checkBoxPaymentMethodUnSuccess": true,
       "checkBoxDisplayDetail": true,
       "vendor": [
         {
-          "id": 1,
-          "vendorTaxIdFrom": "aa",
-          "vendorTaxIdTo": "f"
-        },
-        {
-          "id": 2,
-          "vendorTaxIdFrom": "bb",
+          "vendorTaxIdFrom": "222",
           "vendorTaxIdTo": ""
         },
         {
-          "id": 3,
-          "vendorTaxIdFrom": "cc",
-          "vendorTaxIdTo": "g"
+          "vendorTaxIdFrom": "111",
+          "vendorTaxIdTo": ""
+        },
+        {
+          "vendorTaxIdFrom": "333",
+          "vendorTaxIdTo": "7777"
         }
       ]
     }
@@ -192,11 +209,12 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private utils: Utils,
     private formBuilder: FormBuilder,
+    private paymentService: PaymentService
   ) {
 
   }
 
- 
+
 
 
   ngOnInit() {
@@ -295,21 +313,20 @@ export class HomeComponent implements OnInit {
       this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
 
 
-      this.homeForm.patchValue({
-        status: 'S'
-      })
+
       const object = {
         payment: this.homeForm.value,
         parameter: this.listObjectParameterTabForpayment,
         independent: this.listObjectIndependentTabForpayment,
         additionLog: this.listObjectAdditionLogTabForpayment,
-     
+
       }
       console.log(object)
       const jsonObject = JSON.stringify(object)
       console.log(jsonObject)
       // });
 
+      this.createParameter(jsonObject)
     }
     // else if (this.tabSelectedIndex !== 1) {
     //   this.tabParameterComponent.updateParameter()
@@ -362,7 +379,7 @@ export class HomeComponent implements OnInit {
       console.log(this.listObjectIndependentTab)
       console.log(this.listObjectAdditionLogTab)
 
-    
+
     });
   }
   openDialogSearchParameterComponent(): void {
@@ -379,6 +396,19 @@ export class HomeComponent implements OnInit {
         });
       }
     });
+  }
+
+  createParameter(payload) {
+
+    const formValue =this.homeForm.value
+    const data = {
+      paymentDate:formValue.paymentDate,
+      paymentName:formValue.paymentName,
+    }
+    this.paymentService.createParamter(data).subscribe(result => {
+      console.log(result)
+    })
+
   }
 
 }

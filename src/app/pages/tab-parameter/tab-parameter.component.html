@@ -56,7 +56,7 @@
           <div class="panel-body" *ngIf="panleExpanded">
             <cdk-virtual-scroll-viewport itemSize="50" class="para-textarea">
               <div class="example-item">
-                <textarea class="form-control"  [ngStyle]="{'background-color': !parameterForm.controls.companyCode.value ?'#fff' : '#f2f2f2'}" formControlName="companyCode" rows="9"></textarea>
+                <textarea class="form-control"  [ngStyle]="{'background-color': !parameterForm.controls.company.value ?'#fff' : '#f2f2f2'}" formControlName="company" rows="9"></textarea>
               </div>
             </cdk-virtual-scroll-viewport>
           </div>

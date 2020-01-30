@@ -1,3 +1,4 @@
+import { Utils } from 'src/app/shared/utils';
 import { DialogSearchFieldComponent } from './../../shared/component/tab-additional/dialog-search-field/dialog-search-field.component';
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, EventEmitter, Output, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
@@ -15,123 +16,93 @@ export interface Food {
 })
 export class TabIndependentComponent implements OnInit {
   @ViewChildren('fieldName') fieldName: QueryList<ElementRef>;
-  @ViewChildren('conditionfield') conditionfield: QueryList<ElementRef>;
-  @ViewChildren('optionInclude') optionInclude: QueryList<ElementRef>;
-  
+  @ViewChildren('conditionField') conditionField: QueryList<ElementRef>;
+  @ViewChildren('optionExclude') optionExclude: QueryList<ElementRef>;
+
   @Input() independent
   @Output() messageFromIndependent = new EventEmitter<any>();
 
   // Tab
   panleExpanded = true;
 
-  // independentFormCreate: FormGroup;
-
-  // fieldNameOneControl: FormControl; // ชื่อฟิลด์
-  // checkBoxOneControl: FormControl; // check box
-  // conditionfieldOneControl: FormControl; //เงื่อนไข
-
-  // fieldNameTwoControl: FormControl; // ชื่อฟิลด์
-  // checkBoxTwoControl: FormControl; // check box
-  // conditionfieldTwoControl: FormControl; //เงื่อนไข
-
-  // fieldNameThreeControl: FormControl; // ชื่อฟิลด์
-  // checkBoxThreeControl: FormControl; // check box
-  // conditionfieldThreeControl: FormControl; //เงื่อนไข
-
   listIndependent = [
-    { id: 1, fieldName: '', conditionfield: '', optionInclude: false },
-    { id: 2, fieldName: '', conditionfield: '', optionInclude: false },
-    { id: 3, fieldName: '', conditionfield: '', optionInclude: false },
+    { fieldName: null, conditionField: null, optionExclude: false, dataType: null, dbName: null, tableName: null, condition: [] },
+    { fieldName: null, conditionField: null, optionExclude: false, dataType: null, dbName: null, tableName: null, condition: [] },
+    { fieldName: null, conditionField: null, optionExclude: false, dataType: null, dbName: null, tableName: null, condition: [] },
 
   ];
-
 
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private utils: Utils
   ) { }
 
 
 
   ngOnInit() {
-    // this.createIndependentFormControl();
-    // this.createIndependentFormGroup();
-    if (this.independent) {
-      this.listIndependent = this.independent
-    }
+
+    // if (this.independent) {
+    //   this.independent.forEach(item => {
+    //     console.log(item)
+    //     if (item.conditionField && item.conditionField !== '') {
+
+    //       item.conditionField = this.utils.convertConditionFieldArrayToConditionFieldText(item.conditionField)
+    //     }
+    //   })
+    //   this.listIndependent = this.independent
+    // }
 
   }
-  getIndependentFromCopy(object){
+  getIndependentFromCopy(object) {
+    object.forEach(item => {
+      console.log(item)
+      if (item.conditionField && item.conditionField !== '') {
+
+        item.conditionField = this.utils.convertConditionFieldArrayToConditionFieldText(item.condition)
+      }
+    })
     this.listIndependent = object
   }
-  // createIndependentFormControl() {
-  //   this.fieldNameOneControl = this.formBuilder.control('');
-  //   this.checkBoxOneControl = this.formBuilder.control('');
-  //   this.conditionfieldOneControl = this.formBuilder.control('');
 
-  //   this.fieldNameTwoControl = this.formBuilder.control('');
-  //   this.checkBoxTwoControl = this.formBuilder.control('');
-  //   this.conditionfieldTwoControl = this.formBuilder.control('');
-
-  //   this.fieldNameThreeControl = this.formBuilder.control('');
-  //   this.checkBoxThreeControl = this.formBuilder.control('');
-  //   this.conditionfieldThreeControl = this.formBuilder.control('');
-
-  // }
-
-  // createIndependentFormGroup() {
-  //   this.independentFormCreate = this.formBuilder.group({
-
-  //     fieldNameOne: this.fieldNameOneControl,
-  //     checkBoxOne: this.checkBoxOneControl,
-  //     conditionfieldOne: this.conditionfieldOneControl,
-
-  //     fieldNameTwo: this.fieldNameTwoControl,
-  //     checkBoxTwo: this.checkBoxTwoControl,
-  //     conditionfieldTwo: this.conditionfieldTwoControl,
-
-  //     fieldNameThree: this.fieldNameThreeControl,
-  //     checkBoxThree: this.checkBoxThreeControl,
-  //     conditionfieldThree: this.conditionfieldThreeControl,
-
-  //   });
-
-  // }
   updateParameter(): void {
-
+    console.log('updateParameter')
+    this.listIndependent.forEach(item => {
+      if (item.conditionField && item.conditionField !== '') {
+        item.condition = this.utils.convertConditionFieldTextToConditionFieldArray(item.conditionField)
+      }
+    })
     this.independent = this.listIndependent
-
     this.messageFromIndependent.emit(this.independent)
-
   }
 
   setConditionfield(index) {
-    const conditionfield = this.conditionfield.toArray()[index].nativeElement.value;
+    const conditionField = this.conditionField.toArray()[index].nativeElement.value;
 
-    if (conditionfield) {
-      this.listIndependent[index].conditionfield = conditionfield
+    if (conditionField) {
+      this.listIndependent[index].conditionField = conditionField
     } else {
-      this.listIndependent[index].conditionfield = ''
+      this.listIndependent[index].conditionField = ''
     }
 
-    console.log(this.listIndependent)
+
   }
   setOptionInclude(index) {
 
-    const valueIndex = this.optionInclude.toArray()[index] as any
+    const valueIndex = this.optionExclude.toArray()[index] as any
 
-    const optionInclude = valueIndex._checked
-    if (optionInclude) {
-      this.listIndependent[index].optionInclude = optionInclude
+    const optionExclude = valueIndex._checked
+    if (optionExclude) {
+      this.listIndependent[index].optionExclude = optionExclude
     } else {
-      this.listIndependent[index].optionInclude = false
+      this.listIndependent[index].optionExclude = false
     }
-    console.log(this.listIndependent)
+
   }
 
   addInputIndependent() {
-    this.listIndependent.push({ id: this.listIndependent.length + 1, fieldName: '', conditionfield: '', optionInclude: false })
-    console.log(this.listIndependent)
+    this.listIndependent.push({ fieldName: null, conditionField: null, optionExclude: false, dataType: null, dbName: null, tableName: null, condition: [] })
+
   }
   deleteInputIndependent(index) {
     this.listIndependent.splice(index, 1);
@@ -139,13 +110,15 @@ export class TabIndependentComponent implements OnInit {
 
 
   openDialogSearchfield(index) {
-    console.log(index)
     const dialogRef = this.dialog.open(DialogSearchFieldComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.event) {
         this.listIndependent[index].fieldName = result.value
+        this.listIndependent[index].dataType = 'string'
+        this.listIndependent[index].dbName = 'v'
+        this.listIndependent[index].tableName = 'accDocNo'
       }
     });
   }

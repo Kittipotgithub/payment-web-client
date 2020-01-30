@@ -11,7 +11,7 @@ export class PaymentBlockService {
   constructor(private apiService: ApiService) { }
 
   search(payload): Observable<any> {
-    return this.apiService.post('/payment/search', payload).pipe(
+    return this.apiService.post('/paymentBlock/search', payload).pipe(
       map(data => {
         console.log(data);
         return data;
@@ -19,7 +19,7 @@ export class PaymentBlockService {
     );
   }
   searchDetail(companyCode, docNo, year): Observable<any> {
-    return this.apiService.get('/payment/searchDetail/' + companyCode + '/' + docNo + '/' + year + '/').pipe(
+    return this.apiService.get('/paymentBlock/searchDetail/' + companyCode + '/' + docNo + '/' + year + '/').pipe(
       map(data => {
         console.log(data);
         return data;
@@ -27,7 +27,7 @@ export class PaymentBlockService {
     );
   }
   changePaymentBlock(payload): Observable<any> {
-    return this.apiService.post('/payment/changePaymentBlock', payload).pipe(
+    return this.apiService.post('/paymentBlock/changePaymentBlock', payload).pipe(
       map(data => {
         console.log(data);
         return data;

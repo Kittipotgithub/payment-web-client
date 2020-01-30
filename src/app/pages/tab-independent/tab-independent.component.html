@@ -27,7 +27,7 @@
           </div>
           <div class="col-md-1" style="padding-top: 20px;">
             <div class="input-group input-group-lg">
-              <mat-checkbox [checked]="item.optionInclude" (change)="setOptionInclude(i)" #optionInclude>ไม่รวมค่า
+              <mat-checkbox [checked]="item.optionExclude" (change)="setOptionInclude(i)" #optionExclude>ไม่รวมค่า
               </mat-checkbox>
             </div>
           </div>
@@ -40,8 +40,8 @@
         </div>
         <div class="row">
           <div class="col-md-10">
-            <input type="text" class="form-control" [value]="item.conditionfield" #conditionfield
-              (blur)="setConditionfield(i)"  [ngStyle]="{'background-color': !item.conditionfield ?'#fff' : '#fffae6'}" >
+            <input type="text" class="form-control" [value]="item.conditionField" #conditionField
+              (blur)="setConditionfield(i)"  [ngStyle]="{'background-color': !item.conditionField ?'#fff' : '#fffae6'}" >
           </div>
         </div>
         <br>

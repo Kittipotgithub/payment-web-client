@@ -28,12 +28,12 @@ export class TabParameterComponent implements OnInit {
   saveDateControl: FormControl;  // บันทึกเอกสาร
   paymentMethodControl: FormControl;  // วิธีชำระเงิน  
   paymentDateControl: FormControl;  // วันชำระถัดไป
-  companyCodeControl: FormControl;  // รหัสบริษัท
+  companyControl: FormControl;  // รหัสบริษัท
 
   listVendor = [
-    { vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { vendorTaxIdFrom: null, vendorTaxIdTo: null },
+    { vendorTaxIdFrom: null, vendorTaxIdTo: null },
+    { vendorTaxIdFrom: null, vendorTaxIdTo: null },
 
   ];
 
@@ -67,7 +67,7 @@ export class TabParameterComponent implements OnInit {
       saveDate: object.saveDate,  // บันทึกเอกสาร
       paymentMethod: object.paymentMethod,  // วิธีชำระเงิน  
       paymentDate: object.paymentDate,  // วันชำระถัดไป
-      companyCode: this.utils.convertCompanyArrayToCompanyText(object.companyCode),  // รหัสบริษัท
+      company: this.utils.convertCompanyArrayToCompanyText(object.companyCondition),  // รหัสบริษัท
     })
   }
 
@@ -76,7 +76,7 @@ export class TabParameterComponent implements OnInit {
     this.saveDateControl = this.formBuilder.control('');  // บันทึกเอกสาร
     this.paymentMethodControl = this.formBuilder.control('');  // วิธีชำระเงิน  
     this.paymentDateControl = this.formBuilder.control('');  // วันชำระถัดไป
-    this.companyCodeControl = this.formBuilder.control('');  // รหัสบริษัท
+    this.companyControl = this.formBuilder.control('');  // รหัสบริษัท
 
     // this.verdorTaxIdFormControl = this.formBuilder.control('');
     // this.verdorTaxIdToControl = this.formBuilder.control('');
@@ -87,7 +87,7 @@ export class TabParameterComponent implements OnInit {
       saveDate: this.saveDateControl,  // บันทึกเอกสาร
       paymentMethod: this.paymentMethodControl,  // วิธีชำระเงิน  
       paymentDate: this.paymentDateControl,  // วันชำระถัดไป
-      companyCode: this.companyCodeControl,  // รหัสบริษัท
+      company: this.companyControl,  // รหัสบริษัท
 
       // verdorTaxIdForm: this.verdorTaxIdFormControl,
       // verdorTaxIdTo: this.verdorTaxIdToControl
@@ -99,7 +99,7 @@ export class TabParameterComponent implements OnInit {
       saveDate: '',  // บันทึกเอกสาร
       paymentMethod: '',  // วิธีชำระเงิน  
       paymentDate: '',  // วันชำระถัดไป
-      companyCode: '',  // รหัสบริษัท
+      company: '',  // รหัสบริษัท
     })
   }
   setInputFromParameter() {
@@ -109,7 +109,7 @@ export class TabParameterComponent implements OnInit {
       saveDate: this.parameter.saveDate,  // บันทึกเอกสาร
       paymentMethod: this.parameter.paymentMethod,  // วิธีชำระเงิน  
       paymentDate: this.parameter.paymentDate,  // วันชำระถัดไป
-      companyCode: this.utils.convertCompanyArrayToCompanyText(this.parameter.companyCode),  // รหัสบริษัท
+      company: this.utils.convertCompanyArrayToCompanyText(this.parameter.companyCondition),  // รหัสบริษัท
     })
   }
 
@@ -135,8 +135,10 @@ export class TabParameterComponent implements OnInit {
 
   // }
   updateParameter(): void {
+    console.log(this.parameterForm.value)
     this.parameterForm.value.vendor = this.listVendor
-    this.parameterForm.value.companyCode = this.utils.convertCompanyTextToCompanyArray(this.parameterForm.value.companyCode)
+     
+    this.parameterForm.value.companyCondition = this.utils.convertCompanyTextToCompanyArray(this.parameterForm.value.company)
     this.parameter = this.parameterForm.value
 
     this.messageFromParameter.emit(this.parameter)
@@ -177,7 +179,7 @@ export class TabParameterComponent implements OnInit {
     });
   }
   addInputVendor() {
-    this.listVendor.push({ vendorTaxIdFrom: '', vendorTaxIdTo: '' });
+    this.listVendor.push({ vendorTaxIdFrom: null, vendorTaxIdTo: null });
     console.log(this.listVendor)
   }
   deleteInputVendor(index) {
