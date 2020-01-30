@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit {
 
   homeForm: FormGroup;
 
-  dateDocumentControl: FormControl; // วันที่ประมวลผล
-  defineControl: FormControl; // การกำหนด
+  paymentDateControl: FormControl; // วันที่ประมวลผล
+  paymentNameControl: FormControl; // การกำหนด
   statusControl: FormControl;//สถานะ
 
 
@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
 
   mockupJSON = {
     "payment": {
-      "dateDocument": "2020-01-29T17:00:00.000Z",
-      "define": "ABCD",
+      "paymentDate": "2020-01-29T17:00:00.000Z",
+      "paymentName": "ABCD",
       "status": "S"
     },
     "parameter": {
@@ -218,21 +218,21 @@ export class HomeComponent implements OnInit {
   }
 
   createHomeFormControl() {
-    this.dateDocumentControl = this.formBuilder.control('');// วันที่ประมวลผล
-    this.defineControl = this.formBuilder.control('');// การกำหนด
+    this.paymentDateControl = this.formBuilder.control('');// วันที่ประมวลผล
+    this.paymentNameControl = this.formBuilder.control('');// การกำหนด
     this.statusControl = this.formBuilder.control('');//สถานะ
   }
   createHomeFormGroup() {
     this.homeForm = this.formBuilder.group({
-      dateDocument: this.dateDocumentControl,// วันที่ประมวลผล
-      define: this.defineControl,// การกำหนด
+      paymentDate: this.paymentDateControl,// วันที่ประมวลผล
+      paymentName: this.paymentNameControl,// การกำหนด
       status: this.statusControl//สถานะ
     });
   }
   defaultHomeForm() {
     this.homeForm.patchValue({
-      dateDocument: '',// วันที่ประมวลผล
-      define: '', // การกำหนด
+      paymentDate: '',// วันที่ประมวลผล
+      paymentName: '', // การกำหนด
       status: ''//สถานะ
     });
   }
@@ -350,8 +350,8 @@ export class HomeComponent implements OnInit {
       // });
       // this.tabParameterComponent.ngOnInit()
       this.homeForm.patchValue({
-        dateDocument: this.mockupJSON.payment.dateDocument,// วันที่ประมวลผล
-        define: this.mockupJSON.payment.define, // การกำหนด
+        paymentDate: this.mockupJSON.payment.paymentDate,// วันที่ประมวลผล
+        paymentName: this.mockupJSON.payment.paymentName, // การกำหนด
         status: this.mockupJSON.payment.status//สถานะ
       });
       this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab)
@@ -373,8 +373,8 @@ export class HomeComponent implements OnInit {
       console.log('The dialog was closed');
       if (result && result.event) {
         this.homeForm.patchValue({
-          dateDocument: '',// วันที่ประมวลผล
-          define: result.value, // การกำหนด
+          paymentDate: '',// วันที่ประมวลผล
+          paymentName: result.value, // การกำหนด
           // status: this.mockupJSON.payment.status//สถานะ
         });
       }

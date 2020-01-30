@@ -13,8 +13,8 @@
         <div class="col-md-4 col-left">
           <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
           <div class="input-group input-group-lg">
-            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.dateDocument.value ?'#fff' : '#fffae6'}"
-              class="form-control date-mat-input" [matDatepicker]="myDatepicker" formControlName="dateDocument">
+            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.paymentDate.value ?'#fff' : '#fffae6'}"
+              class="form-control date-mat-input" [matDatepicker]="myDatepicker" formControlName="paymentDate">
             <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
               <img src="assets/images/icon/calendar.svg" width="12px">
               <mat-datepicker #myDatepicker></mat-datepicker>
@@ -24,8 +24,8 @@
         <div class="col-md-4">
           <h3 class="text-black"><b>การกำหนด</b></h3>
           <div class="input-group input-group-lg">
-            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.define.value ?'#fff' : '#fffae6'}" class="form-control"
-              formControlName="define">
+            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.paymentName.value ?'#fff' : '#fffae6'}" class="form-control"
+              formControlName="paymentName">
             <button class="btn btn-default" type="button" (click)="openDialogSearchParameterComponent()">
               <img src="assets/images/icon/menu.svg" width="12px" />
             </button>
