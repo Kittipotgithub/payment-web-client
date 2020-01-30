@@ -202,6 +202,7 @@ export class HomeComponent implements OnInit {
       ]
     }
 
+  paymentCondition = null
 
   tabSelectedIndex = 0;
   constructor(
@@ -314,15 +315,15 @@ export class HomeComponent implements OnInit {
 
 
 
-      const object = {
+      this.paymentCondition = {
         payment: this.homeForm.value,
         parameter: this.listObjectParameterTabForpayment,
         independent: this.listObjectIndependentTabForpayment,
         additionLog: this.listObjectAdditionLogTabForpayment,
 
       }
-      console.log(object)
-      const jsonObject = JSON.stringify(object)
+      console.log(this.paymentCondition)
+      const jsonObject = JSON.stringify(this.paymentCondition)
       console.log(jsonObject)
       // });
 
@@ -400,13 +401,16 @@ export class HomeComponent implements OnInit {
 
   createParameter(payload) {
 
-    const formValue =this.homeForm.value
+    const formValue = this.homeForm.value
     const data = {
-      paymentDate:formValue.paymentDate,
-      paymentName:formValue.paymentName,
+      paymentDate: formValue.paymentDate,
+      paymentName: formValue.paymentName,
     }
-    this.paymentService.createParamter(data).subscribe(result => {
+    this.paymentService.create(data).subscribe(result => {
       console.log(result)
+
+      this.paymentCondition = result.data
+      console.log(this.paymentCondition)
     })
 
   }

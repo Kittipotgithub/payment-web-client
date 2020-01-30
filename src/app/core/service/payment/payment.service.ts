@@ -11,8 +11,16 @@ export class PaymentService {
 
   constructor(private apiService: ApiService) { }
 
-  createParamter(payload): Observable<any> {
-    return this.apiService.post('/payment/create/parameter', payload).pipe(
+  create(payload): Observable<any> {
+    return this.apiService.post('/paymentAlias/save', payload).pipe(
+      map(data => {
+        console.log(data);
+        return data;
+      })
+    );
+  }
+  update(payload): Observable<any> {
+    return this.apiService.put('/paymentAlias/save', payload).pipe(
       map(data => {
         console.log(data);
         return data;
