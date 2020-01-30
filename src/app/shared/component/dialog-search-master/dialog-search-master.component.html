@@ -1,30 +1,72 @@
 <button class="close" mat-button (click)="onNoClick()">X</button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>รหัสกิจกรรมหลัก</b></h1>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>{{title}}</b></h1>
 <hr>
-<div mat-dialog-content >  
+<div mat-dialog-content>
   <div class="row">
-    <div class="col-md-11">
-      <input type="text"  [ngStyle]="{'background-color': !search1 ?'#fff' : '#f2f2f2'}" class="form-control" #searchValue/>
+    <div class="col-md-8">
+      <input type="text" [ngStyle]="{'background-color': !search1 ?'#fff' : '#f2f2f2'}" class="form-control"
+        #searchValue />
+      <p class="text-red">{{ errorMessage }}</p>
     </div>
-    <div class="col-md-1">
+
+    <div class="col-12 col-md-4 d-flex">
       <button mat-icon-button class="btn btn-info" (click)="search(searchValue)">
-          <span style="font-size:15px;">เริ่มค้นหา</span>
+        <span style="font-size:15px;">เริ่มค้นหา</span>
       </button>
+      <div class="flex-1 tooltip-box">
+        <img src="assets/images/icon/question.png" />
+        <div class="tooltip-text">
+          <p> <b> ตัวอย่าง </b> </p>
+          <p> - ต้องการหา เลข ที่ตามหลังด้วย 011 : <b>พิมพ์ *011</b> </p>
+          <p> - ต้องการหา เลข ที่ขึ้นต้นด้วย 011 : <b>พิมพ์ 011* </b> </p>
+          <p> - ต้องการหา เลข ที่ขึ้นต้นด้วย 01 ลงท้ายด้วย 1 : <b>พิมพ์ 01*1</b> </p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row" style="padding-top:10px;">
+  <div class="row" style="padding-top:10px;" *ngIf="dataSource.length > 0">
     <div class="col-md-12">
       <table class="table-normal table-result">
         <tr>
-          <th>เลือก</th>
-          <th>รหัสกิจกรรมหลัก</th>
-          <th>ชื่อของเขตฟังก์ชั่น</th>
+          <th *ngFor="let header of dataSourceHeader">{{ header }}</th>
         </tr>
-        <tbody>
-          <tr *ngFor="let item of listDocument ; let i = index">
-            <td><mat-icon>folder_open</mat-icon></td>
-            <td>{{ item.code}}</td>
-            <td>{{ item.name}}</td>
+        <tbody *ngIf="searchType === 'departmentCodeFrom' || searchType === 'departmentCodeTo'">
+          <tr *ngFor="let data of dataSource">
+            <td>
+              <mat-icon class="icon pointer">folder_open</mat-icon>
+            </td>
+            <td>{{ data.valueCode }}</td>
+            <td class="text-left">{{ data.name }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="searchType === 'provinceCodeFrom' || searchType === 'provinceCodeTo'">
+          <tr *ngFor="let data of dataSource">
+            <td>
+              <mat-icon class="icon pointer">folder_open</mat-icon>
+            </td>
+            <td>{{ data.valueCode }}</td>
+            <td class="text-left">{{ data.name }}</td>
+            <td class="text-left">{{ data.description }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="searchType === 'disbursementCodeFrom' || searchType === 'disbursementCodeTo'">
+          <tr *ngFor="let data of dataSource">
+            <td>
+              <mat-icon class="icon pointer">folder_open</mat-icon>
+            </td>
+            <td>{{ data.valueCode }}</td>
+            <td class="text-left">{{ data.name }}</td>
+            <td class="text-left">{{ data.description }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="searchType === 'vendorTaxIdFrom' || searchType === 'vendorTaxIdTo'">
+          <tr *ngFor="let data of dataSource">
+            <td>
+              <mat-icon class="icon pointer">folder_open</mat-icon>
+            </td>
+            <td>{{ data.taxId }}</td>
+            <td>{{ data.valueCode }}</td>
+            <td class="text-left">{{ data.name }}</td>
           </tr>
         </tbody>
       </table>

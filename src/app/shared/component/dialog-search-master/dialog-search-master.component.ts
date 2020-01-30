@@ -42,16 +42,16 @@ export class DialogSearchMasterComponent implements OnInit {
 
   userProfile: any
 
-  listDocument=[
+  listDocument = [
     {
-      "code": "12005630000100000",
+      "valueCode": "12005630000100000",
       "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
     },
     {
       "code": "12005630000100000",
       "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
     },
-    
+
     {
       "code": "12005630000100000",
       "name": "พัฒนาระบบการให้บริการประชาชนแบบบูรณาการด้านการอนุรักษ์พลังงาน",
@@ -124,16 +124,14 @@ export class DialogSearchMasterComponent implements OnInit {
   }
 
   setTitle() {
-    if (this.data.title !== undefined) {
-      this.title = this.data.title;
-    } else {
-      if (this.data.type === 'departmentCode') {
+    if (this.data.type) {
+      if (this.data.type === 'departmentCodeFrom' || this.data.type === 'departmentCodeTo') {
         this.title = 'รหัสหน่วยงาน';
-      } else if (this.data.type === 'provinceCode') {
+      } else if (this.data.type === 'provinceCodeFrom' || this.data.type === 'provinceCodeTo') {
         this.title = 'รหัสจังหวัด';
-      } else if (this.data.type === 'disbursementCode') {
+      } else if (this.data.type === 'disbursementCodeFrom' || this.data.type === 'disbursementCodeTo') {
         this.title = 'รหัสหน่วยเบิกจ่าย';
-      } else if (this.data.type === 'vendorTaxId') {
+      } else if (this.data.type === 'vendorTaxIdFrom' || this.data.type === 'vendorTaxIdTo') {
         this.title = 'รหัสผู้ขาย';
       }
     }
@@ -142,13 +140,13 @@ export class DialogSearchMasterComponent implements OnInit {
   search(e) {
     this.errorMessage = '';
     this.dataSource = [];
-    if (this.data.type === 'departmentCode') {
+    if (this.data.type === 'departmentCodeFrom' || this.data.type === 'departmentCodeTo') {
       this.loadDepartment(e.value);
-    } else if (this.data.type === 'provinceCode') {
+    } else if (this.data.type === 'provinceCodeFrom' || this.data.type === 'provinceCodeTo') {
       this.loadArea(e.value);
-    } else if (this.data.type === 'disbursementCode') {
+    } else if (this.data.type === 'disbursementCodeFrom' || this.data.type === 'disbursementCodeTo') {
       this.loadPaymentCenter(e.value);
-    } else if (this.data.type === 'vendorTaxId') {
+    } else if (this.data.type === 'vendorTaxIdFrom' || this.data.type === 'vendorTaxIdTo') {
       this.loadVendor(e.value);
     }
   }
@@ -161,7 +159,7 @@ export class DialogSearchMasterComponent implements OnInit {
       value: '',
     });
   }
-  
+
   loadDepartment(textSearch) {
     const percent = textSearch.split('').filter(value => value === '%').length;
     for (let i = 0; i < percent; i++) {
@@ -189,9 +187,10 @@ export class DialogSearchMasterComponent implements OnInit {
     this.masterService.findCompanyCodeWithParam(textSearch).subscribe(data => {
       const response = data as any;
       this.isLoading = false;
+      console.log(data)
       if (response.status === 'T') {
         this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.areaCode;
+        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.companyCode;
       } else {
         this.errorMessage = response.message;
       }
@@ -262,7 +261,7 @@ export class DialogSearchMasterComponent implements OnInit {
       this.isLoading = false;
       if (response.status === 'T') {
         this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.areaCode;
+        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.disbursementCode;
       } else {
         this.errorMessage = response.message;
       }
@@ -297,7 +296,7 @@ export class DialogSearchMasterComponent implements OnInit {
       this.isLoading = false;
       if (response.status === 'T') {
         this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.areaCode;
+        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.vendorTaxId;
       } else {
         this.errorMessage = response.message;
       }

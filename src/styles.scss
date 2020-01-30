@@ -481,3 +481,27 @@ span.break-word-text {
     color: black !important;
   }
 }
+
+.flex-1 {
+  flex: 1;
+}
+.tooltip-box {
+  cursor: pointer;
+  position: relative;
+  .tooltip-text {
+    display: none;
+    position: absolute;
+    border: 1.5px dotted #4b4b71;
+    padding: 3px 10px;
+    width: 315px;
+    right: 70px;
+    top: 30px;
+    background: white;
+  }
+  &:hover .tooltip-text {
+    display: block;
+  }
+}
+.text-red {
+  color: red;
+}

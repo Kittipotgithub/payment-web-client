@@ -2511,10 +2511,10 @@ export class OmComponent implements OnInit {
   }
 
 
-  openDialogSearch(): void {
+  openDialogSearchMaster(type): void {
     const dialogRef = this.dialog.open(DialogSearchMasterComponent, {
-      width: '1200px',
-      data: { type: 'areaCode' }
+      width: '800px',
+      data: { type: type }
     });
 
     dialogRef.afterClosed().subscribe(result => {
