@@ -56,11 +56,6 @@ export class TabAdditionalLogComponent implements OnInit {
   getAdditionLogFromCopy(object) {
     console.log(object)
 
-    this.listVendor = [
-      { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-     
-     
-    ];
     this.listVendor = object.vendor
     this.isDisabledCheckBoxDueDate = false
     this.isDisabledCheckBoxPaymentMethodAll = false
@@ -129,17 +124,18 @@ export class TabAdditionalLogComponent implements OnInit {
   }
   setInputFromAddition() {
     this.listVendor = this.additionLog.vendor
+  
     this.isDisabledCheckBoxDueDate = false
     this.isDisabledCheckBoxPaymentMethodAll = false
 
-    // if (this.additionLog.checkBoxDueDate) {
-    //   this.isDisabledCheckBoxPaymentMethodAll = true
-    //   this.isDisabledCheckBoxDueDate = false
-    // }
-    // if (this.additionLog.checkBoxPaymentMethodAll) {
-    //   this.isDisabledCheckBoxPaymentMethodAll = false
-    //   this.isDisabledCheckBoxDueDate = true
-    // }
+    if (this.additionLog.checkBoxDueDate) {
+      this.isDisabledCheckBoxPaymentMethodAll = true
+      this.isDisabledCheckBoxDueDate = false
+    }
+    if (this.additionLog.checkBoxPaymentMethodAll) {
+      this.isDisabledCheckBoxPaymentMethodAll = false
+      this.isDisabledCheckBoxDueDate = true
+    }
     this.additionLogForm.patchValue({
       checkBoxDueDate: this.additionLog.checkBoxDueDate, // ตรวจสอบวันที่ครบกำหนด
       checkBoxPaymentMethodAll: this.additionLog.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี

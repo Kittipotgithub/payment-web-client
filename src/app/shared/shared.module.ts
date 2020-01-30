@@ -15,6 +15,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DialogSearchPaymentMethodComponent } from './component/tab-param/dialog-search-payment-method/dialog-search-payment-method.component';
 import { DialogCopyParameterComponent } from './component/dialog-copy-parameter/dialog-copy-parameter.component';
 import { DialogSearchParameterComponent } from './component/dialog-search-parameter/dialog-search-parameter.component';
+import { DialogSearchVendorPaymentComponent } from './component/dialog-search-vendor-payment/dialog-search-vendor-payment.component';
 
 
 
@@ -27,7 +28,8 @@ import { DialogSearchParameterComponent } from './component/dialog-search-parame
     DialogSearchFieldComponent,
     DialogSearchPaymentMethodComponent,
     DialogCopyParameterComponent,
-    DialogSearchParameterComponent
+    DialogSearchParameterComponent,
+    DialogSearchVendorPaymentComponent
 
   ],
   imports: [
@@ -64,7 +66,8 @@ import { DialogSearchParameterComponent } from './component/dialog-search-parame
     DialogSearchFieldComponent,
     DialogSearchPaymentMethodComponent,
     DialogCopyParameterComponent,
-    DialogSearchParameterComponent
+    DialogSearchParameterComponent,
+    DialogSearchVendorPaymentComponent
 
   ],
 })

@@ -23,9 +23,16 @@
     <div class="example-item">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+        <ng-container matColumnDef="choose">
+          <th mat-header-cell *matHeaderCellDef class="info"> เลือก </th>
+          <td mat-cell *matCellDef="let element" (click)="chooseDataSearch(element)">
+            <mat-icon class="icon pointer">folder_open</mat-icon>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="filedName">
           <th mat-header-cell *matHeaderCellDef class="info"> ชื่อฟิวด์ </th>
-          <td mat-cell *matCellDef="let element"> {{element.filedName}} </td>
+          <td mat-cell *matCellDef="let element" > {{element.filedName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="filedTable">
@@ -54,8 +61,10 @@
         </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="chooseDataSearch(row)"></tr>
-
+     
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
+        (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
       </table>
     </div>
   <!-- </cdk-virtual-scroll-viewport> -->

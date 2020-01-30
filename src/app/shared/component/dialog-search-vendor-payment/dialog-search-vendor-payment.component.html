@@ -1,0 +1,61 @@
+<button class="close" mat-button (click)="closeDialog()">X</button>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>ข้อจำกัด</b></h1>
+<hr>
+<div class="row">
+  <div class="col-md-8">
+    <input type="text" [ngStyle]="{'background-color': !search1 ?'#fff' : '#f2f2f2'}" class="form-control"
+      #searchValue />
+    <p class="text-red">{{ errorMessage }}</p>
+  </div>
+
+  <div class="col-12 col-md-4 d-flex">
+    <button mat-icon-button class="btn btn-info" (click)="loadVendor(searchValue)">
+      <span style="font-size:15px;">เริ่มค้นหา</span>
+    </button>
+    <div class="flex-1 tooltip-box">
+      <img src="assets/images/icon/question.png" />
+      <div class="tooltip-text">
+        <p> <b> ตัวอย่าง </b> </p>
+        <p> - ต้องการหา เลข ที่ตามหลังด้วย 011 : <b>พิมพ์ *011</b> </p>
+        <p> - ต้องการหา เลข ที่ขึ้นต้นด้วย 011 : <b>พิมพ์ 011* </b> </p>
+        <p> - ต้องการหา เลข ที่ขึ้นต้นด้วย 01 ลงท้ายด้วย 1 : <b>พิมพ์ 01*1</b> </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-content class="date_dialog" *ngIf="dataSource.length > 0" >
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div class="example-item">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="choose">
+          <th mat-header-cell *matHeaderCellDef class="info"> เลือก </th>
+          <td mat-cell *matCellDef="let element" (click)="chooseDataSearch(element)">
+            <mat-icon class="icon pointer">folder_open</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="taxId">
+          <th mat-header-cell *matHeaderCellDef class="info"> รหัสประจำตัวผู้เสียภาษี </th>
+          <td mat-cell *matCellDef="let element"> {{element.taxId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valueCode">
+          <th mat-header-cell *matHeaderCellDef class="info"> รหัสผู้ขาย </th>
+          <td mat-cell *matCellDef="let element"> {{element.valueCode}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="info"> ชื่อผู้ขาย
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
+          (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+      </table>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
