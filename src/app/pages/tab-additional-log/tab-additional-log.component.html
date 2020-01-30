@@ -10,8 +10,7 @@
       <div class="panel-body" *ngIf="panleExpanded">
         <div class="row">
           <div class="col-12 col-md-6">
-            <mat-checkbox [disabled]="isDisabledCheckBoxDueDate" formControlName="checkBoxDueDate"
-              (change)="checkValidationAdditionLog($event,'dueDate')">
+            <mat-checkbox formControlName="checkBoxDueDate">
               ตรวจสอบวันที่ครบกำหนด</mat-checkbox>
           </div>
         </div>
@@ -24,7 +23,9 @@
         </div>
         <div class="row">
           <div class="col-12 col-md-6">
-            <mat-checkbox formControlName="checkBoxPaymentMethodUnsuccess">เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
+            <mat-checkbox [disabled]="isDisabledCheckPaymentMethodUnsuccess"
+              formControlName="checkBoxPaymentMethodUnsuccess" (change)="checkValidationAdditionLog($event,'paymentMethodUnsuccess')">
+              เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
             </mat-checkbox>
           </div>
         </div>
@@ -43,6 +44,9 @@
         </h3>
       </div>
       <div class="panel-body" *ngIf="panleExpanded1">
+        <button class="btn btn-default pull-right" type="button" (click)="addInputVendor()">
+          เพิ่มฟิลด์
+        </button>
         <div class="row">
           <div class="col-12 col-md-6">
             <label class="input-head">ผู้ขาย ( จาก / ถึง )</label>
@@ -69,73 +73,13 @@
               </button>
             </div>
           </div>
-          <!-- <div class="col-md-2 col-left">
+          <div class="col-md-2 col-left">
             <button type="button" class="btn btn-danger btn-lg" (click)="deleteInputVendor(i)"
               style="padding:2px 15px;">
               <i class="material-icons" style="font-size:15px;">clear</i>
             </button>
-          </div> -->
-        </div>
-        <!-- <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="input-group input-group-lg">
-              <input type="text" [ngStyle]="{'background-color': !log1 ?'#fff' : '#f2f2f2'}" class="form-control">
-              <button class="btn btn-default" type="button">
-                <img src="assets/images/icon/fa-search.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="input-group input-group-lg">
-              <input type="text" [ngStyle]="{'background-color': !log2 ?'#fff' : '#f2f2f2'}" class="form-control"
-                id="InputDate">
-              <button class="btn btn-default" type="button">
-                <img src="assets/images/icon/fa-search.svg" width="12px" />
-              </button>
-            </div>
-
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="input-group input-group-lg">
-              <input type="text" [ngStyle]="{'background-color': !log3 ?'#fff' : '#f2f2f2'}" class="form-control"
-                id="InputDate">
-              <button class="btn btn-default" type="button">
-                <img src="assets/images/icon/fa-search.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="input-group input-group-lg">
-              <input type="text" [ngStyle]="{'background-color': !log4 ?'#fff' : '#f2f2f2'}" class="form-control"
-                id="InputDate">
-              <button class="btn btn-default" type="button">
-                <img src="assets/images/icon/fa-search.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="input-group input-group-lg">
-              <input type="text" [ngStyle]="{'background-color': !log5 ?'#fff' : '#f2f2f2'}" class="form-control"
-                id="InputDate">
-              <button class="btn btn-default" type="button">
-                <img src="assets/images/icon/fa-search.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="input-group input-group-lg">
-              <input type="text" [ngStyle]="{'background-color': !log6 ?'#fff' : '#f2f2f2'}" class="form-control"
-                id="InputDate">
-              <button class="btn btn-default" type="button">
-                <img src="assets/images/icon/fa-search.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </form>

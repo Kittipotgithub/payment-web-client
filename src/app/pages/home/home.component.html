@@ -7,40 +7,45 @@
 </div>
 <div class="body">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-4 col-left">
-        <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
-        <div class="input-group input-group-lg">
-          <input type="text"  [ngStyle]="{'background-color': !home1 ?'#fff' : '#fffae6'}" class="form-control date-mat-input"  [matDatepicker]="myDatepicker">
-          <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
-            <img src="assets/images/icon/calendar.svg" width="12px">
-            <mat-datepicker #myDatepicker></mat-datepicker>
-          </button>
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]="homeForm">
+      <div class="row">
+
+        <div class="col-md-4 col-left">
+          <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
+          <div class="input-group input-group-lg">
+            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.dateDocument.value ?'#fff' : '#fffae6'}"
+              class="form-control date-mat-input" [matDatepicker]="myDatepicker" formControlName="dateDocument">
+            <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
+              <img src="assets/images/icon/calendar.svg" width="12px">
+              <mat-datepicker #myDatepicker></mat-datepicker>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-black"><b>การกำหนด</b></h3>
+          <div class="input-group input-group-lg">
+            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.define.value ?'#fff' : '#fffae6'}" class="form-control"
+              formControlName="define">
+            <button class="btn btn-default" type="button" (click)="openDialogSearchParameterComponent()">
+              <img src="assets/images/icon/menu.svg" width="12px" />
+            </button>
+          </div>
+        </div>
+        <div class="col-md-4" style="padding-top:20px;">
+          <span><b>คัดลอกพารามิเตอร์ : </b></span>&nbsp;
+          <span class="fill-remaining-space">
+            <button mat-icon-button (click)="openDialogCopyParameterComponent()" class="btn_menu1">
+              <mat-icon style="font-size:15px;padding:5px;">file_copy</mat-icon>
+            </button>
+          </span>&nbsp;
+          <span class="fill-remaining-space">
+            <button mat-icon-button class="btn_menu1">
+              <mat-icon style="font-size:15px;padding:5px;">insert_drive_file</mat-icon>
+            </button>
+          </span>
         </div>
       </div>
-      <div class="col-md-4">
-        <h3 class="text-black"><b>การกำหนด</b></h3>
-        <div class="input-group input-group-lg">
-          <input type="text"  [ngStyle]="{'background-color': !home2 ?'#fff' : '#fffae6'}" class="form-control">
-          <button class="btn btn-default" type="button" (click)="test()">
-            <img src="assets/images/icon/menu.svg" width="12px" />
-          </button>
-        </div>
-      </div>
-      <div class="col-md-4" style="padding-top:20px;">
-        <span><b>คัดลอกพารามิเตอร์ : </b></span>&nbsp;
-        <span class="fill-remaining-space">
-          <button mat-icon-button (click)="openDialogCopyParameterComponent()" class="btn_menu1">
-            <mat-icon style="font-size:15px;padding:5px;">file_copy</mat-icon>
-          </button>
-        </span>&nbsp;
-        <span class="fill-remaining-space">
-          <button mat-icon-button class="btn_menu1">
-            <mat-icon style="font-size:15px;padding:5px;">insert_drive_file</mat-icon>
-          </button>
-        </span>
-      </div>
-    </div>
+    </form>
     <br>
     <!-- Material Tab -->
     <div class="row">
@@ -52,15 +57,18 @@
                 <app-tab-status></app-tab-status>
               </mat-tab>
               <mat-tab label="พารามิเตอร์">
-                <app-tab-parameter  [parameter]="listObjectParameterTab" (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter>
+                <app-tab-parameter [parameter]="listObjectParameterTab"
+                  (messageFromParameter)="receiveObjectFromParameter($event)"></app-tab-parameter>
                 <!-- <app-tab-parameter></app-tab-parameter> -->
 
               </mat-tab>
               <mat-tab label="การเลือกอิสระ">
-                <app-tab-independent [independent]="listObjectIndependentTab" (messageFromIndependent)="receiveObjectFromIndependent($event)"></app-tab-independent>
+                <app-tab-independent [independent]="listObjectIndependentTab"
+                  (messageFromIndependent)="receiveObjectFromIndependent($event)"></app-tab-independent>
               </mat-tab>
               <mat-tab label="log เพิ่มเติม">
-                <app-tab-additional-log [additionLog]="listObjectAdditionLogTab" (messageFromAdditionLog)="receiveObjectFromAdditionLog($event)"></app-tab-additional-log>
+                <app-tab-additional-log [additionLog]="listObjectAdditionLogTab"
+                  (messageFromAdditionLog)="receiveObjectFromAdditionLog($event)"></app-tab-additional-log>
               </mat-tab>
               <!--mat-tab label="รายงาน/สื่อกลางข้อมูล">
               </!--mat-tab-->

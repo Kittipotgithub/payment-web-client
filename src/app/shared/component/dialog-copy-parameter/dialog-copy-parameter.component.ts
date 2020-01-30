@@ -13,7 +13,7 @@ export class DialogCopyParameterComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogSearchParameterComponent>,private dialog: MatDialog
   ) { }
 
-  OpenDiaDate(): void {
+  openDialogSearchParameterComponent(): void {
     const dialog = this.dialog.open(DialogSearchParameterComponent, {
     });
 

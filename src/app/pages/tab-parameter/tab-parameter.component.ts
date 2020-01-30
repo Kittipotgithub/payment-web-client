@@ -30,14 +30,11 @@ export class TabParameterComponent implements OnInit {
   paymentDateControl: FormControl;  // วันชำระถัดไป
   companyCodeControl: FormControl;  // รหัสบริษัท
 
-  // verdorTaxIdFormControl: FormControl; // รหัสผู้ขายจาก
-  // verdorTaxIdToControl: FormControl; // รหัสผู้ขายถึง
-
   listVendor = [
-    { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { id: 2, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { id: 3, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-   
+    { vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+
   ];
 
 
@@ -180,7 +177,7 @@ export class TabParameterComponent implements OnInit {
     });
   }
   addInputVendor() {
-    this.listVendor.push({ id: this.listVendor.length + 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' });
+    this.listVendor.push({ vendorTaxIdFrom: '', vendorTaxIdTo: '' });
     console.log(this.listVendor)
   }
   deleteInputVendor(index) {

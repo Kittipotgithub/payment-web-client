@@ -9,6 +9,9 @@ import { TabParameterComponent } from '../tab-parameter/tab-parameter.component'
 import { TabAdditionalLogComponent } from '../tab-additional-log/tab-additional-log.component';
 import { TabIndependentComponent } from '../tab-independent/tab-independent.component';
 import { filter } from 'rxjs/operators';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { ThrowStmt } from '@angular/compiler';
+import { DialogSearchParameterComponent } from 'src/app/shared/component/dialog-search-parameter/dialog-search-parameter.component';
 
 
 @Component({
@@ -37,8 +40,21 @@ export class HomeComponent implements OnInit {
   listObjectIndependentTabForpayment: object = null
 
 
+  homeForm: FormGroup;
+
+  dateDocumentControl: FormControl; // วันที่ประมวลผล
+  defineControl: FormControl; // การกำหนด
+  statusControl: FormControl;//สถานะ
+
+
+
 
   mockupJSON = {
+    "payment": {
+      "dateDocument": "2020-01-29T17:00:00.000Z",
+      "define": "ABCD",
+      "status": "S"
+    },
     "parameter": {
       "postDate": "2019-12-31T17:00:00.000Z",
       "saveDate": "2020-01-03T17:00:00.000Z",
@@ -175,38 +191,12 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private utils: Utils,
-  ) { }
+    private formBuilder: FormBuilder,
+  ) {
 
-  openDialogCopyParameterComponent(): void {
-    const dialogRef = this.dialog.open(DialogCopyParameterComponent, {
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.listObjectParameterTab = this.mockupJSON.parameter
-      this.listObjectIndependentTab = this.mockupJSON.independent
-      this.listObjectAdditionLogTab = this.mockupJSON.additionLog
-
-      // this.router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
-      //   this.tabParameterComponent.ngOnInit()
-      //   this.tabIndependentComponent.ngOnInit()
-      //   this.tabAdditionalLogComponent.ngOnInit()
-
-      // });
-      // this.tabParameterComponent.ngOnInit()
-
-      this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab)
-      this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab)
-      this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab)
-      // this.tabAdditionalLogComponent.ngOnInit()
-      console.log(this.listObjectParameterTab)
-      console.log(this.listObjectIndependentTab)
-      console.log(this.listObjectAdditionLogTab)
-
-
-    });
   }
 
+ 
 
 
   ngOnInit() {
@@ -222,8 +212,30 @@ export class HomeComponent implements OnInit {
     // this.listObjectParameterTab = this.mockupJSON.parameter
     // this.listObjectIndependentTab = this.mockupJSON.independent
     // this.listObjectAdditionLogTab = this.mockupJSON.additionLog
+    this.createHomeFormControl()
+    this.createHomeFormGroup()
+    this.defaultHomeForm()
   }
 
+  createHomeFormControl() {
+    this.dateDocumentControl = this.formBuilder.control('');// วันที่ประมวลผล
+    this.defineControl = this.formBuilder.control('');// การกำหนด
+    this.statusControl = this.formBuilder.control('');//สถานะ
+  }
+  createHomeFormGroup() {
+    this.homeForm = this.formBuilder.group({
+      dateDocument: this.dateDocumentControl,// วันที่ประมวลผล
+      define: this.defineControl,// การกำหนด
+      status: this.statusControl//สถานะ
+    });
+  }
+  defaultHomeForm() {
+    this.homeForm.patchValue({
+      dateDocument: '',// วันที่ประมวลผล
+      define: '', // การกำหนด
+      status: ''//สถานะ
+    });
+  }
 
   receiveObjectFromParameter($event) {
     // console.log('receiveObjectFromParameter')
@@ -278,18 +290,24 @@ export class HomeComponent implements OnInit {
 
       // dialogRef.afterClosed().subscribe(result => {
       //   // console.log('The dialog was closed');
-        this.listObjectParameterTabForpayment = this.listObjectParameterTab
-        this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
-        this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
+      this.listObjectParameterTabForpayment = this.listObjectParameterTab
+      this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
+      this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
 
-        const object = {
-          parameter: this.listObjectParameterTabForpayment,
-          independent: this.listObjectIndependentTabForpayment,
-          additionLog: this.listObjectAdditionLogTabForpayment
-        }
-        console.log(object)
-        const jsonObject = JSON.stringify(object)
-        console.log(jsonObject)
+
+      this.homeForm.patchValue({
+        status: 'S'
+      })
+      const object = {
+        payment: this.homeForm.value,
+        parameter: this.listObjectParameterTabForpayment,
+        independent: this.listObjectIndependentTabForpayment,
+        additionLog: this.listObjectAdditionLogTabForpayment,
+     
+      }
+      console.log(object)
+      const jsonObject = JSON.stringify(object)
+      console.log(jsonObject)
       // });
 
     }
@@ -314,6 +332,53 @@ export class HomeComponent implements OnInit {
       }
     }
   }
+  openDialogCopyParameterComponent(): void {
+    const dialogRef = this.dialog.open(DialogCopyParameterComponent, {
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.listObjectParameterTab = this.mockupJSON.parameter
+      this.listObjectIndependentTab = this.mockupJSON.independent
+      this.listObjectAdditionLogTab = this.mockupJSON.additionLog
+
+      // this.router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
+      //   this.tabParameterComponent.ngOnInit()
+      //   this.tabIndependentComponent.ngOnInit()
+      //   this.tabAdditionalLogComponent.ngOnInit()
+
+      // });
+      // this.tabParameterComponent.ngOnInit()
+      this.homeForm.patchValue({
+        dateDocument: this.mockupJSON.payment.dateDocument,// วันที่ประมวลผล
+        define: this.mockupJSON.payment.define, // การกำหนด
+        status: this.mockupJSON.payment.status//สถานะ
+      });
+      this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab)
+      this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab)
+      this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab)
+      // this.tabAdditionalLogComponent.ngOnInit()
+      console.log(this.listObjectParameterTab)
+      console.log(this.listObjectIndependentTab)
+      console.log(this.listObjectAdditionLogTab)
+
+    
+    });
+  }
+  openDialogSearchParameterComponent(): void {
+    const dialog = this.dialog.open(DialogSearchParameterComponent, {
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result && result.event) {
+        this.homeForm.patchValue({
+          dateDocument: '',// วันที่ประมวลผล
+          define: result.value, // การกำหนด
+          // status: this.mockupJSON.payment.status//สถานะ
+        });
+      }
+    });
+  }
 
 }

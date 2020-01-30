@@ -26,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dialog-search-parameter.component.scss']
 })
 export class DialogSearchParameterComponent implements OnInit {
-  displayedColumns: string[] = ['code', 'pay', 'nextpay'];
+  displayedColumns: string[] = ['choose','code', 'pay', 'nextpay'];
   dataSource = ELEMENT_DATA;
   
   constructor(
@@ -41,4 +41,14 @@ export class DialogSearchParameterComponent implements OnInit {
   ngOnInit() {
   }
 
+  chooseDataSearch(data) {
+    console.log(data)
+    // this.errorMessage = '';
+    this.dialogRef.close({
+      event: true,
+      // type: this.data.type,
+      value: data.pay,
+
+    });
+  }
 }
