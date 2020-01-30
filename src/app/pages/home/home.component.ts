@@ -39,13 +39,17 @@ export class HomeComponent implements OnInit {
 
 
   mockupJSON = {
-
     "parameter": {
       "postDate": "2019-12-31T17:00:00.000Z",
       "saveDate": "2020-01-03T17:00:00.000Z",
       "paymentMethod": "13IJ602457",
       "paymentDate": "2019-12-31T17:00:00.000Z",
-      "companyCode":[{"companyCodeFrom":"12005","companyCodeTo":""}],
+      "companyCode": [
+        {
+          "companyCodeFrom": "12005",
+          "companyCodeTo": ""
+        }
+      ],
       "vendor": [
         {
           "id": 1,
@@ -104,12 +108,23 @@ export class HomeComponent implements OnInit {
       "checkBoxPaymentMethodAll": false,
       "checkBoxPaymentMethodUnsuccess": true,
       "checkBoxDisplayDetail": true,
-      "vendorTaxIdOneFrom": "",
-      "vendorTaxIdOneTo": "",
-      "vendorTaxIdTwoFrom": "",
-      "vendorTaxIdTwoTo": "",
-      "vendorTaxIdThreeFrom": "",
-      "vendorTaxIdThreeTo": ""
+      "vendor": [
+        {
+          "id": 1,
+          "vendorTaxIdFrom": "aa",
+          "vendorTaxIdTo": "f"
+        },
+        {
+          "id": 2,
+          "vendorTaxIdFrom": "bb",
+          "vendorTaxIdTo": ""
+        },
+        {
+          "id": 3,
+          "vendorTaxIdFrom": "cc",
+          "vendorTaxIdTo": "g"
+        }
+      ]
     }
   }
 
@@ -182,7 +197,7 @@ export class HomeComponent implements OnInit {
 
       this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab)
       this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab)
-      this.tabAdditionalLogComponent.getIndependentFromCopy(this.listObjectAdditionLogTab)
+      this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab)
       // this.tabAdditionalLogComponent.ngOnInit()
       console.log(this.listObjectParameterTab)
       console.log(this.listObjectIndependentTab)
@@ -263,18 +278,18 @@ export class HomeComponent implements OnInit {
 
       // dialogRef.afterClosed().subscribe(result => {
       //   // console.log('The dialog was closed');
-      //   this.listObjectParameterTabForpayment = this.listObjectParameterTab
-      //   this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
-      //   this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
+        this.listObjectParameterTabForpayment = this.listObjectParameterTab
+        this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
+        this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
 
-      //   const object = {
-      //     parameter: this.listObjectParameterTabForpayment,
-      //     independent: this.listObjectIndependentTabForpayment,
-      //     additionLog: this.listObjectAdditionLogTabForpayment
-      //   }
-      //   console.log(object)
-      //   const jsonObject = JSON.stringify(object)
-      //   console.log(jsonObject)
+        const object = {
+          parameter: this.listObjectParameterTabForpayment,
+          independent: this.listObjectIndependentTabForpayment,
+          additionLog: this.listObjectAdditionLogTabForpayment
+        }
+        console.log(object)
+        const jsonObject = JSON.stringify(object)
+        console.log(jsonObject)
       // });
 
     }

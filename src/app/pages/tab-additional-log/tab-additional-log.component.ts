@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 
@@ -8,7 +8,8 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./tab-additional-log.component.scss']
 })
 export class TabAdditionalLogComponent implements OnInit {
-
+  @ViewChildren('vendorTaxIdFrom') vendorTaxIdFrom: QueryList<ElementRef>;
+  @ViewChildren('vendorTaxIdTo') vendorTaxIdTo: QueryList<ElementRef>;
   // Tab
   panleExpanded = true;
   panleExpanded1 = true;
@@ -21,12 +22,18 @@ export class TabAdditionalLogComponent implements OnInit {
   checkBoxPaymentMethodAllControl: FormControl; // เลือกวิธีชำระเงินในทุกกรณี
   checkBoxPaymentMethodUnsuccessControl: FormControl; // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
   checkBoxDisplayDetailControl: FormControl; //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
-  vendorTaxIdOneFromControl: FormControl; // vendor
-  vendorTaxIdOneToControl: FormControl; // vendor
-  vendorTaxIdTwoFromControl: FormControl; // vendor
-  vendorTaxIdTwoToControl: FormControl; // vendor
-  vendorTaxIdThreeFromControl: FormControl; // vendor
-  vendorTaxIdThreeToControl: FormControl; // vendor
+  // vendorTaxIdOneFromControl: FormControl; // vendor
+  // vendorTaxIdOneToControl: FormControl; // vendor
+  // vendorTaxIdTwoFromControl: FormControl; // vendor
+  // vendorTaxIdTwoToControl: FormControl; // vendor
+  // vendorTaxIdThreeFromControl: FormControl; // vendor
+  // vendorTaxIdThreeToControl: FormControl; // vendor
+
+  listVendor = [
+    { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 2, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+    { id: 3, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+  ];
 
   isDisabledCheckBoxDueDate: boolean = false   //for disabled checkbox
   isDisabledCheckBoxPaymentMethodAll: boolean = false//for disabled checkbox
@@ -46,10 +53,15 @@ export class TabAdditionalLogComponent implements OnInit {
       this.defaultInputAdditionLogForm()
     }
   }
-  getIndependentFromCopy(object) {
+  getAdditionLogFromCopy(object) {
     console.log(object)
-    
 
+    this.listVendor = [
+      { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+     
+     
+    ];
+    this.listVendor = object.vendor
     this.isDisabledCheckBoxDueDate = false
     this.isDisabledCheckBoxPaymentMethodAll = false
 
@@ -67,12 +79,12 @@ export class TabAdditionalLogComponent implements OnInit {
       checkBoxPaymentMethodAll: object.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี
       checkBoxPaymentMethodUnsuccess: object.checkBoxPaymentMethodUnsuccess, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
       checkBoxDisplayDetail: object.checkBoxDisplayDetail, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
-      vendorTaxIdOneFrom: object.vendorTaxIdOneFrom, // vendor
-      vendorTaxIdOneTo: object.vendorTaxIdOneTo, // vendor
-      vendorTaxIdTwoFrom: object.vendorTaxIdTwoFrom, // vendor
-      vendorTaxIdTwoTo: object.vendorTaxIdTwoTo, // vendor
-      vendorTaxIdThreeFrom: object.vendorTaxIdThreeFrom, // vendor
-      vendorTaxIdThreeTo: object.venvendorTaxIdThreeTodorTax, // vendor
+      // vendorTaxIdOneFrom: object.vendorTaxIdOneFrom, // vendor
+      // vendorTaxIdOneTo: object.vendorTaxIdOneTo, // vendor
+      // vendorTaxIdTwoFrom: object.vendorTaxIdTwoFrom, // vendor
+      // vendorTaxIdTwoTo: object.vendorTaxIdTwoTo, // vendor
+      // vendorTaxIdThreeFrom: object.vendorTaxIdThreeFrom, // vendor
+      // vendorTaxIdThreeTo: object.venvendorTaxIdThreeTodorTax, // vendor
     })
   }
   createAdditionLogFormControl() {
@@ -80,12 +92,12 @@ export class TabAdditionalLogComponent implements OnInit {
     this.checkBoxPaymentMethodAllControl = this.formBuilder.control(''); // เลือกวิธีชำระเงินในทุกกรณี
     this.checkBoxPaymentMethodUnsuccessControl = this.formBuilder.control(''); // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
     this.checkBoxDisplayDetailControl = this.formBuilder.control(''); //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
-    this.vendorTaxIdOneFromControl = this.formBuilder.control(''); // vendor
-    this.vendorTaxIdOneToControl = this.formBuilder.control(''); // vendor
-    this.vendorTaxIdTwoFromControl = this.formBuilder.control(''); // vendor
-    this.vendorTaxIdTwoToControl = this.formBuilder.control(''); // vendor
-    this.vendorTaxIdThreeFromControl = this.formBuilder.control(''); // vendor
-    this.vendorTaxIdThreeToControl = this.formBuilder.control(''); // vendor
+    // this.vendorTaxIdOneFromControl = this.formBuilder.control(''); // vendor
+    // this.vendorTaxIdOneToControl = this.formBuilder.control(''); // vendor
+    // this.vendorTaxIdTwoFromControl = this.formBuilder.control(''); // vendor
+    // this.vendorTaxIdTwoToControl = this.formBuilder.control(''); // vendor
+    // this.vendorTaxIdThreeFromControl = this.formBuilder.control(''); // vendor
+    // this.vendorTaxIdThreeToControl = this.formBuilder.control(''); // vendor
   }
   createAdditionLogFormGroup() {
     this.additionLogForm = this.formBuilder.group({
@@ -93,12 +105,12 @@ export class TabAdditionalLogComponent implements OnInit {
       checkBoxPaymentMethodAll: this.checkBoxPaymentMethodAllControl, // เลือกวิธีชำระเงินในทุกกรณี
       checkBoxPaymentMethodUnsuccess: this.checkBoxPaymentMethodUnsuccessControl, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
       checkBoxDisplayDetail: this.checkBoxDisplayDetailControl, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
-      vendorTaxIdOneFrom: this.vendorTaxIdOneFromControl, // vendor
-      vendorTaxIdOneTo: this.vendorTaxIdOneToControl, // vendor
-      vendorTaxIdTwoFrom: this.vendorTaxIdTwoFromControl, // vendor
-      vendorTaxIdTwoTo: this.vendorTaxIdTwoToControl, // vendor
-      vendorTaxIdThreeFrom: this.vendorTaxIdThreeFromControl, // vendor
-      vendorTaxIdThreeTo: this.vendorTaxIdThreeToControl, // vendor
+      // vendorTaxIdOneFrom: this.vendorTaxIdOneFromControl, // vendor
+      // vendorTaxIdOneTo: this.vendorTaxIdOneToControl, // vendor
+      // vendorTaxIdTwoFrom: this.vendorTaxIdTwoFromControl, // vendor
+      // vendorTaxIdTwoTo: this.vendorTaxIdTwoToControl, // vendor
+      // vendorTaxIdThreeFrom: this.vendorTaxIdThreeFromControl, // vendor
+      // vendorTaxIdThreeTo: this.vendorTaxIdThreeToControl, // vendor
     });
   }
   defaultInputAdditionLogForm() {
@@ -107,16 +119,16 @@ export class TabAdditionalLogComponent implements OnInit {
       checkBoxPaymentMethodAll: false, // เลือกวิธีชำระเงินในทุกกรณี
       checkBoxPaymentMethodUnsuccess: false, // เลือกเฉพาะวิธีการชำระเงินไม่สำเร็จ
       checkBoxDisplayDetail: false, //แสดงรายการบรรทัดรายการเอกสารชำระเงิน
-      vendorTaxIdOneFrom: '', // vendor
-      vendorTaxIdOneTo: '', // vendor
-      vendorTaxIdTwoFrom: '', // vendor
-      vendorTaxIdTwoTo: '', // vendor
-      vendorTaxIdThreeFrom: '', // vendor
-      vendorTaxIdThreeTo: '', // vendor
+      // vendorTaxIdOneFrom: '', // vendor
+      // vendorTaxIdOneTo: '', // vendor
+      // vendorTaxIdTwoFrom: '', // vendor
+      // vendorTaxIdTwoTo: '', // vendor
+      // vendorTaxIdThreeFrom: '', // vendor
+      // vendorTaxIdThreeTo: '', // vendor
     });
   }
   setInputFromAddition() {
-
+    this.listVendor = this.additionLog.vendor
     this.isDisabledCheckBoxDueDate = false
     this.isDisabledCheckBoxPaymentMethodAll = false
 
@@ -128,8 +140,6 @@ export class TabAdditionalLogComponent implements OnInit {
     //   this.isDisabledCheckBoxPaymentMethodAll = false
     //   this.isDisabledCheckBoxDueDate = true
     // }
-
-    
     this.additionLogForm.patchValue({
       checkBoxDueDate: this.additionLog.checkBoxDueDate, // ตรวจสอบวันที่ครบกำหนด
       checkBoxPaymentMethodAll: this.additionLog.checkBoxPaymentMethodAll, // เลือกวิธีชำระเงินในทุกกรณี
@@ -144,6 +154,21 @@ export class TabAdditionalLogComponent implements OnInit {
     })
 
 
+  }
+  setVendor(index) {
+    const vendorTaxIdFrom = this.vendorTaxIdFrom.toArray()[index].nativeElement.value;
+    const vendorTaxIdTo = this.vendorTaxIdTo.toArray()[index].nativeElement.value;
+    if (vendorTaxIdFrom) {
+      this.listVendor[index].vendorTaxIdFrom = vendorTaxIdFrom
+    } else {
+      this.listVendor[index].vendorTaxIdFrom = ''
+    }
+    if (vendorTaxIdTo) {
+      this.listVendor[index].vendorTaxIdTo = vendorTaxIdTo
+    } else {
+      this.listVendor[index].vendorTaxIdTo = ''
+    }
+    console.log(this.listVendor)
   }
   checkValidationAdditionLog(event, type) {
     console.log('checkValidationAdditionLog')
@@ -182,7 +207,7 @@ export class TabAdditionalLogComponent implements OnInit {
     }
   }
   updateParameter(): void {
-    // this.additionLogForm.value.vendor = this.listVendor
+    this.additionLogForm.value.vendor = this.listVendor
     this.additionLog = this.additionLogForm.value
 
 

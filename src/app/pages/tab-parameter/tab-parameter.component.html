@@ -5,7 +5,7 @@
         <div class="col-md-3 col-left margin-tb-size">
           <label class="text-black input-head"><b>วันที่ผ่านรายการ</b></label>
           <div class="input-group input-group-lg">
-            <input type="text" [(ngModel)]="param1" [ngStyle]="{'background-color': !param1 ?'#fff' : '#fffae6'}" class="form-control date-mat-input" formControlName="postDate"
+            <input type="text"  [ngStyle]="{'background-color': !parameterForm.controls.postDate.value ?'#fff' : '#fffae6'}" class="form-control date-mat-input" formControlName="postDate"
               [matDatepicker]="myDatepicker">
             <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
               <img src="assets/images/icon/calendar.svg" width="12px">
@@ -16,7 +16,7 @@
         <div class="col-md-3 col-left margin-tb-size">
           <label class="text-black input-head">บันทึกเอกสาร</label>
           <div class="input-group input-group-lg">
-            <input type="text" [(ngModel)]="param2" [ngStyle]="{'background-color': !param2 ?'#fff' : '#fffae6'}" class="form-control date-mat-input" formControlName="saveDate"
+            <input type="text"  [ngStyle]="{'background-color': !parameterForm.controls.saveDate.value ?'#fff' : '#fffae6'}" class="form-control date-mat-input" formControlName="saveDate"
               [matDatepicker]="myDatepicker2">
             <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker2.open()">
               <img src="assets/images/icon/calendar.svg" width="12px">
@@ -27,7 +27,7 @@
         <div class="col-md-3 col-left margin-tb-size">
           <label class="text-black input-head">วิธีชำระเงิน</label>
           <div class="input-group input-group-lg">
-            <input type="text" [(ngModel)]="param3" [ngStyle]="{'background-color': !param3 ?'#fff' : '#fffae6'}" class="form-control" formControlName="paymentMethod">
+            <input type="text"  [ngStyle]="{'background-color': !parameterForm.controls.paymentMethod.value ?'#fff' : '#fffae6'}" class="form-control" formControlName="paymentMethod">
             <button class="btn btn-default" type="button" (click)="openDialogSearchPaymentMethod()">
               <img src="assets/images/icon/menu.svg" width="12px" />
             </button>
@@ -36,7 +36,7 @@
         <div class="col-md-3 col-left margin-tb-size">
           <label class="text-black input-head">วันชำระถัดไป</label>
           <div class="input-group input-group-lg">
-            <input type="text" [(ngModel)]="param4" [ngStyle]="{'background-color': !param4 ?'#fff' : '#fffae6'}" class="form-control date-mat-input" formControlName="paymentDate"
+            <input type="text"  [ngStyle]="{'background-color': !parameterForm.controls.paymentDate.value ?'#fff' : '#fffae6'}" class="form-control date-mat-input" formControlName="paymentDate"
               [matDatepicker]="myDatepicker4">
             <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker4.open()">
               <img src="assets/images/icon/calendar.svg" width="12px">
@@ -56,7 +56,7 @@
           <div class="panel-body" *ngIf="panleExpanded">
             <cdk-virtual-scroll-viewport itemSize="50" class="para-textarea">
               <div class="example-item">
-                <textarea class="form-control" [(ngModel)]="param7" [ngStyle]="{'background-color': !param7 ?'#fff' : '#f2f2f2'}" formControlName="companyCode" rows="9"></textarea>
+                <textarea class="form-control"  [ngStyle]="{'background-color': !parameterForm.controls.companyCode.value ?'#fff' : '#f2f2f2'}" formControlName="companyCode" rows="9"></textarea>
               </div>
             </cdk-virtual-scroll-viewport>
           </div>
@@ -86,7 +86,7 @@
               <div class="row" *ngFor="let item of listVendor;let i = index">
                 <div class="col-12 col-md-5">
                   <div class="input-group input-group-lg">
-                    <input #vendorTaxIdFrom type="text" [(ngModel)]="item.vendorTaxIdFrom" [ngStyle]="{'background-color': !item.vendorTaxIdFrom ?'#fff' : '#fffae6'}" [value]="item.vendorTaxIdFrom" class="form-control"
+                    <input #vendorTaxIdFrom type="text"  [ngStyle]="{'background-color': !item.vendorTaxIdFrom ?'#fff' : '#fffae6'}" [value]="item.vendorTaxIdFrom" class="form-control"
                       (blur)="setVendor(i)">
                     <button class="btn btn-default" type="button" (click)="openDialogSearchVendor(i,'vendorTaxIdFrom')">
                       <img src="assets/images/icon/fa-search.svg" width="12px" />
@@ -95,7 +95,7 @@
                 </div>
                 <div class="col-12 col-md-5">
                   <div class="input-group input-group-lg">
-                    <input #vendorTaxIdTo type="text" [(ngModel)]="item.vendorTaxIdTo" [ngStyle]="{'background-color': !item.vendorTaxIdTo ?'#fff' : '#fffae6'}" [value]="item.vendorTaxIdTo" class="form-control"
+                    <input #vendorTaxIdTo type="text"  [ngStyle]="{'background-color': !item.vendorTaxIdTo ?'#fff' : '#fffae6'}" [value]="item.vendorTaxIdTo" class="form-control"
                       (blur)="setVendor(i)">
                     <button class="btn btn-default" type="button" (click)="openDialogSearchVendor(i,'vendorTaxIdTo')">
                       <img src="assets/images/icon/fa-search.svg" width="12px" />

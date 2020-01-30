@@ -14,31 +14,6 @@
           </button>
         </div>
       </div>
-      <!-- <div>
-          <div class="row">
-            <div class="col-md-11">
-              <mat-label class="input-head">ชื่อฟิลด์</mat-label>
-              <div class="input-group input-group-lg">
-                <input readonly type="text" class="form-control" formControlName="fieldNameOne">
-                <button class="btn btn-default" type="button" (click)="openDialogSearchfield('fieldNameOne')">
-                  <img src="assets/images/icon/menu.svg" width="12px" />
-                </button>
-              </div>
-            </div>
-            <div class="col-md-1" style="padding-top: 20px;">
-              <div class="input-group input-group-lg">
-                <mat-checkbox formControlName="checkBoxOne">ไม่รวมค่า</mat-checkbox>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-11">
-              <input type="text" class="form-control" formControlName="conditionfieldOne">
-            </div>
-            <div class="col-md-1"></div>
-          </div>
-          <br>
-        </div> -->
       <div *ngFor="let item of listIndependent;let i = index">
         <div class="row">
           <div class="col-md-10">
@@ -66,57 +41,11 @@
         <div class="row">
           <div class="col-md-10">
             <input type="text" class="form-control" [value]="item.conditionfield" #conditionfield
-              (blur)="setConditionfield(i)" [(ngModel)]="item.conditionfield" [ngStyle]="{'background-color': !item.conditionfield ?'#fff' : '#fffae6'}" >
+              (blur)="setConditionfield(i)"  [ngStyle]="{'background-color': !item.conditionfield ?'#fff' : '#fffae6'}" >
           </div>
         </div>
         <br>
       </div>
-
-      <!-- <div class="row">
-          <div class="col-md-11">
-            <mat-label class="input-head">ชื่อฟิลด์</mat-label>
-            <div class="input-group input-group-lg">
-              <input readonly type="text" class="form-control" formControlName="fieldNameTwo">
-              <button class="btn btn-default" type="button" (click)="openDialogSearchfield('fieldNameTwo')">
-                <img src="assets/images/icon/menu.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-          <div class="col-md-1" style="padding-top: 20px;">
-            <div class="input-group input-group-lg">
-              <mat-checkbox formControlName="checkBoxTwo">ไม่รวมค่า</mat-checkbox>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11">
-            <input type="text" class="form-control" formControlName="conditionfieldTwo">
-          </div>
-          <div class="col-md-1"></div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-md-11">
-            <mat-label class="input-head">ชื่อฟิลด์</mat-label>
-            <div class="input-group input-group-lg">
-              <input readonly type="text" class="form-control" formControlName="fieldNameThree">
-              <button class="btn btn-default" type="button" (click)="openDialogSearchfield('fieldNameThree')">
-                <img src="assets/images/icon/menu.svg" width="12px" />
-              </button>
-            </div>
-          </div>
-          <div class="col-md-1" style="padding-top: 20px;">
-            <div class="input-group input-group-lg">
-              <mat-checkbox formControlName="checkBoxThree">ไม่รวมค่า</mat-checkbox>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11">
-            <input type="text" class="form-control" formControlName="conditionfieldThree">
-          </div>
-          <div class="col-md-1"></div>
-        </div> -->
     </div>
 
   </div>

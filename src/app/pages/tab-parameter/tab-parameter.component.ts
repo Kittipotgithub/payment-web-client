@@ -36,9 +36,7 @@ export class TabParameterComponent implements OnInit {
     { id: 1, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
     { id: 2, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
     { id: 3, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { id: 4, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { id: 5, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
-    { id: 6, vendorTaxIdFrom: '', vendorTaxIdTo: '' },
+   
   ];
 
 
@@ -63,6 +61,7 @@ export class TabParameterComponent implements OnInit {
 
   }
   getParameterFromCopy(object) {
+    console.log(object)
     // this.listIndependent = object
     this.listVendor = object.vendor
     this.parameterForm.patchValue({
