@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
   statusControl: FormControl;//สถานะ
 
 
+  isDisabledCopy: boolean = true
 
 
   mockupJSON = {
@@ -413,6 +414,17 @@ export class HomeComponent implements OnInit {
       console.log(this.paymentCondition)
     })
 
+  }
+
+  test() {
+
+    if (this.isDisabledCopy) {
+      this.isDisabledCopy = false
+    } else {
+      this.isDisabledCopy = true
+    }
+
+    console.log(this.isDisabledCopy)
   }
 
 }

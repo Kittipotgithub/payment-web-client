@@ -5,7 +5,7 @@
     </mat-toolbar>
   </div>
 </div>
-<div class="body">
+<div class="body" >
   <div class="container-fluid">
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="homeForm">
       <div class="row">
@@ -42,13 +42,18 @@
             <button mat-icon-button class="btn_menu1">
               <mat-icon style="font-size:15px;padding:5px;">insert_drive_file</mat-icon>
             </button>
+          </span>&nbsp;
+          <span class="fill-remaining-space">
+            <button mat-icon-button (click)="test()" class="btn_menu1">
+              <mat-icon style="font-size:15px;padding:5px;">favorite</mat-icon>
+            </button>
           </span>
         </div>
       </div>
     </form>
     <br>
     <!-- Material Tab -->
-    <div class="row">
+    <div class="row" [ngClass]="{ 'readonly-input': isDisabledCopy }">
       <div class="col-md-12">
         <mat-card>
           <mat-card-content>
