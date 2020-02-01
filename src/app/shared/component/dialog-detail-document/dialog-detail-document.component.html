@@ -1,6 +1,5 @@
 <button class="close" mat-button (click)="onNoClick()">X</button>
-<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"><b>Search</b></h1>
-<hr>
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>Search</h1>
 <div mat-dialog-content >
   <div class="content-box">
     <div *ngIf="documentDetail" class="content-item">
