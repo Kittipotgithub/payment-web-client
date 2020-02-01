@@ -23,9 +23,12 @@
     </div>
   </div>
 </div>
-<div mat-dialog-content class="date_dialog" *ngIf="dataSource.length > 0" >
+<div mat-dialog-content class="date_dialog">
   <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
     <div class="example-item">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="choose">
