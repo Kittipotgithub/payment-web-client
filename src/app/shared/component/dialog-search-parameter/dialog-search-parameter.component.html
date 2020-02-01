@@ -13,19 +13,19 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="code">
+    <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> วันที่ประมวลผล </th>
-      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.date | thaidate}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="pay">
+    <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> รหัส </th>
-      <td mat-cell *matCellDef="let element"> {{element.pay}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="nextpay">
+    <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> สถานะการดำเนินการ </th>
-      <td mat-cell *matCellDef="let element"> {{element.nextpay}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

@@ -24,7 +24,7 @@
         <div class="col-md-4">
           <h3 class="text-black"><b>การกำหนด</b></h3>
           <div class="input-group input-group-lg">
-            <input type="text" [ngStyle]="{'background-color': !homeForm.controls.paymentName.value ?'#fff' : '#fffae6'}" class="form-control"
+            <input type="text" (blur)="onBlurPaymentName()" [ngStyle]="{'background-color': !homeForm.controls.paymentName.value ?'#fff' : '#fffae6'}" class="form-control"
               formControlName="paymentName">
             <button class="btn btn-default" type="button" (click)="openDialogSearchParameterComponent()">
               <img src="assets/images/icon/menu.svg" width="12px" />

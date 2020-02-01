@@ -224,6 +224,8 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('parameterTabForpayment', null)
     localStorage.setItem('independentTabForpayment', null)
     localStorage.setItem('additionLogTabForpayment', null)
+
+
     // console.log(JSON.stringify(this.testList.vendor))
     // console.log(JSON.stringify(this.testList1.vendor))
     // if (JSON.stringify(this.testList.vendor) === JSON.stringify(this.testList1.vendor)) {
@@ -381,13 +383,34 @@ export class HomeComponent implements OnInit {
       console.log('The dialog was closed');
       if (result && result.event) {
         this.homeForm.patchValue({
-          paymentDate: '',// วันที่ประมวลผล
-          paymentName: result.value, // การกำหนด
+          paymentDate: new Date(result.date),// วันที่ประมวลผล
+          paymentName: result.name, // การกำหนด
           // status: this.mockupJSON.payment.status//สถานะ
         });
+        this.searchPaymentDetail()
       }
     });
   }
+
+  onBlurPaymentName() {
+    const formValue = this.homeForm.value
+    if (formValue.paymentDate && formValue.paymentName) {
+      this.searchPaymentDetail()
+    }
+  }
+  searchPaymentDetail(){
+    const formValue = this.homeForm.value
+    const date = new Date(formValue.paymentDate)
+    const dayPaymentDate = date.getDate();
+    const monthPaymentDate = date.getMonth() + 1;
+    const yearPaymentDate = date.getFullYear();
+    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate)
+    const paymentName = formValue.paymentName
+    this.paymentAliasService.search(paymentDate, paymentName).subscribe(result => {
+    
+    })
+  }
+
 
   searchParameter() {
     const formValue = this.homeForm.value
@@ -398,14 +421,14 @@ export class HomeComponent implements OnInit {
     const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate)
     const paymentName = formValue.paymentName
     this.paymentAliasService.search(paymentDate, paymentName).subscribe(result => {
+      console.log(result)
       if (result.status === 200) {
         const data = result.data
         if (data) {
           this.updateParameter(this.paymentCondition, data)
-        } else {
-          this.createParameter(this.paymentCondition)
         }
-
+      } else if (result.status === 404) {
+        this.createParameter(this.paymentCondition)
       }
     })
   }
@@ -415,7 +438,11 @@ export class HomeComponent implements OnInit {
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
-      jsonText: JSON.stringify(jsonObject)
+
+      parameterStatus: "S",
+      // paymentParameterConfig:{
+      //   jsonText: JSON.stringify(jsonObject)
+      // }
     }
     this.paymentAliasService.create(data).subscribe(result => {
       console.log(result)
@@ -426,7 +453,11 @@ export class HomeComponent implements OnInit {
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
-      jsonText: JSON.stringify(jsonObject)
+      parameterStatus: "B",
+      // paymentParameterConfig:{
+      //   jsonText: JSON.stringify(jsonObject)
+      // }
+
     }
     this.paymentAliasService.update(data, response.id).subscribe(result => {
       console.log(result)

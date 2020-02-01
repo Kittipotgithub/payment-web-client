@@ -1,25 +1,29 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface PeriodicElement {
-  pay: string;
-  code: string;
-  nextpay: string;
+  name: string;
+  date: any;
+  description: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { code: '07.11.2019', pay: 'H0001', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '07.11.2019', pay: 'H0002', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '29.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '29.10.2019', pay: 'Z-DI2', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '29.10.2019', pay: 'Z-IN1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-  { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
+  
+  { date: 1580556948725, name: 'A0001', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1580556948725, name: 'H0001', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1580556948725, name: 'C0001', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1577879219000, name: 'A0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1577879219000, name: 'B0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1577879219000, name: 'C0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1578052019000, name: 'A0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1578052019000, name: 'B0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1578052019000, name: 'C0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1580039219000, name: 'A0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1580039219000, name: 'B0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { date: 1580039219000, name: 'C0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+
 ];
 
 @Component({
@@ -28,15 +32,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dialog-search-parameter.component.scss']
 })
 export class DialogSearchParameterComponent implements OnInit {
-  displayedColumns: string[] = ['choose','code', 'pay', 'nextpay'];
+  displayedColumns: string[] = ['choose', 'date', 'name', 'description'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
   constructor(
     private dialogRef: MatDialogRef<DialogSearchParameterComponent>
   ) { }
-  
+
   closeDialog(): void {
     const dialogRef = this.dialogRef.close();
 
@@ -52,7 +56,8 @@ export class DialogSearchParameterComponent implements OnInit {
     this.dialogRef.close({
       event: true,
       // type: this.data.type,
-      value: data.pay,
+      date: data.date,
+      name: data.name,
 
     });
   }

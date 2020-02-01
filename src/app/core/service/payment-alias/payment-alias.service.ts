@@ -16,7 +16,8 @@ export class PaymentAliasService {
       map(data => {
         console.log(data);
         return data;
-      })
+      }),
+      take(1)
     );
   }
   update(payload, id): Observable<any> {
@@ -24,7 +25,8 @@ export class PaymentAliasService {
       map(data => {
         console.log(data);
         return data;
-      })
+      }),
+      take(1)
     );
   }
   search(date, name): Observable<any> {
@@ -32,7 +34,8 @@ export class PaymentAliasService {
       map(data => {
         console.log(data);
         return data;
-      })
+      }),
+      take(1)
     );
   }
 }

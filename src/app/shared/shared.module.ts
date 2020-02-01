@@ -17,6 +17,8 @@ import { DialogCopyParameterComponent } from './component/dialog-copy-parameter/
 import { DialogSearchParameterComponent } from './component/dialog-search-parameter/dialog-search-parameter.component';
 import { DialogSearchVendorPaymentComponent } from './component/dialog-search-vendor-payment/dialog-search-vendor-payment.component';
 
+import { ThaidatePipe } from './pipe/thaidate.pipe';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { DialogSearchVendorPaymentComponent } from './component/dialog-search-ve
     DialogSearchPaymentMethodComponent,
     DialogCopyParameterComponent,
     DialogSearchParameterComponent,
-    DialogSearchVendorPaymentComponent
+    DialogSearchVendorPaymentComponent,
+    ThaidatePipe
 
   ],
   imports: [
@@ -68,7 +71,8 @@ import { DialogSearchVendorPaymentComponent } from './component/dialog-search-ve
     DialogSearchPaymentMethodComponent,
     DialogCopyParameterComponent,
     DialogSearchParameterComponent,
-    DialogSearchVendorPaymentComponent
+    DialogSearchVendorPaymentComponent,
+    
 
   ],
 })
