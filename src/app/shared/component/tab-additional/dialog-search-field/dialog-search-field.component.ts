@@ -1,6 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { PaymentService } from 'src/app/core/service/payment/payment.service';
+import { ThrowStmt } from '@angular/compiler';
+import { group } from '@angular/animations';
+import { PaymentIndependentService } from 'src/app/core/service/payment-independent/payment-independent.service';
 
 export interface DialogData {
   type: string;
@@ -23,41 +27,34 @@ export interface DialogData {
   templateUrl: './dialog-search-field.component.html',
   styleUrls: ['./dialog-search-field.component.scss'],
 })
-export class DialogSearchFieldComponent implements OnInit {
+export class DialogSearchFieldComponent implements OnInit, AfterViewInit {
   searchFiledFormCreate: FormGroup;
 
   typeControl: FormControl; // ชื่อฟิลด์
 
+  errorMessage = '';
+
   displayedColumns: string[] = ['choose', 'filedName', 'filedTable'];
 
   dataSource = [];
-  defaultFiled = [
-    { filedTable: '1', filedName: 'เลขที่เอกสาร' },
-    { filedTable: '2', filedName: 'ประเภทเอกสาร' },
-    { filedTable: '3', filedName: 'วันผ่านรายการ' },
-    { filedTable: '4', filedName: 'การอ้างอิง' },
-    { filedTable: '5', filedName: 'แหล่งของเงิน' },
-    { filedTable: '6', filedName: 'วิธีการชำระเงิน' },
-    { filedTable: '7', filedName: 'การระงับการชำระเงิน' },
-  ];
-  documentFiled = [{ filedTable: '1', filedName: 'เลขที่เอกสาร' }];
-  vendorFiled = [
-    { filedTable: '6', filedName: 'วิธีการชำระเงิน' },
-    { filedTable: '7', filedName: 'การระงับการชำระเงิน' },
-  ];
 
   constructor(
     private dialogRef: MatDialogRef<DialogSearchFieldComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private formBuilder: FormBuilder
-  ) {
-    this.dataSource = this.defaultFiled;
-  }
+    private formBuilder: FormBuilder,
+    private paymentService: PaymentService,
+    private paymentIndependentService: PaymentIndependentService
+  ) {}
 
   ngOnInit() {
     this.createSearchFiledFormControl();
     this.createSearchFiledFormGroup();
   }
+
+  ngAfterViewInit() {
+    this.searchStandard();
+  }
+
   createSearchFiledFormControl() {
     this.typeControl = this.formBuilder.control('1');
   }
@@ -71,20 +68,35 @@ export class DialogSearchFieldComponent implements OnInit {
     const dialogRef = this.dialogRef.close();
   }
   chooseDataSearch(row) {
-    // this.errorMessage = '';
+    console.log('show', row);
+
     this.dialogRef.close({
       event: true,
-      // type: this.data.type,
-      value: row.filedName,
+      // type: row.,
+      value: row.fieldName,
+    });
+  }
+  search(groupName) {
+    this.paymentIndependentService.search(groupName).then(value => {
+      console.log(value.data);
+      this.dataSource = value.data;
+    });
+  }
+
+  searchStandard() {
+    this.paymentIndependentService.searchStandard().then(value => {
+      console.log(value.data);
+      this.dataSource = value.data;
     });
   }
   changeType(event) {
+    console.log(event);
     if (event.value === '1') {
-      this.dataSource = this.defaultFiled;
+      this.searchStandard();
     } else if (event.value === '2') {
-      this.dataSource = this.documentFiled;
+      this.search('Document');
     } else if (event.value === '3') {
-      this.dataSource = this.vendorFiled;
+      this.search('Vendor');
     }
   }
 }

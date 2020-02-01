@@ -19,7 +19,7 @@
           <div class="col-md-10">
             <label class="input-head">ชื่อฟิลด์</label>
             <div class="input-group input-group-lg">
-              <input readonly type="text" class="form-control" [value]="item.fieldName" #fieldName >
+              <input readonly type="text" class="form-control" [value]="item.fieldName" #fieldName>
               <button class="btn btn-default" type="button" (click)="openDialogSearchfield(i)">
                 <img src="assets/images/icon/menu.svg" width="12px" />
               </button>
@@ -33,15 +33,15 @@
           </div>
           <div class="col-md-1" style="padding-top: 20px;">
             <button type="button" class="btn btn-danger btn-lg" (click)="deleteInputIndependent(i)"
-            style="padding:2px 15px;">
+              style="padding:2px 15px;">
               <i class="material-icons" style="font-size:15px;">clear</i>
             </button>
           </div>
         </div>
-        <div class="row">
+        <div *ngIf="item.fieldName" class="row">
           <div class="col-md-10">
             <input type="text" class="form-control" [value]="item.conditionField" #conditionField
-              (blur)="setConditionfield(i)"  [ngStyle]="{'background-color': !item.conditionField ?'#fff' : '#fffae6'}" >
+              (blur)="setConditionfield(i)" [ngStyle]="{'background-color': !item.conditionField ?'#fff' : '#fffae6'}">
           </div>
         </div>
         <br>
