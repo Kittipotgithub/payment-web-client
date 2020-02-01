@@ -208,7 +208,7 @@ export class HomeComponent implements OnInit {
     private utils: Utils,
     private formBuilder: FormBuilder,
     private paymentAliasService: PaymentAliasService
-  ) {}
+  ) { }
 
   ngOnInit() {
     localStorage.setItem('parameterTabForpayment', null);
@@ -375,8 +375,8 @@ export class HomeComponent implements OnInit {
       console.log('The dialog was closed');
       if (result && result.event) {
         this.homeForm.patchValue({
-          paymentDate: new Date(result.date), // วันที่ประมวลผล
-          paymentName: result.name, // การกำหนด
+          paymentDate: new Date(result.paymentDate), // วันที่ประมวลผล
+          paymentName: result.paymentName, // การกำหนด
           // status: this.mockupJSON.payment.status//สถานะ
         });
         this.searchPaymentDetail();
@@ -398,7 +398,7 @@ export class HomeComponent implements OnInit {
     const yearPaymentDate = date.getFullYear();
     const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
     const paymentName = formValue.paymentName;
-    this.paymentAliasService.search(paymentDate, paymentName).then(result => {});
+    this.paymentAliasService.search(paymentDate, paymentName).then(result => { });
   }
 
   searchParameter() {
@@ -427,11 +427,8 @@ export class HomeComponent implements OnInit {
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
+      jsonText: JSON.stringify(jsonObject),
 
-      parameterStatus: 'S',
-      // paymentParameterConfig:{
-      //   jsonText: JSON.stringify(jsonObject)
-      // }
     };
     this.paymentAliasService.create(data).then(result => {
       console.log(result);
@@ -442,10 +439,7 @@ export class HomeComponent implements OnInit {
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
-      parameterStatus: 'B',
-      // paymentParameterConfig:{
-      //   jsonText: JSON.stringify(jsonObject)
-      // }
+      jsonText: JSON.stringify(jsonObject),
     };
     console.log(data);
     this.paymentAliasService.update(data, response.id).then(result => {

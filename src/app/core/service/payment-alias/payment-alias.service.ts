@@ -60,4 +60,36 @@ export class PaymentAliasService {
       )
       .toPromise();
   }
+  searchAllParameter(): Promise<any> {
+    return this.httpClient
+      .get(`${environment.apiUrl}` + '/paymentAlias/getAll')
+      .pipe(
+        map(data => {
+          console.log(data);
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          return of(err);
+        }),
+        take(1)
+      )
+      .toPromise();
+  }
+  searchByValue(key): Promise<any> {
+    return this.httpClient
+      .get(`${environment.apiUrl}` + '/paymentAlias/getByValue/' + key)
+      .pipe(
+        map(data => {
+          console.log(data);
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          return of(err);
+        }),
+        take(1)
+      )
+      .toPromise();
+  }
 }
