@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, take, catchError } from 'rxjs/operators';
 import { ApiService } from '../../api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaymentAliasService {
-
-  constructor(private apiService: ApiService) { }
+  constructor(private httpClient: HttpClient) {}
 
   create(payload): Observable<any> {
-    return this.apiService.post('/paymentAlias/save', payload).pipe(
+    return this.httpClient.post('/paymentAlias/save', payload).pipe(
       map(data => {
         console.log(data);
         return data;
@@ -21,7 +21,7 @@ export class PaymentAliasService {
     );
   }
   update(payload, id): Observable<any> {
-    return this.apiService.put('/paymentAlias/update/' + id, payload).pipe(
+    return this.httpClient.put('/paymentAlias/update/' + id, payload).pipe(
       map(data => {
         console.log(data);
         return data;
@@ -29,13 +29,20 @@ export class PaymentAliasService {
       take(1)
     );
   }
-  search(date, name): Observable<any> {
-    return this.apiService.get('/paymentAlias/search/' + date + '/' + name).pipe(
-      map(data => {
-        console.log(data);
-        return data;
-      }),
-      take(1)
-    );
+  search(date, name): Promise<any> {
+    return this.httpClient
+      .get('/paymentAlias/search/' + date + '/' + name)
+      .pipe(
+        map(data => {
+          console.log(data);
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          return of(err);
+        }),
+        take(1)
+      )
+      .toPromise();
   }
 }

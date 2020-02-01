@@ -15,7 +15,6 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { DialogSearchParameterComponent } from 'src/app/shared/component/dialog-search-parameter/dialog-search-parameter.component';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,185 +25,181 @@ import { DialogSearchParameterComponent } from 'src/app/shared/component/dialog-
   ],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(TabParameterComponent, { static: true })
+  private tabParameterComponent: TabParameterComponent;
+  @ViewChild(TabAdditionalLogComponent, { static: true })
+  private tabAdditionalLogComponent: TabAdditionalLogComponent;
+  @ViewChild(TabIndependentComponent, { static: true })
+  private tabIndependentComponent: TabIndependentComponent;
 
-  @ViewChild(TabParameterComponent, { static: true }) private tabParameterComponent: TabParameterComponent;
-  @ViewChild(TabAdditionalLogComponent, { static: true }) private tabAdditionalLogComponent: TabAdditionalLogComponent;
-  @ViewChild(TabIndependentComponent, { static: true }) private tabIndependentComponent: TabIndependentComponent;
-
-
-  listObjectParameterTab: object = null
+  listObjectParameterTab: object = null;
   // listObjectParameterTabForpayment: object = null
 
-  listObjectAdditionLogTab: object = null
+  listObjectAdditionLogTab: object = null;
   // listObjectAdditionLogTabForpayment: object = null
 
-  listObjectIndependentTab: object = null
+  listObjectIndependentTab: object = null;
   // listObjectIndependentTabForpayment: object = null
-
 
   homeForm: FormGroup;
 
   paymentDateControl: FormControl; // วันที่ประมวลผล
   paymentNameControl: FormControl; // การกำหนด
-  statusControl: FormControl;//สถานะ
+  statusControl: FormControl; // สถานะ
 
-
-  isDisabledCopy: boolean = false
-
+  isDisabledCopy = false;
 
   mockupJSON = {
-    "payment": {
-      "paymentDate": "2020-01-29T17:00:00.000Z",
-      "paymentName": "H0001",
-      "status": ""
+    payment: {
+      paymentDate: '2020-01-29T17:00:00.000Z',
+      paymentName: 'H0001',
+      status: '',
     },
-    "parameter": {
-      "postDate": "2019-12-31T17:00:00.000Z",
-      "saveDate": "2020-01-01T17:00:00.000Z",
-      "paymentMethod": "IJ04",
-      "paymentDate": "2020-01-02T17:00:00.000Z",
-      "company": "12005,(3004,3003),1234",
-      "companyCondition": [
+    parameter: {
+      postDate: '2019-12-31T17:00:00.000Z',
+      saveDate: '2020-01-01T17:00:00.000Z',
+      paymentMethod: 'IJ04',
+      paymentDate: '2020-01-02T17:00:00.000Z',
+      company: '12005,(3004,3003),1234',
+      companyCondition: [
         {
-          "companyFrom": "12005",
-          "companyTo": ""
+          companyFrom: '12005',
+          companyTo: '',
         },
         {
-          "companyFrom": "3004",
-          "companyTo": "3003"
-        }
+          companyFrom: '3004',
+          companyTo: '3003',
+        },
       ],
-      "vendor": [
+      vendor: [
         {
-          "vendorTaxIdFrom": "0105535159165",
-          "vendorTaxIdTo": ""
+          vendorTaxIdFrom: '0105535159165',
+          vendorTaxIdTo: '',
         },
         {
-          "vendorTaxIdFrom": "3100501579102",
-          "vendorTaxIdTo": "3100501579109"
+          vendorTaxIdFrom: '3100501579102',
+          vendorTaxIdTo: '3100501579109',
         },
         {
-          "vendorTaxIdFrom": "1233",
-          "vendorTaxIdTo": ""
-        }
-      ]
+          vendorTaxIdFrom: '1233',
+          vendorTaxIdTo: '',
+        },
+      ],
     },
-    "independent": [
+    independent: [
       {
-        "fieldName": "เลขที่เอกสาร",
-        "conditionField": "12005,(3004,3003)",
-        "optionExclude": true,
-        "dataType": "string",
-        "dbName": "v",
-        "tableName": "accDocNo",
-        "condition": [
+        fieldName: 'เลขที่เอกสาร',
+        conditionField: '12005,(3004,3003)',
+        optionExclude: true,
+        dataType: 'string',
+        dbName: 'v',
+        tableName: 'accDocNo',
+        condition: [
           {
-            "conditionFieldFrom": "12005",
-            "conditionFieldTo": ""
+            conditionFieldFrom: '12005',
+            conditionFieldTo: '',
           },
           {
-            "conditionFieldFrom": "3004",
-            "conditionFieldTo": "3003"
-          }
-        ]
+            conditionFieldFrom: '3004',
+            conditionFieldTo: '3003',
+          },
+        ],
       },
       {
-        "fieldName": "ประเภทเอกสาร",
-        "conditionField": "12005",
-        "optionExclude": false,
-        "dataType": "string",
-        "dbName": "v",
-        "tableName": "accDocNo",
-        "condition": [
+        fieldName: 'ประเภทเอกสาร',
+        conditionField: '12005',
+        optionExclude: false,
+        dataType: 'string',
+        dbName: 'v',
+        tableName: 'accDocNo',
+        condition: [
           {
-            "conditionFieldFrom": "12005",
-            "conditionFieldTo": ""
-          }
-        ]
+            conditionFieldFrom: '12005',
+            conditionFieldTo: '',
+          },
+        ],
       },
       {
-        "fieldName": "วิธีการชำระเงิน",
-        "conditionField": "F,(1,2)",
-        "optionExclude": true,
-        "dataType": "string",
-        "dbName": "v",
-        "tableName": "accDocNo",
-        "condition": [
+        fieldName: 'วิธีการชำระเงิน',
+        conditionField: 'F,(1,2)',
+        optionExclude: true,
+        dataType: 'string',
+        dbName: 'v',
+        tableName: 'accDocNo',
+        condition: [
           {
-            "conditionFieldFrom": "F",
-            "conditionFieldTo": ""
+            conditionFieldFrom: 'F',
+            conditionFieldTo: '',
           },
           {
-            "conditionFieldFrom": "1",
-            "conditionFieldTo": "2"
-          }
-        ]
-      }
+            conditionFieldFrom: '1',
+            conditionFieldTo: '2',
+          },
+        ],
+      },
     ],
-    "additionLog": {
-      "checkBoxDueDate": true,
-      "checkBoxPaymentMethodAll": false,
-      "checkBoxPaymentMethodUnSuccess": true,
-      "checkBoxDisplayDetail": true,
-      "vendor": [
+    additionLog: {
+      checkBoxDueDate: true,
+      checkBoxPaymentMethodAll: false,
+      checkBoxPaymentMethodUnSuccess: true,
+      checkBoxDisplayDetail: true,
+      vendor: [
         {
-          "vendorTaxIdFrom": "222",
-          "vendorTaxIdTo": ""
+          vendorTaxIdFrom: '222',
+          vendorTaxIdTo: '',
         },
         {
-          "vendorTaxIdFrom": "111",
-          "vendorTaxIdTo": ""
+          vendorTaxIdFrom: '111',
+          vendorTaxIdTo: '',
         },
         {
-          "vendorTaxIdFrom": "333",
-          "vendorTaxIdTo": "7777"
-        }
-      ]
-    }
-  }
+          vendorTaxIdFrom: '333',
+          vendorTaxIdTo: '7777',
+        },
+      ],
+    },
+  };
 
-  testList =
-    {
-      "postDate": "",
-      "saveDate": "",
-      "paymentMethod": "",
-      "paymentDate": "",
-      "companyCode": "",
-      "vendor": [
-        {
-          "id": 1,
-          "vendorTaxIdFrom": "",
-          "vendorTaxIdTo": ""
-        },
-        {
-          "id": 2,
-          "vendorTaxIdFrom": "",
-          "vendorTaxIdTo": ""
-        }
-      ]
-    }
-  testList1 =
-    {
-      "postDate": "",
-      "saveDate": "",
-      "paymentMethod": "",
-      "paymentDate": "",
-      "companyCode": "",
-      "vendor": [
-        {
-          "id": 1,
-          "vendorTaxIdFrom": "",
-          "vendorTaxIdTo": ""
-        },
-        {
-          "id": 2,
-          "vendorTaxIdFrom": "",
-          "vendorTaxIdTo": ""
-        }
-      ]
-    }
+  testList = {
+    postDate: '',
+    saveDate: '',
+    paymentMethod: '',
+    paymentDate: '',
+    companyCode: '',
+    vendor: [
+      {
+        id: 1,
+        vendorTaxIdFrom: '',
+        vendorTaxIdTo: '',
+      },
+      {
+        id: 2,
+        vendorTaxIdFrom: '',
+        vendorTaxIdTo: '',
+      },
+    ],
+  };
+  testList1 = {
+    postDate: '',
+    saveDate: '',
+    paymentMethod: '',
+    paymentDate: '',
+    companyCode: '',
+    vendor: [
+      {
+        id: 1,
+        vendorTaxIdFrom: '',
+        vendorTaxIdTo: '',
+      },
+      {
+        id: 2,
+        vendorTaxIdFrom: '',
+        vendorTaxIdTo: '',
+      },
+    ],
+  };
 
-  paymentCondition = null
+  paymentCondition = null;
 
   tabSelectedIndex = 0;
   constructor(
@@ -213,18 +208,12 @@ export class HomeComponent implements OnInit {
     private utils: Utils,
     private formBuilder: FormBuilder,
     private paymentAliasService: PaymentAliasService
-  ) {
-
-  }
-
-
-
+  ) {}
 
   ngOnInit() {
-    localStorage.setItem('parameterTabForpayment', null)
-    localStorage.setItem('independentTabForpayment', null)
-    localStorage.setItem('additionLogTabForpayment', null)
-
+    localStorage.setItem('parameterTabForpayment', null);
+    localStorage.setItem('independentTabForpayment', null);
+    localStorage.setItem('additionLogTabForpayment', null);
 
     // console.log(JSON.stringify(this.testList.vendor))
     // console.log(JSON.stringify(this.testList1.vendor))
@@ -234,103 +223,110 @@ export class HomeComponent implements OnInit {
     //   console.log('aaa')
     // }
 
-
     // this.listObjectParameterTab = this.mockupJSON.parameter
     // this.listObjectIndependentTab = this.mockupJSON.independent
     // this.listObjectAdditionLogTab = this.mockupJSON.additionLog
-    this.createHomeFormControl()
-    this.createHomeFormGroup()
-    this.defaultHomeForm()
+    this.createHomeFormControl();
+    this.createHomeFormGroup();
+    this.defaultHomeForm();
   }
 
   createHomeFormControl() {
-    this.paymentDateControl = this.formBuilder.control('');// วันที่ประมวลผล
-    this.paymentNameControl = this.formBuilder.control('');// การกำหนด
-    this.statusControl = this.formBuilder.control('');//สถานะ
+    this.paymentDateControl = this.formBuilder.control(''); // วันที่ประมวลผล
+    this.paymentNameControl = this.formBuilder.control(''); // การกำหนด
+    this.statusControl = this.formBuilder.control(''); // สถานะ
   }
   createHomeFormGroup() {
     this.homeForm = this.formBuilder.group({
-      paymentDate: this.paymentDateControl,// วันที่ประมวลผล
-      paymentName: this.paymentNameControl,// การกำหนด
-      status: this.statusControl//สถานะ
+      paymentDate: this.paymentDateControl, // วันที่ประมวลผล
+      paymentName: this.paymentNameControl, // การกำหนด
+      status: this.statusControl, // สถานะ
     });
   }
   defaultHomeForm() {
     this.homeForm.patchValue({
-      paymentDate: '',// วันที่ประมวลผล
+      paymentDate: '', // วันที่ประมวลผล
       paymentName: '', // การกำหนด
-      status: ''//สถานะ
+      status: '', // สถานะ
     });
   }
 
   receiveObjectFromParameter($event) {
     // console.log('receiveObjectFromParameter')
-    this.listObjectParameterTab = $event
+    this.listObjectParameterTab = $event;
     // console.log(this.listObjectParameterTab)
   }
   receiveObjectFromAdditionLog($event) {
     // console.log('receiveObjectFromAdditionLog')
-    this.listObjectAdditionLogTab = $event
+    this.listObjectAdditionLogTab = $event;
     // console.log(this.listObjectAdditionLogTab)
   }
   receiveObjectFromIndependent($event) {
     // console.log('receiveObjectFromIndependent')
-    this.listObjectIndependentTab = $event
+    this.listObjectIndependentTab = $event;
     // console.log(this.listObjectIndependentTab)
   }
-
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.tabSelectedIndex = tabChangeEvent.index;
     if (this.tabSelectedIndex === 0) {
-
-      this.tabParameterComponent.updateParameter()
-      this.tabAdditionalLogComponent.updateParameter()
-      this.tabIndependentComponent.updateParameter()
+      this.tabParameterComponent.updateParameter();
+      this.tabAdditionalLogComponent.updateParameter();
+      this.tabIndependentComponent.updateParameter();
 
       const parameterTabForpaymentString = localStorage.getItem('parameterTabForpayment');
-      const listObjectParameterTabString = JSON.stringify(this.listObjectParameterTab)
+      const listObjectParameterTabString = JSON.stringify(this.listObjectParameterTab);
 
       const independentTabForpaymentString = localStorage.getItem('independentTabForpayment');
-      const listObjectIndependentTabString = JSON.stringify(this.listObjectIndependentTab)
+      const listObjectIndependentTabString = JSON.stringify(this.listObjectIndependentTab);
 
       const additionLogTabForpaymentString = localStorage.getItem('additionLogTabForpayment');
-      const listObjectAdditionLogTabString = JSON.stringify(this.listObjectAdditionLogTab)
+      const listObjectAdditionLogTabString = JSON.stringify(this.listObjectAdditionLogTab);
 
-
-      if ((parameterTabForpaymentString !== listObjectParameterTabString)
-        || (independentTabForpaymentString !== listObjectIndependentTabString)
-        || (additionLogTabForpaymentString !== listObjectAdditionLogTabString)
+      if (
+        parameterTabForpaymentString !== listObjectParameterTabString ||
+        independentTabForpaymentString !== listObjectIndependentTabString ||
+        additionLogTabForpaymentString !== listObjectAdditionLogTabString
       ) {
-
-        const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
-        });
+        const dialogRef = this.dialog.open(DialogSaveParameterComponent, {});
 
         dialogRef.afterClosed().subscribe(result => {
-          console.log(result)
+          console.log(result);
           if (result.event) {
             if (result.value === 'Save') {
               this.paymentCondition = {
                 parameter: this.listObjectParameterTab,
                 independent: this.listObjectIndependentTab,
                 additionLog: this.listObjectAdditionLogTab,
-              }
-              localStorage.setItem('parameterTabForpayment', JSON.stringify(this.listObjectParameterTab));
-              localStorage.setItem('independentTabForpayment', JSON.stringify(this.listObjectIndependentTab));
-              localStorage.setItem('additionLogTabForpayment', JSON.stringify(this.listObjectAdditionLogTab));
-              this.searchParameter()
-
-            }
-            else if (result.value === 'UnSave') {
-              console.log(localStorage.getItem('parameterTabForpayment'))
-              this.tabParameterComponent.getParameterFromCopy(JSON.parse(localStorage.getItem('parameterTabForpayment')))
-              this.tabIndependentComponent.getIndependentFromCopy(JSON.parse(localStorage.getItem('independentTabForpayment')))
-              this.tabAdditionalLogComponent.getAdditionLogFromCopy(JSON.parse(localStorage.getItem('additionLogTabForpayment')))
+              };
+              localStorage.setItem(
+                'parameterTabForpayment',
+                JSON.stringify(this.listObjectParameterTab)
+              );
+              localStorage.setItem(
+                'independentTabForpayment',
+                JSON.stringify(this.listObjectIndependentTab)
+              );
+              localStorage.setItem(
+                'additionLogTabForpayment',
+                JSON.stringify(this.listObjectAdditionLogTab)
+              );
+              this.searchParameter();
+            } else if (result.value === 'UnSave') {
+              console.log(localStorage.getItem('parameterTabForpayment'));
+              this.tabParameterComponent.getParameterFromCopy(
+                JSON.parse(localStorage.getItem('parameterTabForpayment'))
+              );
+              this.tabIndependentComponent.getIndependentFromCopy(
+                JSON.parse(localStorage.getItem('independentTabForpayment'))
+              );
+              this.tabAdditionalLogComponent.getAdditionLogFromCopy(
+                JSON.parse(localStorage.getItem('additionLogTabForpayment'))
+              );
             }
           }
         });
       }
-
     }
 
     // else if (this.tabSelectedIndex === 1) {
@@ -350,129 +346,119 @@ export class HomeComponent implements OnInit {
     // }
   }
   openDialogCopyParameterComponent(): void {
-    const dialogRef = this.dialog.open(DialogCopyParameterComponent, {
-    });
+    const dialogRef = this.dialog.open(DialogCopyParameterComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.listObjectParameterTab = this.mockupJSON.parameter
-      this.listObjectIndependentTab = this.mockupJSON.independent
-      this.listObjectAdditionLogTab = this.mockupJSON.additionLog
+      this.listObjectParameterTab = this.mockupJSON.parameter;
+      this.listObjectIndependentTab = this.mockupJSON.independent;
+      this.listObjectAdditionLogTab = this.mockupJSON.additionLog;
 
       this.homeForm.patchValue({
-        paymentDate: this.mockupJSON.payment.paymentDate,// วันที่ประมวลผล
+        paymentDate: this.mockupJSON.payment.paymentDate, // วันที่ประมวลผล
         paymentName: this.mockupJSON.payment.paymentName, // การกำหนด
-        status: this.mockupJSON.payment.status//สถานะ
+        status: this.mockupJSON.payment.status, // สถานะ
       });
-      this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab)
-      this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab)
-      this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab)
+      this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab);
+      this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab);
+      this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab);
       // this.tabAdditionalLogComponent.ngOnInit()
-      console.log(this.listObjectParameterTab)
-      console.log(this.listObjectIndependentTab)
-      console.log(this.listObjectAdditionLogTab)
-
-
+      console.log(this.listObjectParameterTab);
+      console.log(this.listObjectIndependentTab);
+      console.log(this.listObjectAdditionLogTab);
     });
   }
   openDialogSearchParameterComponent(): void {
-    const dialog = this.dialog.open(DialogSearchParameterComponent, {
-    });
+    const dialog = this.dialog.open(DialogSearchParameterComponent, {});
 
     dialog.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result && result.event) {
         this.homeForm.patchValue({
-          paymentDate: new Date(result.date),// วันที่ประมวลผล
+          paymentDate: new Date(result.date), // วันที่ประมวลผล
           paymentName: result.name, // การกำหนด
           // status: this.mockupJSON.payment.status//สถานะ
         });
-        this.searchPaymentDetail()
+        this.searchPaymentDetail();
       }
     });
   }
 
   onBlurPaymentName() {
-    const formValue = this.homeForm.value
+    const formValue = this.homeForm.value;
     if (formValue.paymentDate && formValue.paymentName) {
-      this.searchPaymentDetail()
+      this.searchPaymentDetail();
     }
   }
-  searchPaymentDetail(){
-    const formValue = this.homeForm.value
-    const date = new Date(formValue.paymentDate)
+  searchPaymentDetail() {
+    const formValue = this.homeForm.value;
+    const date = new Date(formValue.paymentDate);
     const dayPaymentDate = date.getDate();
     const monthPaymentDate = date.getMonth() + 1;
     const yearPaymentDate = date.getFullYear();
-    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate)
-    const paymentName = formValue.paymentName
-    this.paymentAliasService.search(paymentDate, paymentName).subscribe(result => {
-    
-    })
+    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
+    const paymentName = formValue.paymentName;
+    this.paymentAliasService.search(paymentDate, paymentName).then(result => {});
   }
 
-
   searchParameter() {
-    const formValue = this.homeForm.value
-    const date = new Date(formValue.paymentDate)
+    const formValue = this.homeForm.value;
+    const date = new Date(formValue.paymentDate);
     const dayPaymentDate = date.getDate();
     const monthPaymentDate = date.getMonth() + 1;
     const yearPaymentDate = date.getFullYear();
-    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate)
-    const paymentName = formValue.paymentName
-    this.paymentAliasService.search(paymentDate, paymentName).subscribe(result => {
-      console.log(result)
+    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
+    const paymentName = formValue.paymentName;
+    this.paymentAliasService.search(paymentDate, paymentName).then(result => {
+      console.log(result);
       if (result.status === 200) {
-        const data = result.data
+        const data = result.data;
         if (data) {
-          this.updateParameter(this.paymentCondition, data)
+          this.updateParameter(this.paymentCondition, data);
         }
       } else if (result.status === 404) {
-        this.createParameter(this.paymentCondition)
+        this.createParameter(this.paymentCondition);
       }
-    })
+    });
   }
 
   createParameter(jsonObject) {
-    const formValue = this.homeForm.value
+    const formValue = this.homeForm.value;
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
 
-      parameterStatus: "S",
+      parameterStatus: 'S',
       // paymentParameterConfig:{
       //   jsonText: JSON.stringify(jsonObject)
       // }
-    }
+    };
     this.paymentAliasService.create(data).subscribe(result => {
-      console.log(result)
-    })
+      console.log(result);
+    });
   }
   updateParameter(jsonObject, response) {
-    const formValue = this.homeForm.value
+    const formValue = this.homeForm.value;
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
-      parameterStatus: "B",
+      parameterStatus: 'B',
       // paymentParameterConfig:{
       //   jsonText: JSON.stringify(jsonObject)
       // }
-
-    }
+    };
     this.paymentAliasService.update(data, response.id).subscribe(result => {
-      console.log(result)
-    })
+      console.log(result);
+    });
   }
 
   test() {
-
     if (this.isDisabledCopy) {
-      this.isDisabledCopy = false
+      this.isDisabledCopy = false;
     } else {
-      this.isDisabledCopy = true
+      this.isDisabledCopy = true;
     }
 
-    console.log(this.isDisabledCopy)
+    console.log(this.isDisabledCopy);
   }
-
 }
