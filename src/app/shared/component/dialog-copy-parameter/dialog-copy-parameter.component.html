@@ -1,57 +1,60 @@
-<button class="close" mat-button (click)="closeDialog()">X</button>
+<button class="close" mat-button (click)="clickCancel()">X</button>
 <h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle><b>คัดลอก</b></h1>
 <hr>
 <div mat-dialog-content>
-<div class="row">
-  <div class="col-md-12 text-left">
-    <!-- <label class="text-black">การอ้างอิง</label> -->
-  </div>
-</div>
-<div class="row margin-tb-size ">
-  <div class="col-md-12 text-left">
-    <label class="text-black input-head">วันที่ประมวลผล</label>
-  </div>
-  <div class="col-md-12">
-    <div class="input-group">
-    <input type="text" class="form-control" >
-    <button class="btn btn-default" type="button" (click)="openDialogSearchParameterComponent()">
-      <img src="assets/images/icon/calendar.svg" width="12px" />
-    </button>
-    </div> 
-  </div>
-</div>
-<div class="row margin-tb-size ">
-  <div class="col-md-12 text-left">
-    <label class="text-black input-head">รหัส</label>
-  </div>
-  <div class="col-md-12">
-    <input type="text" class="form-control" >
-  </div>
-</div>
-<div class="row margin-tb-size" style="padding-top: 10px;">
-  <div class="col-md-12 text-left">
-    <label class="text-black input-head">การพัฒนา</label>
-  </div>
-  <div class="col-md-12" style="padding-bottom: 10px;">
-    <div class="custom-control custom-checkbox checkbox-xl">
-      <input type="checkbox" class="custom-control-input" id="checkbox-3" checked="">
-      <label class="custom-control-label" for="checkbox-3">รายละเอียดวันที่ปรับปรุง</label>
+  <form (keydown.enter)="$event.preventDefault()" [formGroup]="copyParameterForm">
+    <div class="row margin-tb-size ">
+      <div class="col-md-12 text-left">
+        <label class="text-black input-head">วันที่ประมวลผล</label>
+      </div>
+      <div class="col-md-12">
+        <div class="input-group">
+
+          <input type="text"
+            [ngStyle]="{'background-color': !copyParameterForm.controls.paymentDate.value ?'#fff' : '#fffae6'}"
+            class="form-control date-mat-input" [matDatepicker]="myDatepicker" formControlName="paymentDate">
+          <button class="btn btn-default" type="button" (click)="openDialogSearchParameterComponent()">
+            <img src="assets/images/icon/calendar.svg" width="12px" />
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-md-12">
-    <div class="col-md-6">
-      <button type="button" class="btn btn-success btn-lg" style="width: 100%;">
-        <i class="material-icons" style="font-size:15px;">done</i>
-      </button>
+    <div class="row margin-tb-size ">
+      <div class="col-md-12 text-left">
+        <label class="text-black input-head">รหัส</label>
+      </div>
+      <div class="col-md-12">
+        <input type="text" class="form-control"
+          [ngStyle]="{'background-color': !copyParameterForm.controls.paymentName.value ?'#fff' : '#fffae6'}"
+          class="form-control" formControlName="paymentName">
+      </div>
     </div>
-    <div class="col-md-6">
-      <button type="button" class="btn btn-danger btn-lg" style="width: 100%;">
-        <i class="material-icons" style="font-size:15px;">clear</i>
-      </button>  
+    <div class="row margin-tb-size" style="padding-top: 10px;">
+      <div class="col-md-12 text-left">
+        <label class="text-black input-head">การพัฒนา</label>
+      </div>
+      <div class="col-md-12" style="padding-bottom: 10px;">
+
+
+        <mat-checkbox formControlName="adjustDate">
+          รายละเอียดวันที่ปรับปรุง</mat-checkbox>
+
+      </div>
     </div>
-  </div>
-</div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <button type="button" (click)="clickSave()" class="btn btn-success btn-lg" style="width: 100%;">
+            <i class="material-icons" style="font-size:15px;">done</i>
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button type="button" (click)="clickCancel()" class="btn btn-danger btn-lg" style="width: 100%;">
+            <i class="material-icons" style="font-size:15px;">clear</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

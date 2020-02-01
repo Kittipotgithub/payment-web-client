@@ -1,7 +1,6 @@
 import { MasterService } from './../../../core/service/master/master.service';
 import { Constant } from './../../constant';
 
-
 import { Component, OnInit, Output, Inject, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -27,7 +26,7 @@ export interface DialogData {
 @Component({
   selector: 'app-dialog-search-master',
   templateUrl: './dialog-search-master.component.html',
-  styleUrls: ['./dialog-search-master.component.scss']
+  styleUrls: ['./dialog-search-master.component.scss'],
 })
 export class DialogSearchMasterComponent implements OnInit {
   @Output() submitClicked = new EventEmitter<any>();
@@ -40,7 +39,7 @@ export class DialogSearchMasterComponent implements OnInit {
 
   isConditionShowSourceBudgetCode = false;
 
-  userProfile: any
+  userProfile: any;
 
   listDocument = [
     { code: '07.11.2019', pay: 'H0001', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
@@ -55,7 +54,7 @@ export class DialogSearchMasterComponent implements OnInit {
     { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
   ];
 
-  checkTest=true;
+  checkTest = true;
 
   constructor(
     public dialogRef: MatDialogRef<DialogSearchMasterComponent>,
@@ -95,7 +94,10 @@ export class DialogSearchMasterComponent implements OnInit {
         this.title = 'รหัสหน่วยงาน';
       } else if (this.data.type === 'provinceCodeFrom' || this.data.type === 'provinceCodeTo') {
         this.title = 'รหัสจังหวัด';
-      } else if (this.data.type === 'disbursementCodeFrom' || this.data.type === 'disbursementCodeTo') {
+      } else if (
+        this.data.type === 'disbursementCodeFrom' ||
+        this.data.type === 'disbursementCodeTo'
+      ) {
         this.title = 'รหัสหน่วยเบิกจ่าย';
       } else if (this.data.type === 'vendorTaxIdFrom' || this.data.type === 'vendorTaxIdTo') {
         this.title = 'รหัสผู้ขาย';
@@ -110,7 +112,10 @@ export class DialogSearchMasterComponent implements OnInit {
       this.loadDepartment(e.value);
     } else if (this.data.type === 'provinceCodeFrom' || this.data.type === 'provinceCodeTo') {
       this.loadArea(e.value);
-    } else if (this.data.type === 'disbursementCodeFrom' || this.data.type === 'disbursementCodeTo') {
+    } else if (
+      this.data.type === 'disbursementCodeFrom' ||
+      this.data.type === 'disbursementCodeTo'
+    ) {
       this.loadPaymentCenter(e.value);
     } else if (this.data.type === 'vendorTaxIdFrom' || this.data.type === 'vendorTaxIdTo') {
       this.loadVendor(e.value);
@@ -153,7 +158,7 @@ export class DialogSearchMasterComponent implements OnInit {
     this.masterService.findCompanyCodeWithParam(textSearch).subscribe(data => {
       const response = data as any;
       this.isLoading = false;
-      console.log(data)
+      console.log(data);
       if (response.status === 'T') {
         this.dataSource = response.data;
         this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.companyCode;
@@ -234,7 +239,7 @@ export class DialogSearchMasterComponent implements OnInit {
     });
   }
   loadVendor(textSearch) {
-    this.dataSource = this.listDocument
+    this.dataSource = this.listDocument;
     this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.vendorTaxId;
     // const percent = textSearch.split('').filter(value => value === '%').length;
     // for (let i = 0; i < percent; i++) {
@@ -271,16 +276,14 @@ export class DialogSearchMasterComponent implements OnInit {
     // });
   }
   sortData(sortType) {
-
-    this.checkTest = !sortType
-
+    this.checkTest = !sortType;
 
     if (sortType) {
       this.dataSource.sort((a, b) => (b.pay > a.pay ? 1 : -1));
     } else {
       this.dataSource.sort((a, b) => (a.pay > b.pay ? 1 : -1));
     }
-    console.log(this.dataSource)
+    console.log(this.dataSource);
   }
 
   chooseDataSearch(value, name, optional, optionalName) {

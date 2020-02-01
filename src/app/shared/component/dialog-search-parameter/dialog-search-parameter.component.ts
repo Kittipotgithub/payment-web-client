@@ -8,22 +8,22 @@ import { PaymentAliasService } from 'src/app/core/service/payment-alias/payment-
 export interface PeriodicElement {
   paymentName: string;
   paymentDate: any;
-  description: string;
+  statusName: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { paymentDate: 1580556948725, paymentName: 'A0001', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580556948725, paymentName: 'H0001', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580556948725, paymentName: 'C0001', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1577879219000, paymentName: 'A0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1577879219000, paymentName: 'B0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1577879219000, paymentName: 'C0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1578052019000, paymentName: 'A0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1578052019000, paymentName: 'B0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1578052019000, paymentName: 'C0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580039219000, paymentName: 'A0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580039219000, paymentName: 'B0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580039219000, paymentName: 'C0002', description: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1580556948725, paymentName: 'A0001', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1580556948725, paymentName: 'H0001', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1580556948725, paymentName: 'C0001', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1577879219000, paymentName: 'A0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1577879219000, paymentName: 'B0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1577879219000, paymentName: 'C0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1578052019000, paymentName: 'A0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1578052019000, paymentName: 'B0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1578052019000, paymentName: 'C0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1580039219000, paymentName: 'A0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1580039219000, paymentName: 'B0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
+  { paymentDate: 1580039219000, paymentName: 'C0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
 ];
 
 @Component({
@@ -32,7 +32,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./dialog-search-parameter.component.scss'],
 })
 export class DialogSearchParameterComponent implements OnInit {
-  displayedColumns: string[] = ['choose', 'paymentDate', 'paymentName', 'description'];
+  displayedColumns: string[] = ['choose', 'paymentDate', 'paymentName', 'statusName'];
   listData = [] as PeriodicElement[];
   dataSource = new MatTableDataSource(this.listData);
 

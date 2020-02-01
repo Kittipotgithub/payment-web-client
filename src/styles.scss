@@ -530,20 +530,22 @@ span.break-word-text {
   input {
     background-color: #e9ecef !important;
     pointer-events: none;
-    opacity:0.6
+    opacity: 0.6
   }
 
   textarea {
     background-color: #e9ecef !important;
     pointer-events: none;
-    opacity:0.6
+    opacity: 0.6
   }
+
   button {
     display: none;
   }
+
   .mat-checkbox {
     pointer-events: none;
-    opacity:0.6
+    opacity: 0.6
   }
 
   .mat-checkbox-label {
@@ -596,8 +598,16 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-.label-for-search {
-  label {
-    color: blue !important;
-  }
+span.clear-input-icon {
+  position: absolute;
+  right: 70px;
+  color: transparent;
+  z-index: 100000;
+  top: 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+input:focus+span.clear-input-icon {
+  color: black;
 }

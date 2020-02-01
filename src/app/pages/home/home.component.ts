@@ -32,172 +32,21 @@ export class HomeComponent implements OnInit {
   @ViewChild(TabIndependentComponent, { static: true })
   private tabIndependentComponent: TabIndependentComponent;
 
-  listObjectParameterTab: object = null;
+  listObjectParameterTab: any = null;
   // listObjectParameterTabForpayment: object = null
 
-  listObjectAdditionLogTab: object = null;
+  listObjectAdditionLogTab: any = null;
   // listObjectAdditionLogTabForpayment: object = null
 
-  listObjectIndependentTab: object = null;
+  listObjectIndependentTab: any = null;
   // listObjectIndependentTabForpayment: object = null
 
   homeForm: FormGroup;
 
   paymentDateControl: FormControl; // วันที่ประมวลผล
   paymentNameControl: FormControl; // การกำหนด
-  statusControl: FormControl; // สถานะ
 
   isDisabledCopy = false;
-
-  mockupJSON = {
-    payment: {
-      paymentDate: '2020-01-29T17:00:00.000Z',
-      paymentName: 'H0001',
-      status: '',
-    },
-    parameter: {
-      postDate: '2019-12-31T17:00:00.000Z',
-      saveDate: '2020-01-01T17:00:00.000Z',
-      paymentMethod: 'IJ04',
-      paymentDate: '2020-01-02T17:00:00.000Z',
-      company: '12005,(3004,3003),1234',
-      companyCondition: [
-        {
-          companyFrom: '12005',
-          companyTo: '',
-        },
-        {
-          companyFrom: '3004',
-          companyTo: '3003',
-        },
-      ],
-      vendor: [
-        {
-          vendorTaxIdFrom: '0105535159165',
-          vendorTaxIdTo: '',
-        },
-        {
-          vendorTaxIdFrom: '3100501579102',
-          vendorTaxIdTo: '3100501579109',
-        },
-        {
-          vendorTaxIdFrom: '1233',
-          vendorTaxIdTo: '',
-        },
-      ],
-    },
-    independent: [
-      {
-        fieldName: 'เลขที่เอกสาร',
-        conditionField: '12005,(3004,3003)',
-        optionExclude: true,
-        dataType: 'string',
-        dbName: 'v',
-        tableName: 'accDocNo',
-        condition: [
-          {
-            conditionFieldFrom: '12005',
-            conditionFieldTo: '',
-          },
-          {
-            conditionFieldFrom: '3004',
-            conditionFieldTo: '3003',
-          },
-        ],
-      },
-      {
-        fieldName: 'ประเภทเอกสาร',
-        conditionField: '12005',
-        optionExclude: false,
-        dataType: 'string',
-        dbName: 'v',
-        tableName: 'accDocNo',
-        condition: [
-          {
-            conditionFieldFrom: '12005',
-            conditionFieldTo: '',
-          },
-        ],
-      },
-      {
-        fieldName: 'วิธีการชำระเงิน',
-        conditionField: 'F,(1,2)',
-        optionExclude: true,
-        dataType: 'string',
-        dbName: 'v',
-        tableName: 'accDocNo',
-        condition: [
-          {
-            conditionFieldFrom: 'F',
-            conditionFieldTo: '',
-          },
-          {
-            conditionFieldFrom: '1',
-            conditionFieldTo: '2',
-          },
-        ],
-      },
-    ],
-    additionLog: {
-      checkBoxDueDate: true,
-      checkBoxPaymentMethodAll: false,
-      checkBoxPaymentMethodUnSuccess: true,
-      checkBoxDisplayDetail: true,
-      vendor: [
-        {
-          vendorTaxIdFrom: '222',
-          vendorTaxIdTo: '',
-        },
-        {
-          vendorTaxIdFrom: '111',
-          vendorTaxIdTo: '',
-        },
-        {
-          vendorTaxIdFrom: '333',
-          vendorTaxIdTo: '7777',
-        },
-      ],
-    },
-  };
-
-  testList = {
-    postDate: '',
-    saveDate: '',
-    paymentMethod: '',
-    paymentDate: '',
-    companyCode: '',
-    vendor: [
-      {
-        id: 1,
-        vendorTaxIdFrom: '',
-        vendorTaxIdTo: '',
-      },
-      {
-        id: 2,
-        vendorTaxIdFrom: '',
-        vendorTaxIdTo: '',
-      },
-    ],
-  };
-  testList1 = {
-    postDate: '',
-    saveDate: '',
-    paymentMethod: '',
-    paymentDate: '',
-    companyCode: '',
-    vendor: [
-      {
-        id: 1,
-        vendorTaxIdFrom: '',
-        vendorTaxIdTo: '',
-      },
-      {
-        id: 2,
-        vendorTaxIdFrom: '',
-        vendorTaxIdTo: '',
-      },
-    ],
-  };
 
   paymentCondition = null;
 
@@ -208,7 +57,7 @@ export class HomeComponent implements OnInit {
     private utils: Utils,
     private formBuilder: FormBuilder,
     private paymentAliasService: PaymentAliasService
-  ) { }
+  ) {}
 
   ngOnInit() {
     localStorage.setItem('parameterTabForpayment', null);
@@ -234,21 +83,24 @@ export class HomeComponent implements OnInit {
   createHomeFormControl() {
     this.paymentDateControl = this.formBuilder.control(''); // วันที่ประมวลผล
     this.paymentNameControl = this.formBuilder.control(''); // การกำหนด
-    this.statusControl = this.formBuilder.control(''); // สถานะ
   }
   createHomeFormGroup() {
     this.homeForm = this.formBuilder.group({
       paymentDate: this.paymentDateControl, // วันที่ประมวลผล
       paymentName: this.paymentNameControl, // การกำหนด
-      status: this.statusControl, // สถานะ
     });
   }
   defaultHomeForm() {
     this.homeForm.patchValue({
       paymentDate: '', // วันที่ประมวลผล
       paymentName: '', // การกำหนด
-      status: '', // สถานะ
     });
+  }
+  clearInputAll() {
+    this.defaultHomeForm();
+    this.tabParameterComponent.defaultInput();
+    this.tabIndependentComponent.defaultIndependet();
+    this.tabAdditionalLogComponent.defaultInputAdditionLogForm();
   }
 
   receiveObjectFromParameter($event) {
@@ -283,10 +135,13 @@ export class HomeComponent implements OnInit {
       const additionLogTabForpaymentString = localStorage.getItem('additionLogTabForpayment');
       const listObjectAdditionLogTabString = JSON.stringify(this.listObjectAdditionLogTab);
 
+      const formValue = this.homeForm.value;
       if (
-        parameterTabForpaymentString !== listObjectParameterTabString ||
-        independentTabForpaymentString !== listObjectIndependentTabString ||
-        additionLogTabForpaymentString !== listObjectAdditionLogTabString
+        (parameterTabForpaymentString !== listObjectParameterTabString ||
+          independentTabForpaymentString !== listObjectIndependentTabString ||
+          additionLogTabForpaymentString !== listObjectAdditionLogTabString) &&
+        formValue.paymentDate &&
+        formValue.paymentName
       ) {
         const dialogRef = this.dialog.open(DialogSaveParameterComponent, {});
 
@@ -328,58 +183,22 @@ export class HomeComponent implements OnInit {
         });
       }
     }
-
-    // else if (this.tabSelectedIndex === 1) {
-    //   if (this.listObjectParameterTab) {
-    //     this.tabParameterComponent.ngOnInit()
-    //   }
-    // }
-    // else if (this.tabSelectedIndex === 2) {
-    //   if (this.listObjectIndependentTab) {
-    //     this.tabIndependentComponent.ngOnInit()
-    //   }
-    // }
-    // else if (this.tabSelectedIndex === 3) {
-    //   if (this.listObjectAdditionLogTab) {
-    //     this.tabAdditionalLogComponent.ngOnInit()
-    //   }
-    // }
   }
-  openDialogCopyParameterComponent(): void {
+  openDialogCopyParameterComponent(type): void {
     const dialogRef = this.dialog.open(DialogCopyParameterComponent, {});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.listObjectParameterTab = this.mockupJSON.parameter;
-      this.listObjectIndependentTab = this.mockupJSON.independent;
-      this.listObjectAdditionLogTab = this.mockupJSON.additionLog;
-
-      this.homeForm.patchValue({
-        paymentDate: this.mockupJSON.payment.paymentDate, // วันที่ประมวลผล
-        paymentName: this.mockupJSON.payment.paymentName, // การกำหนด
-        status: this.mockupJSON.payment.status, // สถานะ
-      });
-      this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab);
-      this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab);
-      this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab);
-      // this.tabAdditionalLogComponent.ngOnInit()
-      console.log(this.listObjectParameterTab);
-      console.log(this.listObjectIndependentTab);
-      console.log(this.listObjectAdditionLogTab);
-    });
-  }
-  openDialogSearchParameterComponent(): void {
-    const dialog = this.dialog.open(DialogSearchParameterComponent, {});
-
-    dialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log(result);
       if (result && result.event) {
-        this.homeForm.patchValue({
-          paymentDate: new Date(result.paymentDate), // วันที่ประมวลผล
-          paymentName: result.paymentName, // การกำหนด
-          // status: this.mockupJSON.payment.status//สถานะ
-        });
-        this.searchPaymentDetail();
+        const data = result.value;
+        if (type === 'copy') {
+          this.searchPaymentDetailFromCopy(data);
+        } else if (type === 'search') {
+          this.homeForm.patchValue({
+            paymentDate: new Date(data.paymentDate), // วันที่ประมวลผล
+            paymentName: data.paymentName, // การกำหนด
+          });
+        }
       }
     });
   }
@@ -398,7 +217,41 @@ export class HomeComponent implements OnInit {
     const yearPaymentDate = date.getFullYear();
     const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
     const paymentName = formValue.paymentName;
-    this.paymentAliasService.search(paymentDate, paymentName).then(result => { });
+    this.paymentAliasService.search(paymentDate, paymentName).then(result => {});
+  }
+
+  searchPaymentDetailFromCopy(copy) {
+    console.log(copy);
+    const value = copy;
+    const date = new Date(value.paymentDate);
+    const dayPaymentDate = date.getDate();
+    const monthPaymentDate = date.getMonth() + 1;
+    const yearPaymentDate = date.getFullYear();
+    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
+    const paymentName = value.paymentName;
+    this.paymentAliasService.search(paymentDate, paymentName).then(result => {
+      console.log(result);
+      if (result.status === 200) {
+        const formValue = this.homeForm.value;
+        const data = result.data;
+        if (data) {
+          // console.log('The dialog was closed');
+          const jsonObject = JSON.parse(data.jsonText);
+          this.listObjectParameterTab = jsonObject.parameter as any;
+          this.listObjectIndependentTab = jsonObject.independent;
+          this.listObjectAdditionLogTab = jsonObject.additionLog;
+          if (copy.adjustDate) {
+            if (formValue.paymentDate) {
+              this.listObjectParameterTab.postDate = formValue.paymentDate;
+              this.listObjectParameterTab.saveDate = formValue.paymentDate;
+            }
+          }
+          this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab);
+          this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab);
+          this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab);
+        }
+      }
+    });
   }
 
   searchParameter() {
@@ -428,7 +281,6 @@ export class HomeComponent implements OnInit {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
       jsonText: JSON.stringify(jsonObject),
-
     };
     this.paymentAliasService.create(data).then(result => {
       console.log(result);
