@@ -56,7 +56,6 @@ export class TabIndependentComponent implements OnInit {
   }
   getIndependentFromCopy(object) {
     object.forEach(item => {
-      console.log(item)
       if (item.conditionField && item.conditionField !== '') {
 
         item.conditionField = this.utils.convertConditionFieldArrayToConditionFieldText(item.condition)

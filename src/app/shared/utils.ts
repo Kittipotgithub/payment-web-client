@@ -73,7 +73,7 @@ export class Utils {
     return companyText
   }
   public convertConditionFieldTextToConditionFieldArray(conditionFieldText: string): any {
-    console.log(conditionFieldText)
+
     let arraySplitFirst = conditionFieldText.split(',(');
     let listConditionField = []
 

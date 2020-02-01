@@ -530,11 +530,13 @@ span.break-word-text {
   input {
     background-color: #e9ecef !important;
     pointer-events: none;
+    opacity:0.6
   }
 
   textarea {
     background-color: #e9ecef !important;
     pointer-events: none;
+    opacity:0.6
   }
   button {
     display: none;

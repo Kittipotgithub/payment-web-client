@@ -1,3 +1,4 @@
+import { PaymentAliasService } from './../../core/service/payment-alias/payment-alias.service';
 import { PaymentService } from './../../core/service/payment/payment.service';
 import { Utils } from 'src/app/shared/utils';
 import { DialogCopyParameterComponent } from './../../shared/component/dialog-copy-parameter/dialog-copy-parameter.component';
@@ -32,13 +33,13 @@ export class HomeComponent implements OnInit {
 
 
   listObjectParameterTab: object = null
-  listObjectParameterTabForpayment: object = null
+  // listObjectParameterTabForpayment: object = null
 
   listObjectAdditionLogTab: object = null
-  listObjectAdditionLogTabForpayment: object = null
+  // listObjectAdditionLogTabForpayment: object = null
 
   listObjectIndependentTab: object = null
-  listObjectIndependentTabForpayment: object = null
+  // listObjectIndependentTabForpayment: object = null
 
 
   homeForm: FormGroup;
@@ -48,7 +49,7 @@ export class HomeComponent implements OnInit {
   statusControl: FormControl;//สถานะ
 
 
-  isDisabledCopy: boolean = true
+  isDisabledCopy: boolean = false
 
 
   mockupJSON = {
@@ -211,7 +212,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private utils: Utils,
     private formBuilder: FormBuilder,
-    private paymentService: PaymentService
+    private paymentAliasService: PaymentAliasService
   ) {
 
   }
@@ -220,6 +221,9 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    localStorage.setItem('parameterTabForpayment', null)
+    localStorage.setItem('independentTabForpayment', null)
+    localStorage.setItem('additionLogTabForpayment', null)
     // console.log(JSON.stringify(this.testList.vendor))
     // console.log(JSON.stringify(this.testList1.vendor))
     // if (JSON.stringify(this.testList.vendor) === JSON.stringify(this.testList1.vendor)) {
@@ -275,81 +279,73 @@ export class HomeComponent implements OnInit {
 
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-
     this.tabSelectedIndex = tabChangeEvent.index;
-    // console.log(this.tabSelectedIndex)
     if (this.tabSelectedIndex === 0) {
-
 
       this.tabParameterComponent.updateParameter()
       this.tabAdditionalLogComponent.updateParameter()
       this.tabIndependentComponent.updateParameter()
 
+      const parameterTabForpaymentString = localStorage.getItem('parameterTabForpayment');
+      const listObjectParameterTabString = JSON.stringify(this.listObjectParameterTab)
 
-      console.log(this.testList.vendor)
-      console.log(this.listObjectParameterTabForpayment)
-      console.log(this.listObjectParameterTab)
+      const independentTabForpaymentString = localStorage.getItem('independentTabForpayment');
+      const listObjectIndependentTabString = JSON.stringify(this.listObjectIndependentTab)
 
-      const jsonParameterForPayment = JSON.stringify(this.listObjectParameterTabForpayment)
-      const jsonParameter = JSON.stringify(this.listObjectParameterTab)
-      console.log(jsonParameterForPayment)
-      console.log(jsonParameter)
-
+      const additionLogTabForpaymentString = localStorage.getItem('additionLogTabForpayment');
+      const listObjectAdditionLogTabString = JSON.stringify(this.listObjectAdditionLogTab)
 
 
-      if (jsonParameterForPayment === jsonParameter) {
-        console.log('boss1')
-      } else {
-        console.log('pop')
+      if ((parameterTabForpaymentString !== listObjectParameterTabString)
+        || (independentTabForpaymentString !== listObjectIndependentTabString)
+        || (additionLogTabForpaymentString !== listObjectAdditionLogTabString)
+      ) {
+
+        const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(result)
+          if (result.event) {
+            if (result.value === 'Save') {
+              this.paymentCondition = {
+                parameter: this.listObjectParameterTab,
+                independent: this.listObjectIndependentTab,
+                additionLog: this.listObjectAdditionLogTab,
+              }
+              localStorage.setItem('parameterTabForpayment', JSON.stringify(this.listObjectParameterTab));
+              localStorage.setItem('independentTabForpayment', JSON.stringify(this.listObjectIndependentTab));
+              localStorage.setItem('additionLogTabForpayment', JSON.stringify(this.listObjectAdditionLogTab));
+              this.searchParameter()
+
+            }
+            else if (result.value === 'UnSave') {
+              console.log(localStorage.getItem('parameterTabForpayment'))
+              this.tabParameterComponent.getParameterFromCopy(JSON.parse(localStorage.getItem('parameterTabForpayment')))
+              this.tabIndependentComponent.getIndependentFromCopy(JSON.parse(localStorage.getItem('independentTabForpayment')))
+              this.tabAdditionalLogComponent.getAdditionLogFromCopy(JSON.parse(localStorage.getItem('additionLogTabForpayment')))
+            }
+          }
+        });
       }
-      this.listObjectParameterTabForpayment = this.listObjectParameterTab
 
-
-      // const dialogRef = this.dialog.open(DialogSaveParameterComponent, {
-      // });
-
-      // dialogRef.afterClosed().subscribe(result => {
-      //   // console.log('The dialog was closed');
-      this.listObjectParameterTabForpayment = this.listObjectParameterTab
-      this.listObjectIndependentTabForpayment = this.listObjectIndependentTab
-      this.listObjectAdditionLogTabForpayment = this.listObjectAdditionLogTab
-
-
-
-      this.paymentCondition = {
-        payment: this.homeForm.value,
-        parameter: this.listObjectParameterTabForpayment,
-        independent: this.listObjectIndependentTabForpayment,
-        additionLog: this.listObjectAdditionLogTabForpayment,
-
-      }
-      console.log(this.paymentCondition)
-      const jsonObject = JSON.stringify(this.paymentCondition)
-      console.log(jsonObject)
-      // });
-
-      this.createParameter(jsonObject)
     }
-    // else if (this.tabSelectedIndex !== 1) {
-    //   this.tabParameterComponent.updateParameter()
-    //   this.tabAdditionalLogComponent.updateParameter()
-    //   this.tabIndependentComponent.updateParameter()
+
+    // else if (this.tabSelectedIndex === 1) {
+    //   if (this.listObjectParameterTab) {
+    //     this.tabParameterComponent.ngOnInit()
+    //   }
     // }
-    else if (this.tabSelectedIndex === 1) {
-      if (this.listObjectParameterTab) {
-        this.tabParameterComponent.ngOnInit()
-      }
-    }
-    else if (this.tabSelectedIndex === 2) {
-      if (this.listObjectIndependentTab) {
-        this.tabIndependentComponent.ngOnInit()
-      }
-    }
-    else if (this.tabSelectedIndex === 3) {
-      if (this.listObjectAdditionLogTab) {
-        this.tabAdditionalLogComponent.ngOnInit()
-      }
-    }
+    // else if (this.tabSelectedIndex === 2) {
+    //   if (this.listObjectIndependentTab) {
+    //     this.tabIndependentComponent.ngOnInit()
+    //   }
+    // }
+    // else if (this.tabSelectedIndex === 3) {
+    //   if (this.listObjectAdditionLogTab) {
+    //     this.tabAdditionalLogComponent.ngOnInit()
+    //   }
+    // }
   }
   openDialogCopyParameterComponent(): void {
     const dialogRef = this.dialog.open(DialogCopyParameterComponent, {
@@ -361,13 +357,6 @@ export class HomeComponent implements OnInit {
       this.listObjectIndependentTab = this.mockupJSON.independent
       this.listObjectAdditionLogTab = this.mockupJSON.additionLog
 
-      // this.router.events.pipe(filter((event: RouterEvent) => event instanceof NavigationEnd)).subscribe(() => {
-      //   this.tabParameterComponent.ngOnInit()
-      //   this.tabIndependentComponent.ngOnInit()
-      //   this.tabAdditionalLogComponent.ngOnInit()
-
-      // });
-      // this.tabParameterComponent.ngOnInit()
       this.homeForm.patchValue({
         paymentDate: this.mockupJSON.payment.paymentDate,// วันที่ประมวลผล
         paymentName: this.mockupJSON.payment.paymentName, // การกำหนด
@@ -400,20 +389,48 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  createParameter(payload) {
+  searchParameter() {
+    const formValue = this.homeForm.value
+    const date = new Date(formValue.paymentDate)
+    const dayPaymentDate = date.getDate();
+    const monthPaymentDate = date.getMonth() + 1;
+    const yearPaymentDate = date.getFullYear();
+    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate)
+    const paymentName = formValue.paymentName
+    this.paymentAliasService.search(paymentDate, paymentName).subscribe(result => {
+      if (result.status === 200) {
+        const data = result.data
+        if (data) {
+          this.updateParameter(this.paymentCondition, data)
+        } else {
+          this.createParameter(this.paymentCondition)
+        }
 
+      }
+    })
+  }
+
+  createParameter(jsonObject) {
     const formValue = this.homeForm.value
     const data = {
       paymentDate: formValue.paymentDate,
       paymentName: formValue.paymentName,
+      jsonText: JSON.stringify(jsonObject)
     }
-    this.paymentService.create(data).subscribe(result => {
+    this.paymentAliasService.create(data).subscribe(result => {
       console.log(result)
-
-      this.paymentCondition = result.data
-      console.log(this.paymentCondition)
     })
-
+  }
+  updateParameter(jsonObject, response) {
+    const formValue = this.homeForm.value
+    const data = {
+      paymentDate: formValue.paymentDate,
+      paymentName: formValue.paymentName,
+      jsonText: JSON.stringify(jsonObject)
+    }
+    this.paymentAliasService.update(data, response.id).subscribe(result => {
+      console.log(result)
+    })
   }
 
   test() {
