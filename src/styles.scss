@@ -235,7 +235,7 @@ table {
   th {
     position: sticky !important;
     z-index: 999 !important;
-    top: 0;
+    top: -2px;
   }
 
   th.sort {
