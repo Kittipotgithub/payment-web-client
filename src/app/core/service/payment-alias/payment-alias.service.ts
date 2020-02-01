@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, take, catchError } from 'rxjs/operators';
 import { ApiService } from '../../api.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,27 +12,41 @@ import { HttpClient } from '@angular/common/http';
 export class PaymentAliasService {
   constructor(private httpClient: HttpClient) {}
 
-  create(payload): Observable<any> {
-    return this.httpClient.post('/paymentAlias/save', payload).pipe(
-      map(data => {
-        console.log(data);
-        return data;
-      }),
-      take(1)
-    );
+  create(payload): Promise<any> {
+    return this.httpClient
+      .post(`${environment.apiUrl}` + '/paymentAlias/save', payload)
+      .pipe(
+        map(data => {
+          console.log(data);
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          return of(err);
+        }),
+        take(1)
+      )
+      .toPromise();
   }
-  update(payload, id): Observable<any> {
-    return this.httpClient.put('/paymentAlias/update/' + id, payload).pipe(
-      map(data => {
-        console.log(data);
-        return data;
-      }),
-      take(1)
-    );
+  update(payload, id): Promise<any> {
+    return this.httpClient
+      .put(`${environment.apiUrl}` + '/paymentAlias/update/' + id, payload)
+      .pipe(
+        map(data => {
+          console.log(data);
+          return data;
+        }),
+        catchError(err => {
+          console.log(err);
+          return of(err);
+        }),
+        take(1)
+      )
+      .toPromise();
   }
   search(date, name): Promise<any> {
     return this.httpClient
-      .get('/paymentAlias/search/' + date + '/' + name)
+      .get(`${environment.apiUrl}` + '/paymentAlias/search/' + date + '/' + name)
       .pipe(
         map(data => {
           console.log(data);

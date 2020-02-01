@@ -433,7 +433,7 @@ export class HomeComponent implements OnInit {
       //   jsonText: JSON.stringify(jsonObject)
       // }
     };
-    this.paymentAliasService.create(data).subscribe(result => {
+    this.paymentAliasService.create(data).then(result => {
       console.log(result);
     });
   }
@@ -447,7 +447,8 @@ export class HomeComponent implements OnInit {
       //   jsonText: JSON.stringify(jsonObject)
       // }
     };
-    this.paymentAliasService.update(data, response.id).subscribe(result => {
+    console.log(data);
+    this.paymentAliasService.update(data, response.id).then(result => {
       console.log(result);
     });
   }
