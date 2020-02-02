@@ -9,7 +9,7 @@
   <div class="container-fluid">
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="homeForm">
       <div class="row">
-        <div class="col-md-4 col-left">
+        <div class="col-md-3 col-left">
           <h3 class="text-black"><b>วันที่ประมวลผล</b></h3>
           <div class="input-group input-group-lg">
             <input type="text"
@@ -22,7 +22,7 @@
             </button>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <h3 class="text-black"><b>การกำหนด</b></h3>
           <div class="input-group input-group-lg">
             <input type="text" (blur)="onBlurPaymentName()"
@@ -34,7 +34,7 @@
             </button>
           </div>
         </div>
-        <div class="col-md-4" style="padding-top:20px;">
+        <div class="col-md-3" style="padding-top:20px;">
           <span><b>คัดลอกพารามิเตอร์ : </b></span>&nbsp;
           <span class="fill-remaining-space">
             <button mat-icon-button (click)="openDialogCopyParameterComponent('copy')" class="btn_menu1">
@@ -52,20 +52,16 @@
             </button>
           </span>
         </div>
+        <div class="col-md-3" style="padding-top:20px;">
+          <span><b>เคลียร์ พารามิเตอร์ : </b></span>&nbsp;
+          <span class="fill-remaining-space">
+            <button mat-icon-button (click)="clearInputAll()" class="btn_menu1">
+              <mat-icon style="font-size:15px;padding:5px;">clear</mat-icon>
+            </button>
+          </span>
+        </div>
       </div>
     </form>
-    <div class="row">
-
-      <div class="col-md-4" style="padding-top:20px;">
-        <span><b>เคลียร์ พารามิเตอร์ : </b></span>&nbsp;
-        <span class="fill-remaining-space">
-          <button mat-icon-button (click)="clearInputAll()" class="btn_menu1">
-            <mat-icon style="font-size:15px;padding:5px;">clear</mat-icon>
-          </button>
-        </span>&nbsp;
-
-      </div>
-    </div>
     <br>
     <!-- Material Tab -->
     <div class="row" [ngClass]="{ 'readonly-input': isDisabledCopy }">

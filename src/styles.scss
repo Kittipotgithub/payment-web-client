@@ -261,7 +261,7 @@ table {
 
   thead .info {
     background-color: #e4f5ff;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
   }
 
@@ -283,7 +283,7 @@ table.table-normal {
     padding: 5px 5px;
     background-color: $header-modal-color;
     color: white;
-    border: 1px solid white;
+    // border: 1px solid white;
     text-align: center;
   }
 
@@ -588,11 +588,16 @@ span.break-word-text {
 }
 
 .mat-row.hovered {
-  background: #ffd740;
+  // background: #ffd740;
+  background: #fffae6;
 }
 
 .mat-row.highlighted {
   background: #999;
+}
+
+tr.mat-footer-row, tr.mat-row {
+  height: 45px;
 }
 
 .pointer {

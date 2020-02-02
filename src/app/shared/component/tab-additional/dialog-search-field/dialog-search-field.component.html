@@ -6,11 +6,11 @@
 
   <form (keydown.enter)="$event.preventDefault()" [formGroup]="searchFiledFormCreate" style="padding-bottom: 40px;">
     <div class="example-item">
-      <div class="col-12">
-        <div class="col-12 col-md-2" style="margin-right: -55px;">
+      <div class="col-7">
+        <div class="col-12 col-md-3" style="margin-right: -30px;">
           <label class="text-underline-blue input-head"> ประเภทฟิวด์ : </label>
         </div>
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-9">
           <mat-radio-group formControlName="type" (change)="changeType($event)" aria-label="Select an option">
             <mat-radio-button name="type" value="1">ตั้งต้น</mat-radio-button>&nbsp;
             <mat-radio-button name="type" value="2">เอกสาร</mat-radio-button>&nbsp;
@@ -18,12 +18,13 @@
           </mat-radio-group>
         </div>
       </div>
+      <div class="col-12 col-md-5">
+        <input (keyup)="applyFilter($event.target.value)" placeholder="Filter" class="form-control">
+      </div>
     </div>
   </form>
+  <br>
   <div class="example-item">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
       <ng-container matColumnDef="choose">
