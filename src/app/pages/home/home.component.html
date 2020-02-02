@@ -14,7 +14,8 @@
           <div class="input-group input-group-lg">
             <input type="text"
               [ngStyle]="{'background-color': !homeForm.controls.paymentDate.value ?'#fff' : '#fffae6'}"
-              class="form-control date-mat-input" [matDatepicker]="myDatepicker" formControlName="paymentDate">
+              class="form-control date-mat-input" (dateChange)="onPaymentDate()" [matDatepicker]="myDatepicker"
+              formControlName="paymentDate">
             <button class="btn btn-default" type="button" mat-raised-button (click)="myDatepicker.open()">
               <img src="assets/images/icon/calendar.svg" width="12px">
               <mat-datepicker #myDatepicker></mat-datepicker>

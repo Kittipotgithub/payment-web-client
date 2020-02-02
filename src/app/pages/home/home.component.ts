@@ -14,6 +14,7 @@ import { filter } from 'rxjs/operators';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { DialogSearchParameterComponent } from 'src/app/shared/component/dialog-search-parameter/dialog-search-parameter.component';
+import { TabStatusComponent } from '../tab-status/tab-status.component';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,8 @@ import { DialogSearchParameterComponent } from 'src/app/shared/component/dialog-
   ],
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(TabStatusComponent, { static: true })
+  private tabStatusComponent: TabStatusComponent;
   @ViewChild(TabParameterComponent, { static: true })
   private tabParameterComponent: TabParameterComponent;
   @ViewChild(TabAdditionalLogComponent, { static: true })
@@ -78,6 +81,8 @@ export class HomeComponent implements OnInit {
     this.createHomeFormControl();
     this.createHomeFormGroup();
     this.defaultHomeForm();
+
+    this.tabStatusComponent.showStatus(false, []);
   }
 
   createHomeFormControl() {
@@ -101,6 +106,8 @@ export class HomeComponent implements OnInit {
     this.tabParameterComponent.defaultInput();
     this.tabIndependentComponent.defaultIndependet();
     this.tabAdditionalLogComponent.defaultInputAdditionLogForm();
+    this.isDisabledCopy = false;
+    this.tabStatusComponent.showStatus(false, []);
   }
 
   receiveObjectFromParameter($event) {
@@ -166,7 +173,7 @@ export class HomeComponent implements OnInit {
                 'additionLogTabForpayment',
                 JSON.stringify(this.listObjectAdditionLogTab)
               );
-              this.searchParameter();
+              this.searchParameterAfterCreateOrUpdate();
             } else if (result.value === 'UnSave') {
               console.log(localStorage.getItem('parameterTabForpayment'));
               this.tabParameterComponent.getParameterFromCopy(
@@ -198,26 +205,24 @@ export class HomeComponent implements OnInit {
             paymentDate: new Date(data.paymentDate), // วันที่ประมวลผล
             paymentName: data.paymentName, // การกำหนด
           });
+          this.searchPaymentDetailFromCopy(data);
         }
       }
     });
   }
 
+  onPaymentDate() {
+    const formValue = this.homeForm.value;
+    if (formValue.paymentDate && formValue.paymentName) {
+      this.searchPaymentDetailFromCopy(formValue);
+    }
+  }
+
   onBlurPaymentName() {
     const formValue = this.homeForm.value;
     if (formValue.paymentDate && formValue.paymentName) {
-      this.searchPaymentDetail();
+      this.searchPaymentDetailFromCopy(formValue);
     }
-  }
-  searchPaymentDetail() {
-    const formValue = this.homeForm.value;
-    const date = new Date(formValue.paymentDate);
-    const dayPaymentDate = date.getDate();
-    const monthPaymentDate = date.getMonth() + 1;
-    const yearPaymentDate = date.getFullYear();
-    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
-    const paymentName = formValue.paymentName;
-    this.paymentAliasService.search(paymentDate, paymentName).then(result => {});
   }
 
   searchPaymentDetailFromCopy(copy) {
@@ -237,6 +242,19 @@ export class HomeComponent implements OnInit {
         if (data) {
           // console.log('The dialog was closed');
           const jsonObject = JSON.parse(data.jsonText);
+          const proposalStatus = data.proposalStatus;
+          const runStatus = data.runStatus;
+
+          if (proposalStatus) {
+            this.isDisabledCopy = true;
+          } else if (proposalStatus) {
+            this.isDisabledCopy = false;
+          } else if (runStatus) {
+            this.isDisabledCopy = true;
+          } else if (!runStatus) {
+            this.isDisabledCopy = false;
+          }
+
           this.listObjectParameterTab = jsonObject.parameter as any;
           this.listObjectIndependentTab = jsonObject.independent;
           this.listObjectAdditionLogTab = jsonObject.additionLog;
@@ -249,12 +267,16 @@ export class HomeComponent implements OnInit {
           this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab);
           this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab);
           this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab);
+          this.tabStatusComponent.showStatus(true, data);
         }
+      } else if (result.status === 404) {
+        const data = result.error;
+        this.tabStatusComponent.showStatus(false, data);
       }
     });
   }
 
-  searchParameter() {
+  searchParameterAfterCreateOrUpdate() {
     const formValue = this.homeForm.value;
     const date = new Date(formValue.paymentDate);
     const dayPaymentDate = date.getDate();
@@ -268,9 +290,12 @@ export class HomeComponent implements OnInit {
         const data = result.data;
         if (data) {
           this.updateParameter(this.paymentCondition, data);
+          this.tabStatusComponent.showStatus(true, data);
         }
       } else if (result.status === 404) {
+        const data = result.error;
         this.createParameter(this.paymentCondition);
+        this.tabStatusComponent.showStatus(false, data);
       }
     });
   }
@@ -284,6 +309,7 @@ export class HomeComponent implements OnInit {
     };
     this.paymentAliasService.create(data).then(result => {
       console.log(result);
+      this.searchPaymentDetail();
     });
   }
   updateParameter(jsonObject, response) {
@@ -295,7 +321,30 @@ export class HomeComponent implements OnInit {
     };
     console.log(data);
     this.paymentAliasService.update(data, response.id).then(result => {
+      this.searchPaymentDetail();
       console.log(result);
+    });
+  }
+  searchPaymentDetail() {
+    const formValue = this.homeForm.value;
+    const date = new Date(formValue.paymentDate);
+    const dayPaymentDate = date.getDate();
+    const monthPaymentDate = date.getMonth() + 1;
+    const yearPaymentDate = date.getFullYear();
+    const paymentDate = this.utils.parseDate(dayPaymentDate, monthPaymentDate, yearPaymentDate);
+    const paymentName = formValue.paymentName;
+    this.paymentAliasService.search(paymentDate, paymentName).then(result => {
+      console.log('boss');
+      console.log(result.status);
+      if (result.status === 200) {
+        const data = result.data;
+        if (data) {
+          this.tabStatusComponent.showStatus(true, data);
+        }
+      } else if (result.status === 404) {
+        const data = result.error;
+        this.tabStatusComponent.showStatus(false, data);
+      }
     });
   }
 

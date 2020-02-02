@@ -1,45 +1,62 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-tab-status',
   templateUrl: './tab-status.component.html',
-  styleUrls: ['./tab-status.component.scss']
+  styleUrls: ['./tab-status.component.scss'],
 })
 export class TabStatusComponent implements OnInit {
   // Open panal
   panleExpanded = true;
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  isDisabledParameterStatus: boolean = true;
+  isDisabledProposalStatus: boolean = true;
+  isDisabledRunStatus: boolean = true;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  listShowMessage = [];
 
-  
-  constructor() { }
-  ngOnInit() {
-    this.dataSource.sort = this.sort;
+  constructor() {}
+
+  ngOnInit() {}
+
+  showStatus(have, object) {
+    this.listShowMessage = [];
+    if (have) {
+      console.log(object);
+      const parameterStatus = object.parameterStatus;
+      const proposalStatus = object.proposalStatus;
+      const runStatus = object.runStatus;
+
+      if (parameterStatus) {
+        if (parameterStatus === 'S') {
+          this.listShowMessage.push('บันทึกพารามิเตอร์แล้ว');
+        } else {
+          this.listShowMessage.push('ยังไม่บันทึกพารามิเตอร์แล้ว');
+        }
+      }
+
+      if (proposalStatus) {
+        if (proposalStatus === 'S') {
+          this.listShowMessage.push('สร้างข้อเสนอสำเร็จ');
+        } else {
+          this.listShowMessage.push('สร้างข้อเสนอไม่สำเร็จ');
+        }
+      }
+      if (runStatus) {
+        if (runStatus === 'S') {
+          this.listShowMessage.push('ประมวลผลชำระเงินสำเร็จ');
+        } else {
+          this.listShowMessage.push('ประมวลผลชำระเงินไม่สำเร็จ');
+        }
+      }
+      console.log(this.listShowMessage);
+
+      console.log('have');
+    } else {
+      console.log('no have');
+      this.listShowMessage.push('ยังไม่บันทึกพารามิเตอร์แล้ว');
+    }
   }
-
 }
