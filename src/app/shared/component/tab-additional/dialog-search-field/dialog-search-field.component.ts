@@ -1,26 +1,12 @@
-import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, Inject, AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { PaymentService } from 'src/app/core/service/payment/payment.service';
 import { ThrowStmt } from '@angular/compiler';
 import { group } from '@angular/animations';
 import { PaymentIndependentService } from 'src/app/core/service/payment-independent/payment-independent.service';
-
-export interface DialogData {
-  type: string;
-  title: string;
-  specialCase: {
-    departmentCode: '';
-    disbursementCode: '';
-    areaCode: '';
-
-    bankCode: '';
-    vendorTaxId: '';
-    year: '';
-    condition: '';
-    formId: '';
-  };
-}
+import { MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-dialog-search-field',
@@ -28,19 +14,20 @@ export interface DialogData {
   styleUrls: ['./dialog-search-field.component.scss'],
 })
 export class DialogSearchFieldComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
   searchFiledFormCreate: FormGroup;
 
   typeControl: FormControl; // ชื่อฟิลด์
 
   errorMessage = '';
 
-  displayedColumns: string[] = ['choose', 'filedName', 'filedTable'];
+  displayedColumns: string[] = ['choose', 'fieldName', 'dbName'];
 
-  dataSource = [];
+  dataSource = new MatTableDataSource([]);
 
   constructor(
     private dialogRef: MatDialogRef<DialogSearchFieldComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private formBuilder: FormBuilder,
     private paymentService: PaymentService,
     private paymentIndependentService: PaymentIndependentService
@@ -67,26 +54,30 @@ export class DialogSearchFieldComponent implements OnInit, AfterViewInit {
   closeDialog(): void {
     const dialogRef = this.dialogRef.close();
   }
-  chooseDataSearch(row) {
-    console.log('show', row);
+  chooseDataSearch(data) {
+    console.log('show', data);
 
     this.dialogRef.close({
       event: true,
-      // type: row.,
-      value: row.fieldName,
+      fieldName: data.fieldName,
+      dataType: data.dataType,
+      dbName: data.dbName,
+      tableName: data.tableName,
     });
   }
   search(groupName) {
     this.paymentIndependentService.search(groupName).then(value => {
       console.log(value.data);
-      this.dataSource = value.data;
+      this.dataSource = new MatTableDataSource(value.data);
+      this.dataSource.sort = this.sort;
     });
   }
 
   searchStandard() {
     this.paymentIndependentService.searchStandard().then(value => {
       console.log(value.data);
-      this.dataSource = value.data;
+      this.dataSource = new MatTableDataSource(value.data);
+      this.dataSource.sort = this.sort;
     });
   }
   changeType(event) {
@@ -98,5 +89,8 @@ export class DialogSearchFieldComponent implements OnInit, AfterViewInit {
     } else if (event.value === '3') {
       this.search('Vendor');
     }
+  }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

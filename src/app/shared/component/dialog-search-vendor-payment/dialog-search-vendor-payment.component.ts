@@ -1,26 +1,8 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { MasterService } from './../../../core/service/master/master.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface PeriodicElement {
-  pay: string;
-  code: string;
-  nextpay: string;
-}
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   { code: '07.11.2019', pay: 'H0001', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '07.11.2019', pay: 'H0002', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '29.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '29.10.2019', pay: 'Z-DI2', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '29.10.2019', pay: 'Z-IN1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-//   { code: '10.10.2019', pay: 'Z-DI1', nextpay: 'ผ่านรายการการชำระเงินแล้ว' },
-// ];
+import { MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-dialog-search-vendor-payment',
@@ -28,6 +10,7 @@ export interface PeriodicElement {
   styleUrls: ['./dialog-search-vendor-payment.component.scss'],
 })
 export class DialogSearchVendorPaymentComponent implements OnInit {
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = ['choose', 'taxId', 'valueCode', 'name'];
   dataSource = new MatTableDataSource([]);
   errorMessage = '';
@@ -783,6 +766,8 @@ export class DialogSearchVendorPaymentComponent implements OnInit {
         active: true,
       },
     ]);
+
+    this.dataSource.sort = this.sort;
   }
 
   chooseDataSearch(data) {

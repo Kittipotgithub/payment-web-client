@@ -5,38 +5,17 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PaymentAliasService } from 'src/app/core/service/payment-alias/payment-alias.service';
 
-export interface PeriodicElement {
-  paymentName: string;
-  paymentDate: any;
-  statusName: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { paymentDate: 1580556948725, paymentName: 'A0001', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580556948725, paymentName: 'H0001', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580556948725, paymentName: 'C0001', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1577879219000, paymentName: 'A0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1577879219000, paymentName: 'B0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1577879219000, paymentName: 'C0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1578052019000, paymentName: 'A0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1578052019000, paymentName: 'B0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1578052019000, paymentName: 'C0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580039219000, paymentName: 'A0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580039219000, paymentName: 'B0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-  { paymentDate: 1580039219000, paymentName: 'C0002', statusName: 'ผ่านรายการการชำระเงินแล้ว' },
-];
-
 @Component({
   selector: 'app-dialog-search-parameter',
   templateUrl: './dialog-search-parameter.component.html',
   styleUrls: ['./dialog-search-parameter.component.scss'],
 })
 export class DialogSearchParameterComponent implements OnInit {
-  displayedColumns: string[] = ['choose', 'paymentDate', 'paymentName', 'statusName'];
-  listData = [] as PeriodicElement[];
-  dataSource = new MatTableDataSource(this.listData);
-
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  displayedColumns: string[] = ['choose', 'paymentDate', 'paymentName', 'statusName'];
+
+  dataSource = new MatTableDataSource([]);
+
   pipe: ThaidatePipe;
   constructor(
     private dialogRef: MatDialogRef<DialogSearchParameterComponent>,

@@ -173,10 +173,10 @@ export class TabIndependentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.event) {
-        this.listIndependent[index].fieldName = result.value;
-        this.listIndependent[index].dataType = 'string';
-        this.listIndependent[index].dbName = 'v';
-        this.listIndependent[index].tableName = 'accDocNo';
+        this.listIndependent[index].fieldName = result.fieldName;
+        this.listIndependent[index].dataType = result.dataType;
+        this.listIndependent[index].dbName = result.dbName;
+        this.listIndependent[index].tableName = result.tableName;
       }
     });
   }
