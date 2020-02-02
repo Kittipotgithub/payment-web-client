@@ -199,13 +199,13 @@ export class HomeComponent implements OnInit {
       if (result && result.event) {
         const data = result.value;
         if (type === 'copy') {
-          this.searchPaymentDetailFromCopy(data);
+          this.searchPaymentDetailFromCopy(data, 'copy');
         } else if (type === 'search') {
           this.homeForm.patchValue({
             paymentDate: new Date(data.paymentDate), // วันที่ประมวลผล
             paymentName: data.paymentName, // การกำหนด
           });
-          this.searchPaymentDetailFromCopy(data);
+          this.searchPaymentDetailFromCopy(data, 'search');
         }
       }
     });
@@ -214,18 +214,18 @@ export class HomeComponent implements OnInit {
   onPaymentDate() {
     const formValue = this.homeForm.value;
     if (formValue.paymentDate && formValue.paymentName) {
-      this.searchPaymentDetailFromCopy(formValue);
+      this.searchPaymentDetailFromCopy(formValue, 'search');
     }
   }
 
   onBlurPaymentName() {
     const formValue = this.homeForm.value;
     if (formValue.paymentDate && formValue.paymentName) {
-      this.searchPaymentDetailFromCopy(formValue);
+      this.searchPaymentDetailFromCopy(formValue, 'search');
     }
   }
 
-  searchPaymentDetailFromCopy(copy) {
+  searchPaymentDetailFromCopy(copy, type) {
     console.log(copy);
     const value = copy;
     const date = new Date(value.paymentDate);
@@ -245,16 +245,19 @@ export class HomeComponent implements OnInit {
           const proposalStatus = data.proposalStatus;
           const runStatus = data.runStatus;
 
-          if (proposalStatus) {
-            this.isDisabledCopy = true;
-          } else if (proposalStatus) {
-            this.isDisabledCopy = false;
-          } else if (runStatus) {
-            this.isDisabledCopy = true;
-          } else if (!runStatus) {
+          if (type === 'search') {
+            if (proposalStatus) {
+              this.isDisabledCopy = true;
+            } else if (proposalStatus) {
+              this.isDisabledCopy = false;
+            } else if (runStatus) {
+              this.isDisabledCopy = true;
+            } else if (!runStatus) {
+              this.isDisabledCopy = false;
+            }
+          } else {
             this.isDisabledCopy = false;
           }
-
           this.listObjectParameterTab = jsonObject.parameter as any;
           this.listObjectIndependentTab = jsonObject.independent;
           this.listObjectAdditionLogTab = jsonObject.additionLog;
@@ -267,7 +270,11 @@ export class HomeComponent implements OnInit {
           this.tabParameterComponent.getParameterFromCopy(this.listObjectParameterTab);
           this.tabIndependentComponent.getIndependentFromCopy(this.listObjectIndependentTab);
           this.tabAdditionalLogComponent.getAdditionLogFromCopy(this.listObjectAdditionLogTab);
-          this.tabStatusComponent.showStatus(true, data);
+          if (type === 'search') {
+            this.tabStatusComponent.showStatus(true, data);
+          } else {
+            this.tabStatusComponent.showStatus(false, data);
+          }
         }
       } else if (result.status === 404) {
         const data = result.error;
