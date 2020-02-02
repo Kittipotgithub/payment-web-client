@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChildren, ElementRef, QueryList, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { PaymentMethodService } from 'src/app/core/service/payment-method/payment-method';
 
 export interface DialogData {
   paymentMethod: string;
@@ -11,25 +13,17 @@ export interface DialogData {
 })
 export class DialogSearchPaymentMethodComponent implements OnInit {
   @ViewChildren('checkBoxPaymentMethod') checkBoxPaymentMethod: QueryList<ElementRef>;
+  // @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   paymentMethod = [
-    { id: '1', name: '1 - จ่ายตรงผู้ขาย เงินงบประมาณ', selected: false },
-    { id: '3', name: '3 - จ่ายตรงผู้ขายเงินนอกงบประมาณ', selected: false },
-    { id: 'I', name: 'I - จ่ายตรงผู้ขายที่เป็นสรก. ในงบ', selected: false },
-    { id: 'J', name: 'J - จ่ายตรงผู้ขายที่เป็นสรก. นอกงบ', selected: false },
-    { id: '6', name: '6 - จ่ายสำรองค.กเงินกู้ตปท. - Direct', selected: false },
 
-    { id: '0', name: '0 - จ่ายตรงจากแหล่งเงินกู้ นอก TR1', selected: false },
-    { id: '2', name: '2 - จ่ายเงินในงบให้ Agency-Indirect', selected: false },
-    { id: '4', name: '4 - จ่ายเงินนอกงบให้ Agency-Indirect', selected: false },
-    { id: '5', name: '5 - จ่ายเงินนอกงปม. นอก TR1', selected: false },
-    { id: '7', name: '7 - จ่ายสำรองค.ก.เงินกู้ตปท. -Indir', selected: false },
   ];
 
   paymentSelected = '';
-
+  dataSource = new MatTableDataSource([]);
   constructor(
     private dialogRef: MatDialogRef<DialogSearchPaymentMethodComponent>,
+    private paymentMethodService: PaymentMethodService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     dialogRef.disableClose = false;
@@ -41,10 +35,12 @@ export class DialogSearchPaymentMethodComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchPayment();
     if (this.data.paymentMethod) {
       this.paymentSelected = this.data.paymentMethod;
       this.checkPaymentMethodSelecet();
     }
+    // this.searchPayment();
   }
 
   checkPaymentMethodSelecet() {
@@ -59,7 +55,15 @@ export class DialogSearchPaymentMethodComponent implements OnInit {
       });
     }
   }
+ 
+  searchPayment(){
+    this.paymentMethodService.search().then(value => {
+      console.log('print',value.data);
+      this.paymentMethod = value.data;
+     
+    });
 
+  }
   closeDialog(): void {
     this.dialogRef.close({
       event: false,
