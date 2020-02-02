@@ -110,6 +110,12 @@ export class HomeComponent implements OnInit {
     this.tabStatusComponent.showStatus(false, []);
   }
 
+  receiveActionFromStatus() {
+    const formValue = this.homeForm.value;
+    if (formValue.paymentDate && formValue.paymentName) {
+      this.searchPaymentDetailFromCopy(formValue, 'search');
+    }
+  }
   receiveObjectFromParameter($event) {
     // console.log('receiveObjectFromParameter')
     this.listObjectParameterTab = $event;
@@ -332,6 +338,19 @@ export class HomeComponent implements OnInit {
       console.log(result);
     });
   }
+  // deleteProposal() {
+  //   const formValue = this.homeForm.value;
+  //   const data = {
+  //     paymentDate: formValue.paymentDate,
+  //     paymentName: formValue.paymentName,
+  //     jsonText: JSON.stringify(jsonObject),
+  //   };
+  //   console.log(data);
+  //   this.paymentAliasService.update(data, response.id).then(result => {
+  //     this.searchPaymentDetail();
+  //     console.log(result);
+  //   });
+  // }
   searchPaymentDetail() {
     const formValue = this.homeForm.value;
     const date = new Date(formValue.paymentDate);
