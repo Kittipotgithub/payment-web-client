@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { PaymentAliasService } from 'src/app/core/service/payment-alias/payment-alias.service';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -8,20 +9,24 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./tab-status.component.scss'],
 })
 export class TabStatusComponent implements OnInit {
+  @Output() actionFromStatus = new EventEmitter<any>();
   // Open panal
   panleExpanded = true;
 
   isDisabledParameterStatus: boolean = true;
   isDisabledProposalStatus: boolean = true;
   isDisabledRunStatus: boolean = true;
-
+  listSearchPaymentDetail: any = null; //data from search
   listShowMessage = [];
 
-  constructor() {}
+  constructor(private paymentAliasService: PaymentAliasService) {}
 
   ngOnInit() {}
 
   showStatus(have, object) {
+    console.log('showStatus');
+    console.log(object);
+    this.listSearchPaymentDetail = object;
     this.listShowMessage = [];
     if (have) {
       console.log(object);
@@ -57,6 +62,25 @@ export class TabStatusComponent implements OnInit {
     } else {
       console.log('no have');
       this.listShowMessage.push('ยังไม่บันทึกพารามิเตอร์แล้ว');
+    }
+  }
+  deleteProposal() {
+    console.log(this.listSearchPaymentDetail);
+    if (this.listSearchPaymentDetail) {
+      if (this.listSearchPaymentDetail.id) {
+        const data = {
+          paymentDate: this.listSearchPaymentDetail.paymentDate,
+          paymentName: this.listSearchPaymentDetail.paymentName,
+          proposalStatus: 'DELETE',
+        };
+
+        this.paymentAliasService.update(data, this.listSearchPaymentDetail.id).then(result => {
+          console.log(result);
+          this.actionFromStatus.emit();
+          // this.searchPaymentDetail();
+          // console.log(result);
+        });
+      }
     }
   }
 }
