@@ -15,9 +15,7 @@ export class DialogSearchPaymentMethodComponent implements OnInit {
   @ViewChildren('checkBoxPaymentMethod') checkBoxPaymentMethod: QueryList<ElementRef>;
   // @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  paymentMethod = [
-
-  ];
+  paymentMethod = [];
 
   paymentSelected = '';
   dataSource = new MatTableDataSource([]);
@@ -35,34 +33,36 @@ export class DialogSearchPaymentMethodComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchPayment();
-    if (this.data.paymentMethod) {
-      this.paymentSelected = this.data.paymentMethod;
-      this.checkPaymentMethodSelecet();
-    }
+    this.searchPayment().then(() => {
+      if (this.data.paymentMethod) {
+        this.paymentSelected = this.data.paymentMethod;
+        this.checkPaymentMethodSelecet();
+      }
+    });
+
     // this.searchPayment();
   }
 
   checkPaymentMethodSelecet() {
     if (this.paymentSelected.length > 0 && this.paymentSelected) {
-      let paymentAll = this.paymentSelected.split('');
+      const paymentAll = this.paymentSelected.split('');
+      console.log(this.paymentMethod);
       paymentAll.forEach(payment => {
+        console.log(paymentAll);
         this.paymentMethod.forEach(item => {
-          if (item.id === payment) {
+          if (item.valueCode === payment) {
             item.selected = true;
           }
         });
       });
     }
   }
- 
-  searchPayment(){
-    this.paymentMethodService.search().then(value => {
-      console.log('print',value.data);
-      this.paymentMethod = value.data;
-     
-    });
 
+  async searchPayment() {
+    await this.paymentMethodService.search().then(value => {
+      console.log('print', value.data);
+      this.paymentMethod = value.data;
+    });
   }
   closeDialog(): void {
     this.dialogRef.close({
