@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { environment } from '@env/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class ApiService {
   constructor(private httpClient: HttpClient) {}
@@ -39,7 +39,7 @@ export class ApiService {
   report(path: string, body: object = {}): Observable<any> {
     return this.httpClient
       .post(`${environment.apiUrl}${path}`, body, {
-        responseType: "arraybuffer"
+        responseType: 'arraybuffer',
       })
       .pipe(catchError(this.formatErrors));
   }

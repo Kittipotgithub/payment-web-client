@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, take, catchError } from 'rxjs/operators';
 import { ApiService } from '../../api.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,9 @@ import { environment } from 'src/environments/environment';
 export class PaymentIndependentService {
   constructor(private httpClient: HttpClient) {}
 
-
-  search( value): Promise<any> {
+  search(value): Promise<any> {
     return this.httpClient
-      .get(`${environment.apiUrl}` + '/paymentIndependentConfig/searchGroup/' + value )
+      .get(`${environment.apiUrl}` + '/paymentIndependentConfig/searchGroup/' + value)
       .pipe(
         map(data => {
           console.log(data);
