@@ -299,7 +299,7 @@
                     <input class="form-control"  [ngStyle]="{'background-color': !name19 ?'#fff' : '#f2f2f2'}" type="text" maxlength="1" formControlName="outline" />
                   </div>
                   <div class="col-md-6">
-                    <button mat-icon-button class="btn btn-info" (click)="onSearch()" >
+                    <button mat-icon-button class="btn btn-info" (click)="loadvendor()" >
                         <span style="font-size:15px;">เริ่มค้นหา</span>
                     </button>
                   </div>
@@ -314,7 +314,7 @@
           
         </div> -->
         
-        <div style="overflow:auto;max-height:400px;">
+        <!--div style="overflow:auto;max-height:400px;">
           <table  class="table-normal table-result" >
             <tr>
               <th>รายการ</th>
@@ -322,7 +322,7 @@
               <!-- <i class="material-icons">arrow_drop_up</i> -->
               <!-- <i class="material-icons">arrow_drop_down</i> -->
 
-              <th class="sort">อนุมัติ<i class="material-icons">arrow_drop_down</i></th>
+              <!--th class="sort">อนุมัติ<i class="material-icons">arrow_drop_down</i></!--th>
               <th class="sort">ไม่อนุมัติ<i class="material-icons">arrow_drop_down</i></th>
               <th class="sort pointer" (click)="sortData('accDocNo')">Err WTinfo<i class="material-icons">arrow_drop_down</i></th>
               <th class="sort pointer" (click)="sortData('fiscYear')">หัก<i class="material-icons">arrow_drop_down</i></th>
@@ -360,16 +360,16 @@
                 (click)="viewDocument(document.accDocNo, document.fiscYear)" />
             
             </td> -->
-              <td class="text-center">{{ i+1 }}</td>
+              <!--td class="text-center">{{ i+1 }}</!--td>
               <td class="text-center">
-                <!-- <input type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')" /> -->
-                <mat-checkbox type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')"></mat-checkbox>
+                < <input type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')" /> -->
+                <!--mat-checkbox type="checkbox" [checked]="document.approve" (click)="onClickCheckedDocument(i, 'approved')"></!--mat-checkbox>
               </td>
               <td class="text-center">
                 <!-- <input type="checkbox" [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notApprove')" /> -->
-                  <mat-checkbox type="checkbox" [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notApprove')" ></mat-checkbox>
+                  <!--mat-checkbox type="checkbox" [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notApprove')" ></!--mat-checkbox>
               </td>
-              <!-- <td> <input class="text-right" class="col-12 col-md-5"  #reasonInput [value]=document.reason (blur)="setReasonIntoDocument(i,document)"/></td> -->
+               <td> <input class="text-right" class="col-12 col-md-5"  #reasonInput [value]=document.reason (blur)="setReasonIntoDocument(i,document)"/></td> -->
               <!-- <td class="td-not-approve text-center">
               <input type="checkbox" data-toggle="collapse" [attr.data-target]="'#notApprove' + i"
                 [checked]="document.notApprove" (click)="onClickCheckedDocument(i, 'notapproved')" />
@@ -387,7 +387,7 @@
                 </button>
               </div>
             </td> -->
-              <td class="text-center">{{ document.info }}</td>
+              <!--td class="text-center">{{ document.info }}</!--td>
               <td class="text-center">{{ document.diff }}</td>
               <td class="text-center">{{ document.docType }}</td>
               <td (click)="openDialogDetailDocument(document)" class="pointer">{{ document.accDocNo }}</td>
@@ -419,9 +419,183 @@
             </tr>
           </table>
 
+        </!--div-->
+
+        <div style="overflow:auto;max-height:400px;">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="choose">
+            <th mat-header-cell *matHeaderCellDef class="info"> รายการ </th>
+            <td mat-cell *matCellDef="let element">
+              {{ i+1 }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="approve">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> อนุมัติ </th>
+            <td mat-cell *matCellDef="let element"> 
+              <mat-checkbox type="checkbox"></mat-checkbox>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="notapprove">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> ไม่อนุมัติ </th>
+            <td mat-cell *matCellDef="let element">  
+              <mat-checkbox type="checkbox"></mat-checkbox>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="info">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Err WTinfo </th>
+            <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diff">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> หัก </th>
+            <td mat-cell *matCellDef="let element"> {{element.diff}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="docType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> ประเภท </th>
+            <td mat-cell *matCellDef="let element"> {{element.docType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="accDocNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> เลขเอกสาร </th>
+            <td mat-cell *matCellDef="let element" (click)="openDialogDetailDocument(document)" class="pointer"> {{element.accDocNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fiscYear">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> ปี </th>
+            <td mat-cell *matCellDef="let element"> {{element.fiscYear}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="referenceNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> เลขอ้างอิง </th>
+            <td mat-cell *matCellDef="let element"> {{element.referenceNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="referenceText">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> การอ้างอิง </th>
+            <td mat-cell *matCellDef="let element"> {{element.referenceText}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dateDoc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> ว/ท เอกสาร </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateDoc| date: 'dd.MM.yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="datePost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Posting Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.datePost | date: 'dd.MM.yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test1">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test1 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test2">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test2 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test3">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test3 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test4">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test4 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test5">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test5 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test6">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test6 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test7">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test7 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="test8">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test8 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test9">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test9 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test10">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test10 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test11">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test11 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test12">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test12 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test13">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test13 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test14">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test14 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test15">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test15 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test16">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test16 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test17">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test17 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test18">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test18 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test19">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test19 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="test20">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="info"> Test20 </th>
+            <td mat-cell *matCellDef="let element"> {{element.compCode}} </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted"
+          (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20,50,100]" showFirstLastButtons></mat-paginator>
         </div>
-
-
 
       </mat-card-content>
     </mat-card>
