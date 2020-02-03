@@ -621,3 +621,33 @@ span.clear-input-icon {
 input:focus+span.clear-input-icon {
   color: black;
 }
+
+.mat-column-choose {
+  min-width: 90px !important;
+}
+
+.mat-column-approve {
+  //flex: 0 0 25% !important;
+  min-width: 74px !important;
+}
+
+.mat-column-notapprove {
+  //flex: 0 0 25% !important;
+  min-width: 90px !important;
+}
+
+.mat-column-accDocNo {
+  min-width: 150px !important;
+}
+
+.mat-column-dateDoc {
+  min-width: 150px !important;
+}
+
+.mat-column-datePost {
+  min-width: 150px !important;
+}
+
+
+
+

@@ -155,13 +155,18 @@ export class DialogSearchMasterComponent implements OnInit {
     }
     this.errorMessage = '';
     this.isLoading = true;
-    this.masterService.findCompanyCodeWithParam(textSearch).subscribe(data => {
-      const response = data as any;
+    this.masterService.findCompanyCodeWithParam(textSearch).then(result => {
+      const response = result as any;
+      console.log(response);
       this.isLoading = false;
-      console.log(data);
-      if (response.status === 'T') {
-        this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.companyCode;
+
+      if (response.status === 200) {
+        if (!response.message) {
+          this.dataSource = response.data;
+          this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.companyCode;
+        } else {
+          this.errorMessage = response.message;
+        }
       } else {
         this.errorMessage = response.message;
       }
@@ -191,12 +196,16 @@ export class DialogSearchMasterComponent implements OnInit {
     }
     this.errorMessage = '';
     this.isLoading = true;
-    this.masterService.findAreaCodeWithParam(textSearch).subscribe(data => {
-      const response = data as any;
+    this.masterService.findAreaCodeWithParam(textSearch).then(result => {
+      const response = result as any;
       this.isLoading = false;
-      if (response.status === 'T') {
-        this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.areaCode;
+      if (response.status === 200) {
+        if (!response.message) {
+          this.dataSource = response.data;
+          this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.areaCode;
+        } else {
+          this.errorMessage = response.message;
+        }
       } else {
         this.errorMessage = response.message;
       }
@@ -227,12 +236,16 @@ export class DialogSearchMasterComponent implements OnInit {
     }
     this.errorMessage = '';
     this.isLoading = true;
-    this.masterService.findPaymentCenterCodeWithParam(textSearch).subscribe(data => {
-      const response = data as any;
+    this.masterService.findPaymentCenterCodeWithParam(textSearch).then(result => {
+      const response = result as any;
       this.isLoading = false;
-      if (response.status === 'T') {
-        this.dataSource = response.data;
-        this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.disbursementCode;
+      if (response.status === 200) {
+        if (!response.message) {
+          this.dataSource = response.data;
+          this.dataSourceHeader = this.constant.HEADER_DIALOG_SEARCH.disbursementCode;
+        } else {
+          this.errorMessage = response.message;
+        }
       } else {
         this.errorMessage = response.message;
       }
